@@ -1,73 +1,58 @@
 <template>
   <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        booking
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+    <section id="header" class="mt-1">
+      <div class="row">
+        <div class="discripchion col-12 col-lg-6 mb-4 mb-lg-0">
+          <h1 class="text-left">Запишись</h1>
+          <hr />
+          <p class="about text-left">
+            Сервис
+            <br />для записи-онлайн
+            <br />в вашем городе
+          </p>
+        </div>
+        <div class="img_header col-12 col-lg-6 mb-4 mb-lg-0">
+          <img class="img-fluid" src="/header.png" />
+        </div>
       </div>
-    </div>
+    </section>
+
   </div>
 </template>
 
 <script>
-export default {}
+// import SpecialistsList from "@/components/main/SpecialistsList";
+export default {
+}
 </script>
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+<style >
+@import url("https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap");
+.discripchion {
+  margin-top: 7rem;
+  font-family: "Raleway", sans-serif;
 }
 
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+.img_header {
+  margin-top: 6rem;
+}
+h1 {
+  font-size: 4.5rem;
+}
+.about {
+  font-size: 3.5rem;
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+
+@media (max-width: 500px) {
+  .discripchion {
+    order: 2;
+  }
+}
+@media (max-width: 500px) {
+  .about {
+    font-size: 2rem;
+  }
 }
 
-.links {
-  padding-top: 15px;
-}
 </style>
