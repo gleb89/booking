@@ -4,7 +4,7 @@ export default {
   ** Nuxt rendering mode
   ** See https://nuxtjs.org/api/configuration-mode
   */
-  mode: 'universal',
+  // mode: 'universal',
   /*
   ** Nuxt target
   ** See https://nuxtjs.org/api/configuration-target
@@ -44,8 +44,18 @@ export default {
   /*
   ** Nuxt.js dev-modules
   */
-  buildModules: [
-  ],
+ buildModules: [
+  '@nuxtjs/fontawesome',
+],
+fontawesome:{
+  component:'fa',
+  icons:{
+    solid:true,
+    brands:true
+  }
+
+
+},
   /*
   ** Nuxt.js modules
   */

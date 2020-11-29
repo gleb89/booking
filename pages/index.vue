@@ -16,13 +16,33 @@
         </div>
       </div>
     </section>
-
+    <section id="section-users">
+        <CardUsers :openUser="openUser" :users="users"/>
+    </section>
   </div>
 </template>
 
 <script>
-// import SpecialistsList from "@/components/main/SpecialistsList";
+import CardUsers from "@/components/CardUsers";
 export default {
+    async fetch({store}){
+        if (store.getters['users/users'].length === 0){
+            await store.dispatch('users/fetch')
+        }
+    },
+    component:{
+        CardUsers
+    },
+    computed: {
+        users(){
+            return this.$store.getters['users/users'].users
+        }
+    },
+    methods: {
+        openUser(user) {
+            this.$router.push((`/users/${user}`))
+        }
+    },
 }
 </script>
 
@@ -32,13 +52,21 @@ export default {
   margin-top: 7rem;
   font-family: "Raleway", sans-serif;
 }
-
+hr{
+  background: #3cbfa6;
+}
+h1 {
+  font-size: 2rem;
+}
+@media (min-width: 390px) {
+  h1{
+    font-size: 4.5rem;
+  }
+}
 .img_header {
   margin-top: 6rem;
 }
-h1 {
-  font-size: 4.5rem;
-}
+
 .about {
   font-size: 3.5rem;
 }

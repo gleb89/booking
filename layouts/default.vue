@@ -1,62 +1,86 @@
 <template>
-  <div>
-    <Nuxt />
-  </div>
+  <section id="body">
+    <header>
+      <Navbar
+        :onLogin="onLogin"
+        :onRegister="onRegister"
+        :onDropdown="onDropdown"
+        :onOpen="onOpen"
+        :onLogout="onLogout"
+      />
+
+    </header>
+
+    <main class="mt-3 pt-3">
+      <Login v-if="menu" :onClose="onClose" />
+      <RegistrationMaster v-if="register" :onCloseReg="onCloseReg" :onLogin="onLogin" />
+      <Nuxt />
+    </main>
+    <footer class="navbar-fixed-bottom">
+      <p class="text-center">footer</p>
+    </footer>
+  </section>
 </template>
 
-<style>
-html {
-  font-family:
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-}
+<script>
+import Navbar from "@/components/Navbar";
+import Login from "@/components/Login";
+import RegistrationMaster from "@/components/RegistrationMaster";
+export default {
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+
+  data() {
+    return {
+      menu: false,
+      register: false,
+      onDropdown: false,
+
+
+    };
+  },
+  methods: {
+    onLogout() {
+      this.onDropdown = false;
+    },
+    onLogin() {
+      this.register = false;
+      this.menu = !this.menu;
+      this.onDropdown = false;
+    },
+    onOpen() {
+      this.onDropdown = !this.onDropdown;
+
+    },
+    onRegister() {
+      this.menu = false;
+      this.register = !this.register;
+      this.onDropdown = false;
+    },
+    onClose() {
+      this.onDropdown = false;
+      this.menu = false;
+    },
+    onCloseReg() {
+      this.onDropdown = false;
+      this.register = false;
+    }
+  },
+  component: {
+    Navbar,
+    Login
+  }
+};
+</script>
+
+<style  >
+html{
   margin: 0;
+  padding: 0;
 }
-
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
-
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
+#body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  position: relative;
 }
 </style>

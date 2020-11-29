@@ -13,6 +13,9 @@
 
 export default {
     middleware: 'authenticated',
+    component: {
+
+  },
     asyncData({ $axios, error,store }) {
         let token = store.state.auth.access_token;
         const headers = {

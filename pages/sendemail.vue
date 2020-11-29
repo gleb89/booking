@@ -1,27 +1,36 @@
 <template>
-    <div>
-        <div class="wrapper fadeInDown zero-raduis">
-  	  <div id="formContent">
-  	    <form class="form">
+    <div class="container">
+      <div class="row justify-content-center">
+        <h3 class="text-center">Востановление пароля</h3>
+        <div class=" col-12  wrapper fadeInDown zero-raduis">
+          <div v-if="err" class="alert alert-danger mb-3" role="alert">{{ message }}</div>
+          <div v-if="send" class="alert alert-info" role="alert">{{ message }}</div>
+  	  <div v-if="!send" id="formContent">
+  	    <form class="form" v-on:submit="sendEmail($event)">
   	      <input type="email" id="email" class="fadeIn second zero-raduis" v-model="email" placeholder="email">
-           <input type="button" @click="sendEmail" class="fadeIn fourth zero-raduis" value="Отправить">
+           <!-- <input type="button"  class="fadeIn fourth zero-raduis" value="Отправить"> -->
+           <button  type="submit" class="btn-form">Отправить</button>
   	    </form>
   	  </div>
+  </div>
   </div>
     </div>
 </template>
 
-
-
 <script>
 export default {
+    layout:'changepass',
     data() {
         return {
-            email:''
+            email:'',
+            send:false,
+            err:false,
+            message:''
         }
     },
     methods: {
-        sendEmail(){
+        sendEmail(event){
+          event.preventDefault();
             let data = {
                 "email": this.email
             };
@@ -33,13 +42,20 @@ export default {
         }
         )
         .then(responce => {
-           alert(responce.message)
-    })
+          this.message = 'Проверьте почту'
+          this.send = true
+    },
+          error => {
+            this.message = 'Неверная почта'
+            this.err = true
+            setTimeout(() => {
+           this.err = false
+           }, 2000);
+          })
+
     }
     },
 }
-
-
 
 </script>
 
@@ -47,6 +63,18 @@ export default {
 
 </style>
 <style >
+.alert-danger{
+  position: absolute;
+  z-index: 1;
+  margin: auto;
+
+}
+.btn-form {
+  width: 80%;
+  border: none;
+  background: #3dc0a7;
+  height: 2.5rem;
+}
 .zero-raduis{
 	border-radius: 0px !important;
 }

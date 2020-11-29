@@ -1,13 +1,20 @@
 <template>
-    <div>
-        <div class="wrapper fadeInDown zero-raduis">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div v-if="password_ok" class="col-12 text-center alert alert-info" role="alert">Пароль успешно изменен </div>
+        <nuxt-link v-if="password_ok" class="alert-link" to="/"> На главную</nuxt-link>
+        <div v-if="!password_ok" class=" wrapper fadeInDown zero-raduis">
+          <div class="col-12">
   	  <div id="formContent">
-  	    <form class="form">
+  	    <form class="form" v-on:submit="resetPassword($event)">
   	      <input type="email" id="email" class="fadeIn second zero-raduis" v-model="email" placeholder="email">
             <input type="email" id="password" class="fadeIn second zero-raduis" v-model="password" placeholder="password">
-           <input type="button" @click="resetPassword" class="fadeIn fourth zero-raduis" value="Отправить">
+            <span v-if="err">Неверный email</span>
+           <input type="submit" @click="resetPassword" class="fadeIn fourth zero-raduis" value="Отправить">
   	    </form>
   	  </div>
+      </div>
+      </div>
   </div>
     </div>
 </template>
@@ -16,14 +23,18 @@
 
 <script>
 export default {
+  layout:'changepass',
     data() {
         return {
             email:'',
-            password:''
+            password:'',
+            password_ok:false,
+            err:false
         }
     },
     methods: {
-        resetPassword(){
+        resetPassword(event){
+          event.preventDefault();
             let data = {
                 "email": this.email,
                 'password':this.password
@@ -36,8 +47,15 @@ export default {
         }
         )
         .then(responce => {
-           alert(responce.message)
-    })
+           this.password_ok = true
+    },
+      error => {
+        this.err = true
+         setTimeout(() => {
+           this.err = false
+           }, 2000);
+      }
+    )
     }
     },
 }
@@ -50,6 +68,12 @@ export default {
 
 </style>
 <style >
+.alert-link{
+  color: #3cbfa6;
+}
+span{
+  color: red;
+}
 .zero-raduis{
 	border-radius: 0px !important;
 }

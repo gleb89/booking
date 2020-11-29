@@ -1,61 +1,78 @@
 <template>
-  <div class="container">
-    <div class="wrapper fadeInDown zero-raduis">
-      <div id="formContent">
-        <div class="fadeIn first">
-          <h2 class="my-5">Регистрация</h2>
-        </div>
-        <form class="form" v-on:submit="postRegistration($event)">
-          <input
-            required
-            type="text"
-            id="email"
-            class="fadeIn second zero-raduis"
-            v-model="name"
-            placeholder="Имя"
-          />
-          <input
-            required
-            type="text"
-            id="email"
-            class="fadeIn second zero-raduis form-control"
-            v-model="email"
-            placeholder="email"
-          />
-          <input
-            required
-            type="text"
-            id="password"
-            class="fadeIn third zero-raduis"
-            v-model="password"
-            placeholder="Пароль"
-          />
-          <input
-            required
-            type="text"
-            id="password"
-            class="fadeIn third zero-raduis"
-            v-model="city"
-            placeholder="Город"
-          />
-          <div id="formFooter">
-            <nuxt-link to="/login">Уже зарегестрированы?</nuxt-link>
-          </div>
-          <input type="submit" class="fadeIn fourth zero-raduis" value="Регистрация" />
-        </form>
-      </div>
+  <div class="container reg-container fixed-top">
+
+    <div class="row justify-content-center ">
       <div v-if="alert" class="alert alert-warning alert-dismissible fade show" role="alert">
         {{form_err}}
-  <button type="button" @click="oncloseAlert" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
+        <button
+          type="button"
+          @click="oncloseAlert"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="wrapper fadeInDown zero-raduis">
+        <button class="btn-reg" @click="onCloseReg"><fa class="fa-times" icon="times"></fa></button>
+        <div class="row justify-content-center">
+          <div id="formContent">
+            <div class="fadeIn first">
+              <h2 class="my-5">Регистрация</h2>
+            </div>
+            <form class="form" v-on:submit="postRegistration($event)">
+              <input
+                required
+                type="text"
+                id="email"
+                class="fadeIn second zero-raduis"
+                v-model="name"
+                placeholder="Имя"
+              />
+              <input
+                required
+                type="text"
+                id="email"
+                class="fadeIn second zero-raduis form-control"
+                v-model="email"
+                placeholder="email"
+              />
+              <input
+                required
+                type="text"
+                id="password"
+                class="fadeIn third zero-raduis"
+                v-model="password"
+                placeholder="Пароль"
+              />
+              <input
+                required
+                type="text"
+                id="password"
+                class="fadeIn third zero-raduis"
+                v-model="city"
+                placeholder="Город"
+              />
+              <div class="form-check">
+                <input type="checkbox" id="checkbox" v-model="checked" />
+                <label class="form-check-label" for="exampleCheck1">Нажмите если вы мастер</label>
+              </div>
+              <!-- <div id="formFooter" class="justify-content-center">
+                <nuxt-link class="text-center" to="/login">Уже зарегестрированы?</nuxt-link>
+              </div> -->
+              <button type="submit" class="btn-form">Регистрация</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  props: ["onCloseReg","onLogin"],
   data() {
     return {
       name: "",
@@ -63,12 +80,13 @@ export default {
       email: "",
       city: "",
       alert: false,
+      checked: false,
       form_err: ""
     };
   },
   methods: {
-    oncloseAlert(){
-        this.alert = false
+    oncloseAlert() {
+      this.alert = false;
     },
     postRegistration(event) {
       event.preventDefault();
@@ -76,8 +94,11 @@ export default {
         name: this.name,
         password: this.password,
         email: this.email,
-        city: this.city
+        city: this.city,
+        master: this.checked
       };
+      console.log(this.checked);
+
       const headers = {
         "Content-Type": "application/json"
       };
@@ -88,11 +109,15 @@ export default {
 
         .then(
           response => {
-            this.$router.push("/login");
+            this.onLogin()
           },
           error => {
             this.form_err = error.response.data.detail;
             this.alert = true;
+            setTimeout(() => {
+            this.alert = false;
+
+            }, 2000);
           }
         );
     }
@@ -102,8 +127,16 @@ export default {
 
 
 <style >
-.alert{
-    margin-top: 3rem;
+.btn-form{
+  width: 80%;
+  border: none;
+  background: #3dc0a7;
+  height: 2.5rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+.alert {
+  /* margin-top: 3rem; */
 }
 .login {
   margin-top: 20rem;
@@ -131,16 +164,19 @@ h2 {
 /* STRUCTURE */
 
 .wrapper {
+  position: absolute;
+  max-width: fit-content;
+  z-index: 1;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  width: 100%;
   min-height: 100%;
   padding: 20px;
 }
 
 #formContent {
+  opacity: 0.99;
   -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;
   background: #fff;
@@ -376,4 +412,17 @@ input[type="email"]:placeholder {
 #icon {
   width: 30%;
 }
+.btn-reg{
+  background: none;
+  border: none;
+  margin-left: auto;
+}
+.fa-times{
+  font-size: 2rem;
+  color: #3dc0a7;
+}
+.reg-container{
+  margin-top: 5rem;
+}
+
 </style>
