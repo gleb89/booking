@@ -28,13 +28,19 @@ export default {
   /*
   ** Global CSS
   */
-  css: [
-  ],
+ css: [
+  '@/theme/index.css'
+],
+loading: {
+  color: 'green',
+  height: '5px'
+},
   /*
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+
   ],
   /*
   ** Auto import components

@@ -2,7 +2,7 @@
   <div class="container ">
       <div class="row justify-content-center">
     <div v-for="user of users" :key="user.id" class="card col-12 col-lg-3 m-4" >
-      <img class="card-img-top" src="/logotip.png" alt="Card image cap" />
+      <img class="card-img-top" src="" alt="Card image cap" />
       <div class="card-body">
         <h5 class="card-title">{{ user.name}}</h5>
         <hr>
@@ -23,7 +23,10 @@
 <script>
 
 export default {
-    props:["users","openUser"]
+    props:["users","openUser","items"],
+    methods: {
+
+    },
 }
 </script>
 

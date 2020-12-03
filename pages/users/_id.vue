@@ -11,7 +11,6 @@ import CabinetMaster from "@/components/CabinetMaster";
 ;
 export default {
 
-
      component: {
     CabinetMaster
   },
