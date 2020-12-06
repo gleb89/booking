@@ -120,7 +120,7 @@
 </p>
     <p v-if="errors.length">
       <p class="err" v-for="error in errors" :key="error">{{ error }}</p>
-name
+
   </div>
 
   <button type="submit" value="Submit" class="btn-cal btn-primary">Записаться</button>
@@ -196,7 +196,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .navbar-user {
   background-color: #3cbea6 !important;
   box-shadow: 3px 3px 3px 3px #c6ccd2;
