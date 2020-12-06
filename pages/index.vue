@@ -91,7 +91,7 @@ export default {
           if (this.search != "") {
             return (
               elem.city.includes(this.city) &&
-              elem.name.toLowerCase().includes(this.search)
+              elem.name.toLowerCase().includes(this.search.toLowerCase())
             );
           } else {
             return elem.city.includes(this.city);
@@ -101,7 +101,7 @@ export default {
       if (this.search != "") {
 
         return this.$store.getters["users/users"].users.filter(elem => {
-          return elem.name.toLowerCase().includes(this.search);
+          return elem.name.toLowerCase().includes(this.search.toLowerCase());
         });
       } else {
         return this.$store.getters["users/users"].users;
