@@ -120,7 +120,7 @@
 </p>
     <p v-if="errors.length">
       <p class="err" v-for="error in errors" :key="error">{{ error }}</p>
-
+name
   </div>
 
   <button type="submit" value="Submit" class="btn-cal btn-primary">Записаться</button>
@@ -151,7 +151,8 @@ export default {
       errors: [],
       check: false,
       submit_form:false,
-      telephone:''
+      telephone:'',
+      name:''
     };
   },
   component: {
