@@ -19,7 +19,7 @@
             class="icons_rating"
             v-model="rating"
             icon="star" ></fa>
-             <p>Рейтинг -:{{user.rating}}</p>
+             <p>Рейтинг :{{user.rating}}</p>
 
 
         <!-- </div> -->
