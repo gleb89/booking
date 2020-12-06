@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 * {
     margin: 0px;
     padding: 0px;
@@ -9,7 +9,7 @@ body {
     grid-template-rows: auto 1fr auto;
     min-height: 100vh;
     position: relative;
-    font-family: "Balsamiq Sans", cursive;
+    font-family: 'Raleway', sans-serif;
 }
 
 .page-enter-active, .page-leave-active {
