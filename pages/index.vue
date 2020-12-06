@@ -4,8 +4,10 @@
     <section id="header" class="mt-1">
       <div class="row">
         <div class="discripchion col-12 col-lg-6 mb-4 mb-lg-0">
-          <h1 class="text-left">Запишись</h1>
+          <h1 class="text-left"><img class="image-h1 img-fluid" src="/logoh1.png" />Запишись</h1>
           <hr />
+          <div></div>
+
           <p class="about text-left">
             Сервис
             <br />для записи-онлайн
@@ -138,6 +140,10 @@ export default {
 .discripchion {
   margin-top: 7rem;
   font-family: "Raleway", sans-serif;
+}
+.image-h1{
+    width: 15%;
+    margin: 1rem;
 }
 hr {
   background: #3cbfa6;
