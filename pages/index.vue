@@ -149,7 +149,7 @@ h1 {
   font-size: 2rem;
 }
 #section-users{
-
+  min-height: 100vh;
 }
 option {
   background-color: #3cbfa6;
