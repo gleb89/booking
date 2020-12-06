@@ -152,7 +152,7 @@ hr {
   box-shadow: 4px 4px 4px #d2d5d7;
 }
 h1 {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 #section-users{
   min-height: 100vh;
