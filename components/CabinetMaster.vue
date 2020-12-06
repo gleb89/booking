@@ -85,7 +85,53 @@
     </div>
 
     <div id="zapis" v-if="zapis" class="col-12 mt-3">
-      <!-- <Calendar /> -->
+      <section>
+  <div v-if="submit_form">
+    <h4 class="text-center">Вы успешно записались</h4>
+        <h5 class="text-center">Выбрана дата: {{ value_data }}</h5>
+        <h5 class="text-center">Выбрано время: {{ clock }}</h5>
+    <p class="text-center">Специалист перезвонит вам для подтверждения</p>
+  </div>
+  <div id="calendar-data" class="row">
+    <div  class="col-12 col-lg-4">
+      <p>Выберите дату</p>
+      <b-calendar  v-model="value_data" :value_data="value_data"></b-calendar>
+    </div>
+    <div class="col-12 col-lg-8">
+      <div id="new-data" v-if="value_data">
+        <h5>Выбрана дата: {{ value_data }}</h5>
+        <h5>Выбрано время: {{ clock }}</h5>
+
+<form @submit.prevent="checkForm"
+  ref="form_time">
+  <div class="form-group">
+    <input type="hidden" v-model="value_data">
+  <select v-model="clock" >
+    <option value="" >Выбрать время</option>
+  <option  v-for="time in ['11-00','12-00','19-00']" :key="time">{{ time }}</option>
+</select>
+<p>
+  <label for="phone">Введите номер телефона</label>
+  <input class="new-phone" name="phone" type="number" v-model="telephone" placeholder="введите 11 значный номер">
+</p>
+<p>
+  <label for="name">Введите имя</label>
+  <input class="name" name="name" type="text" v-model="name" placeholder="введите имя" required>
+</p>
+    <p v-if="errors.length">
+      <p class="err" v-for="error in errors" :key="error">{{ error }}</p>
+
+  </div>
+
+  <button type="submit" value="Submit" class="btn-cal btn-primary">Записаться</button>
+</form>
+
+      </div>
+      <div v-else>Дата не выбрана</div>
+
+    </div>
+  </div>
+</section>
     </div>
   </div>
 </template>
@@ -99,7 +145,13 @@ export default {
     return {
     //   id: this.$route.params.id,
       home: true,
-      zapis: false
+      zapis: false,
+      value_data: "",
+      clock: "",
+      errors: [],
+      check: false,
+      submit_form:false,
+      telephone:''
     };
   },
   component: {
@@ -118,7 +170,27 @@ export default {
     openImg(smallImg) {
       document.querySelector(".img-box").srcset =
         smallImg.srcElement.currentSrc;
+    },
+    checkForm() {
+      console.log();
+      if (this.clock && this.telephone){
+        if(this.telephone.length === 11){
+          document.getElementById('calendar-data').style.display = 'none'
+          this.submit_form= true
+          return true
+        }
+      }
+      this.errors = [];
+      if(!this.clock){
+        this.errors.push('Требуется выбрать время');
+        return false
     }
+      if(this.telephone.length != 11){
+        this.errors.push('Введите 11 значный номер');
+        return false
+      }
+    }
+
   }
 };
 </script>
@@ -153,5 +225,20 @@ export default {
 .img-box {
   width: 100%;
   min-width: 100%;
+}
+.btn-cal {
+  border: 1px solid black;
+  background: #007bff63;
+  color: aliceblue;
+  box-shadow: 2px 2px 2px #d6d8db;
+}
+select {
+  width: 100%;
+}
+.err {
+  color: red;
+}
+.new-phone {
+  width: 100%;
 }
 </style>
