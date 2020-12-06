@@ -13,7 +13,7 @@
             <div class=" row d-block d-sm-none justify-content-center">
           <div class="drop-menu mr-5" v-if="onDropdown">
           <div v-if="authName != null">
-            <nuxt-link no-prefetch to="/kabinet">Личный кабинет</nuxt-link>
+            <button @click="lkOpen" class=" btn-kabinet m-2 text-center" >Личный кабинет</button>
           <br>
           <button @click="logout" class=" btn-logout" >выйти</button>
           </div>
@@ -41,7 +41,7 @@
           <div class=" row justify-content-center">
           <div class="drop-menu mr-5" v-if="onDropdown">
           <div v-if="authName != null">
-            <nuxt-link no-prefetch to="/kabinet">Личный кабинет</nuxt-link>
+            <button @click="lkOpen" class=" btn-kabinet m-2" >Личный кабинет</button>
           <br>
           <button @click="logout" class=" btn-logout" >выйти</button>
           </div>
@@ -87,6 +87,10 @@ export default {
       this.$router.push('/')
       this.onLogout()
     },
+    lkOpen(){
+      this.$router.push((`/kabinet`))
+      this.onLogout()
+    }
 
   },
   data() {
@@ -102,6 +106,7 @@ export default {
 <style scoped>
 .drop-menu {
     position: absolute;
+    margin: inherit;
     z-index: 0;
     margin-right: 2rem;
     box-shadow: 3px 3px 3px #dcdce0;
@@ -113,6 +118,10 @@ export default {
   justify-content: flex-end;
 }
 .btn-logout {
+  background: none;
+  border: none;
+}
+.btn-kabinet{
   background: none;
   border: none;
 }
