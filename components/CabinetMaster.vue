@@ -173,7 +173,7 @@ export default {
         };
         const uu = this.$axios
           .$get(
-            `http://localhost:8000/booking_time?date=${date}&user=${user}`,
+            `https://glebhleb.herokuapp.com/booking_time?date=${date}&user=${user}`,
             {
               headers: headers
             }
