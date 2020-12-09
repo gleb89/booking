@@ -1,168 +1,225 @@
 <template>
   <div class="container">
-    <!-- <h1>{{ id }}</h1> -->
-    <nav class="navbar navbar-light navbar-user" >
-      <ul class="navbar-nav mr-auto d-flex flex-row">
-        <li class="nav-item m-2">
-          <a @click.prevent="openHome" class="nav-link" href="#">
-            Профиль
-            <span class="sr-only">(current)</span>
-          </a>
-        </li>
-        <li class="nav-item m-2">
-          <a @click.prevent="openZapis" class="nav-link" href="#">Запись</a>
-        </li>
-      </ul>
-    </nav>
-
-    <div class="row justify-content-center">
-      <div v-if="home" id="home" class="col-12 mt-3">
-        <div class="row">
-          <div class="col-12 col-lg-4">
-            <img
-              class="img img-fluid rounded-circle"
-              src="https://atlantgrup.ru/wa-data/public/site/themes/dummy2/img/pages/page-32-2.png"
-              alt
-              width="108rem"
-            />
-            <!-- <Rating class="mb-2" /> -->
-            <p>Рейтинг:4.5</p>
-            <p>Специалист:{{user_id}}</p>
-            <p>Услуги:Маникюр</p>
-            <p>Город:Волгоград</p>
-          </div>
-          <div class="col-12 col-lg-8 img-block">
-            <h2>Фото работ</h2>
-            <div id="photo" class="row justify-content-center gallery">
+    <div class="profile">
+      <nav class="navbar navbar-light navbar-user">
+        <ul class="navbar-nav mr-auto d-flex flex-row">
+          <li class="nav-item m-2">
+            <a @click.prevent="openHome" class="nav-link" href="#">
+              Профиль
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item m-2">
+            <a @click.prevent="openZapis" class="nav-link" href="#">Запись</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="row justify-content-center">
+        <div v-if="home" id="home" class="col-12 mt-3">
+          <div class="row">
+            <div class="col-12 col-lg-4">
               <img
-                @click.prevent="openImg($event)"
-                class="col-4 col-lg-2 mb-2 gallery-img img-fluid"
-                src="https://media.gettyimages.com/photos/skyline-of-berlin-with-tv-tower-at-dusk-picture-id925669312?s=170667a"
+                class="img img-fluid rounded-circle"
+                src="https://atlantgrup.ru/wa-data/public/site/themes/dummy2/img/pages/page-32-2.png"
                 alt
-              />
-              <img
-                @click.prevent="openImg($event)"
-                class="col-4 col-lg-2 mb-2 gallery-img img-fluid"
-                src="https://media.gettyimages.com/photos/woman-lifts-her-arms-in-victory-mount-everest-national-park-picture-id507910624?s=612x612"
-                alt
-              />
-              <img
-                @click.prevent="openImg($event)"
-                class="col-4 col-lg-2 mb-2 gallery-img img-fluid"
-                src="https://p.bigstockphoto.com/GeFvQkBbSLaMdpKXF1Zv_bigstock-Aerial-View-Of-Blue-Lakes-And--227291596.jpg"
-                alt
-              />
-              <img
-                @click.prevent="openImg($event)"
-                class="col-4 col-lg-2 mb-2 gallery-img img-fluid"
-                src="https://html5css.ru/css/img_lights.jpg"
-                alt
-              />
-              <img
-                @click.prevent="openImg($event)"
-                class="img col-4 col-lg-2 mb-2 gallery-img img-fluid"
-                src="https://media.gettyimages.com/photos/skyline-of-berlin-with-tv-tower-at-dusk-picture-id925669312?s=170667a"
-                alt
-              />
-              <img
-                @click.prevent="openImg($event)"
-                class="col-4 col-lg-2 mb-2 gallery-img img-fluid"
-                src="https://media.gettyimages.com/photos/skyline-of-berlin-with-tv-tower-at-dusk-picture-id925669312?s=170667a"
-                alt
+                width="108rem"
               />
 
-              <div class="col-12 col-lg-12 block-img">
+              <!-- <Rating class="mb-2" /> -->
+              <p>Рейтинг:4.5</p>
+              <p>Специалист:{{user.name}}</p>
+              <p>Услуги:Маникюр</p>
+              <p>Город:{{user.city}}</p>
+            </div>
+            <div class="col-12 col-lg-8 img-block">
+              <h2>Фото работ</h2>
+              <div id="photo" class="row justify-content-center gallery">
                 <img
-                  class="img-box mb-2 img-fluid"
+                  @click.prevent="openImg($event)"
+                  class="col-4 col-lg-2 mb-2 gallery-img img-fluid"
                   src="https://media.gettyimages.com/photos/skyline-of-berlin-with-tv-tower-at-dusk-picture-id925669312?s=170667a"
                   alt
                 />
+                <img
+                  @click.prevent="openImg($event)"
+                  class="col-4 col-lg-2 mb-2 gallery-img img-fluid"
+                  src="https://media.gettyimages.com/photos/woman-lifts-her-arms-in-victory-mount-everest-national-park-picture-id507910624?s=612x612"
+                  alt
+                />
+                <img
+                  @click.prevent="openImg($event)"
+                  class="col-4 col-lg-2 mb-2 gallery-img img-fluid"
+                  src="https://p.bigstockphoto.com/GeFvQkBbSLaMdpKXF1Zv_bigstock-Aerial-View-Of-Blue-Lakes-And--227291596.jpg"
+                  alt
+                />
+                <img
+                  @click.prevent="openImg($event)"
+                  class="col-4 col-lg-2 mb-2 gallery-img img-fluid"
+                  src="https://html5css.ru/css/img_lights.jpg"
+                  alt
+                />
+                <img
+                  @click.prevent="openImg($event)"
+                  class="img col-4 col-lg-2 mb-2 gallery-img img-fluid"
+                  src="https://media.gettyimages.com/photos/skyline-of-berlin-with-tv-tower-at-dusk-picture-id925669312?s=170667a"
+                  alt
+                />
+                <img
+                  @click.prevent="openImg($event)"
+                  class="col-4 col-lg-2 mb-2 gallery-img img-fluid"
+                  src="https://media.gettyimages.com/photos/skyline-of-berlin-with-tv-tower-at-dusk-picture-id925669312?s=170667a"
+                  alt
+                />
+
+                <div class="col-12 col-lg-12 block-img">
+                  <img
+                    class="img-box mb-2 img-fluid"
+                    src="https://media.gettyimages.com/photos/skyline-of-berlin-with-tv-tower-at-dusk-picture-id925669312?s=170667a"
+                    alt
+                  />
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div id="zapis" v-if="zapis" class="col-12 mt-3">
-      <section>
-  <div v-if="submit_form">
-    <h4 class="text-center">Вы успешно записались</h4>
-        <h5 class="text-center">Выбрана дата: {{ value_data }}</h5>
-        <h5 class="text-center">Выбрано время: {{ clock }}</h5>
-    <p class="text-center">Специалист перезвонит вам для подтверждения</p>
-  </div>
-  <div id="calendar-data" class="row">
-    <div  class="col-12 col-lg-4">
-      <p>Выберите дату</p>
-      <b-calendar  v-model="value_data" :value_data="value_data"></b-calendar>
-    </div>
-    <div class="col-12 col-lg-8">
-      <div id="new-data" v-if="value_data">
-        <h5>Выбрана дата: {{ value_data }}</h5>
-        <h5>Выбрано время: {{ clock }}</h5>
+      <div id="zapis" v-if="zapis" class="col-12 mt-3">
+        <section>
+          <div id="calendar-data" class="row">
+            <div class="col-12 col-lg-4">
+              <p>Выберите дату</p>
+              <b-calendar v-model="value_data" :value_data="value_data"></b-calendar>
+            </div>
+            <div class="col-12 col-lg-8">
+              <div
+                v-if="resp_ok"
+                class="alert alert-info"
+                role="alert"
+              >Специалист свяжеться с вами в ближайшее время</div>
+              <div id="new-data" v-if="value_data">
+                <div>
+                  <RegistrationMaster
+                    v-if="authoriz"
+                    class="mt-5"
+                    :onCloseReg="onCloseReg"
+                    :onLogin="onLogin"
+                  />
+                  <Login v-if="login_user" :onClose="onClose" />
+                </div>
 
-<form @submit.prevent="checkForm"
-  ref="form_time">
-  <div class="form-group">
-    <input type="hidden" v-model="value_data">
-  <select v-model="clock" >
-    <option value="" >Выбрать время</option>
-  <option  v-for="time in ['11-00','12-00','19-00']" :key="time">{{ time }}</option>
-</select>
-<p>
-  <label for="phone">Введите номер телефона</label>
-  <input class="new-phone" name="phone" type="number" v-model="telephone" placeholder="введите 11 значный номер">
-</p>
-<p>
-  <label for="name">Введите имя</label>
-  <input class="name" name="name" type="text" v-model="name" placeholder="введите имя" required>
-</p>
-    <p v-if="errors.length">
-      <p class="err" v-for="error in errors" :key="error">{{ error }}</p>
-
-  </div>
-
-  <button type="submit" value="Submit" class="btn-cal btn-primary">Записаться</button>
-</form>
-
+                <h5>Выбрана дата: {{value_data}}</h5>
+                <h5>Выбрано время: {{ clock }}</h5>
+                <p>{{time_id}}</p>
+                <div v-if="message">
+                  <p>
+                    У специалиста не отмечено время на этот день:
+                    <br />Укажите удобное для вас время на указанную дату и специалист свяжеться с вами
+                  </p>
+                </div>
+                <i>{{masterDate}}</i>
+                <form v-on:submit="inputData($event)">
+                  <!-- <select required v-if="!message" v-model="clock">
+                    <option
+                      v-for="time in user_time"
+                      :key="time.id"
+                      v-bind:value="time.id"
+                    >{{time.time.slice(0,5)}}</option>
+                  </select> -->
+                  <div class="row" v-if="!message">
+                    <div class="col-3" @click="timeCostum(time.id)"  v-for="time in user_time"
+                      :key="time.id" >{{time.time.slice(0,5)}}</div>
+                  </div>
+                  <input v-if="message" type="time" required v-model="time" />
+                  <label for="phone">Ведите номер в формате +7-XXX-XXX-XX-XX</label>
+                  <input
+                    type="tel"
+                    v-model="phone_owner"
+                    required
+                    id="phone"
+                    name="phone"
+                    pattern="[+]{1}[7]{1}-[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}"
+                  />
+                  <button type="submit" class="btn-cal btn-primary">Записаться</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
-      <div v-else>Дата не выбрана</div>
-
-    </div>
-  </div>
-</section>
     </div>
   </div>
 </template>
 
 <script>
-// import Rating from "@/components/main/Rating";
-// import Calendar from "@/components/main/Calendar";
+import Login from "@/components/Login";
+import RegistrationMaster from "@/components/RegistrationMaster";
 export default {
-  props: ["user_id"],
+  computed: {
+    authName() {
+      let name_user = this.$store.state.auth;
+      if (name_user === null) {
+        return null;
+      } else {
+        return name_user.user.id;
+      }
+    },
+    masterDate() {
+      if (this.value_data != "") {
+        const date = this.value_data;
+        const user = this.user.id;
+        const headers = {
+          "Content-Type": "application/json"
+        };
+        const uu = this.$axios
+          .$get(
+            `http://localhost:8000/booking_time?date=${date}&user=${user}`,
+            {
+              headers: headers
+            }
+          )
+          .then(resp => {
+            if (resp === null) {
+              this.message = true;
+            } else {
+              this.message = false;
+              this.user_time = resp;
+            }
+          });
+      }
+    }
+  },
+  props: ["user_id", "user"],
   data() {
     return {
-    //   id: this.$route.params.id,
       home: true,
       zapis: false,
       value_data: "",
       clock: "",
-      errors: [],
-      check: false,
-      submit_form:false,
-      telephone:'',
-      name:''
+      authoriz: false,
+      login_user: false,
+      user_time: [],
+      message: false,
+      time_id: null,
+      time: "",
+      resp_ok: false,
+      phone_owner: ""
     };
   },
   component: {
-    // Rating,
-    // Calendar
+    Login,
+    RegistrationMaster
   },
   methods: {
+    timeCostum(time){
+      this.clock = time
+    },
     openHome() {
       this.home = true;
       this.zapis = false;
+    },
+    onCloseReg() {
+      this.authoriz = false;
     },
     openZapis() {
       this.home = false;
@@ -172,26 +229,76 @@ export default {
       document.querySelector(".img-box").srcset =
         smallImg.srcElement.currentSrc;
     },
-    checkForm() {
-      console.log();
-      if (this.clock && this.telephone){
-        if(this.telephone.length === 11){
-          document.getElementById('calendar-data').style.display = 'none'
-          this.submit_form= true
-          return true
+    inputData(event) {
+      event.preventDefault();
+      if (this.time != "") {
+        if (this.authName === null) {
+          this.authoriz = true;
+        } else {
+          let data = {
+            user_id: this.user.id,
+            owner_id: this.authName,
+            date: this.value_data,
+            time: this.time,
+            phone_owner: this.phone_owner
+          };
+          const headers = {
+            "Content-Type": "application/json"
+          };
+          let response = this.$axios
+            .$post("https://glebhleb.herokuapp.com/zapis-time", data, {
+              headers: headers
+            })
+            .then(resp => {
+              this.value_data = "";
+              this.phone_owner = "";
+              this.time = "";
+              this.resp_ok = true;
+              setTimeout(() => {
+                this.resp_ok = false;
+              }, 5000);
+
+              console.log(resp);
+            });
+        }
+      } else {
+        if (this.authName === null) {
+          this.authoriz = true;
+        } else {
+          console.log(this.clock);
+
+          let data = {
+            id: Number(this.clock) ,
+            owner_id: this.authName,
+            is_booking: false,
+            phone_owner: this.phone_owner
+          };
+          const headers = {
+            "Content-Type": "application/json"
+          };
+          let response = this.$axios
+            .$put("https://glebhleb.herokuapp.com/check-time", data, {
+              headers: headers
+            })
+            .then(resp => {
+              this.value_data = ''
+              this.resp_ok = true
+                setTimeout(() => {
+                  this.resp_ok = false;
+              }, 5000);
+            });
         }
       }
-      this.errors = [];
-      if(!this.clock){
-        this.errors.push('Требуется выбрать время');
-        return false
+    },
+    onLogin() {
+      console.log("jj");
+      this.authoriz = false;
+      this.login_user = true;
+    },
+    onClose() {
+      this.authoriz = false;
+      this.login_user = false;
     }
-      if(this.telephone.length != 11){
-        this.errors.push('Введите 11 значный номер');
-        return false
-      }
-    }
-
   }
 };
 </script>
@@ -201,9 +308,10 @@ export default {
   background-color: #3cbea6 !important;
   box-shadow: 3px 3px 3px 3px #c6ccd2;
 }
-.container {
-  margin-top: 10rem;
+.profile {
+  margin-top: 5rem;
 }
+
 .img {
   height: 10rem;
   width: 10rem;
@@ -241,5 +349,24 @@ select {
 }
 .new-phone {
   width: 100%;
+}
+.b-calendar .b-calendar-grid-body .col[data-date] .btn {
+  width: 32px;
+  height: 32px;
+  background: center;
+  font-size: 14px;
+  line-height: 1;
+  margin: 3px auto;
+  padding: 9px 0;
+}
+.b-calendar output {
+  display: none;
+}
+small,
+.small {
+  display: none;
+}
+.b-calendar .b-calendar-grid-body .col[data-date] .btn {
+  color: #28a745;
 }
 </style>
