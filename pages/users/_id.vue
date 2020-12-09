@@ -17,7 +17,7 @@ export default {
       const user_id = Number(route.params.id)
 
        return $axios
-        .$get(`http://127.0.0.1:8000/user/${user_id}`, {
+        .$get(`https://glebhleb.herokuapp.com/user/${user_id}`, {
           headers: headers
         })
         .then(
