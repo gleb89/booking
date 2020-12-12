@@ -3,7 +3,7 @@
 
     <section id="header" class="mt-1">
       <div class="row">
-        <div class="discripchion order-lg-1  order-2 col-12 col-lg-6 mb-4 mb-lg-0">
+        <div class="discripchion order-lg-1  order-1 col-12 col-lg-6 mb-4 mb-lg-0">
           <div class="about-h">
 
           <h1 class="text-left"><img class="img-fluid logo-head" src="/logo.png" alt=""> Запишись</h1>
@@ -19,7 +19,7 @@
           </p>
         </div>
 
-        <div class="img_header order-lg-2  order-1 col-12 col-lg-6 mb-4 mb-lg-0 ">
+        <div class="img_header order-lg-2  order-2 col-12 col-lg-6 mb-4 mb-lg-0 ">
           <img class="img-fluid" src="/lg.png" />
         </div>
       </div>
@@ -39,7 +39,7 @@
               <input
                 class="form-category form-control mr-sm-2"
                 type="search"
-                placeholder="Поиск категории"
+                placeholder="Поиск"
                 aria-label="Search"
                 v-model="search"
               />
@@ -170,27 +170,27 @@ h1{
 option {
   background-color: #3cbfa6;
 }
-@media (min-width: 390px) {
+@media (min-width: 600px) {
   h1 {
     font-size: 4.5rem;
   }
 }
-@media (max-width: 390px) {
+@media (max-width: 500) {
   h1 {
     font-size: 1.5rem;
   }
 }
-@media (max-width: 390px) {
+@media (max-width: 500) {
   .img_header {
     margin-top: 0;
   }
 }
-@media (max-width: 390px) {
+@media (max-width: 500px) {
   .discripchion {
     margin-top: 1rem;
   }
 }
-@media (max-width: 390px) {
+@media (max-width: 500px) {
 .logo-head {
     width:1rem;
 }
