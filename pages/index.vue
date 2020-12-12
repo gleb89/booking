@@ -190,7 +190,7 @@ option {
 @media (max-width: 400px) {
   .logo-head {
     width: 3rem;
-    margin-right: 78%;
+   left: 15px;
     margin-top: 0.3rem;
   }
 }
