@@ -92,7 +92,7 @@
 
               <b-calendar  id="ex-disabled-readonly" v-model="value_data" :value_data="value_data" locale="ru"></b-calendar>
             </div>
-            <div class="col-12 col-lg-6 text-start">
+            <div class="col-12 col-lg-6 zapis-table text-start">
               <div
                 v-if="resp_ok"
                 class="alert alert-info"
@@ -347,6 +347,12 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 .info-user{
   background: #ffebcd3b;
 }
+@media (max-width: 500px) {
+.zapis-table{
+  margin-top: 3rem;
+}
+}
+
 .navbar-user {
   background-color: #3cbea6 !important;
   box-shadow: 3px 3px 3px 3px #c6ccd2;
