@@ -19,7 +19,7 @@
           </p>
         </div>
 
-        <div class="img_header order-lg-2  order-2 col-12 col-lg-6 mb-4 mb-lg-0 ">
+        <div class="img_header text-center order-lg-2  order-2 col-12 col-lg-6 mb-4 mb-lg-0 ">
           <img class="img-other img-fluid" src="/lg.png" />
         </div>
       </div>
@@ -177,6 +177,7 @@ option {
 }
 @media (max-width: 500) {
   h1 {
+    margin-top:1rem;
     font-size: 1.5rem;
   }
 }
@@ -223,7 +224,7 @@ option {
 
 @media (max-width: 500px) {
   .img-other{
-    width: 12rem;
+    width: 14rem;
   }
 }
 
