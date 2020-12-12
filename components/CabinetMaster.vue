@@ -87,10 +87,10 @@
       <div id="zapis" v-if="zapis" class="col-12 mt-3">
         <section>
           <div id="calendar-data" class="row">
-            <div class="col-12 col-lg-6 text-center">
-              <p v-if="!resp_ok">Выберите дату</p>
+            <div v-if="succes" class="col-12 col-lg-6 text-center">
+              <p >Выберите дату</p>
 
-              <b-calendar v-if="!resp_ok" id="ex-disabled-readonly" v-model="value_data" :value_data="value_data" locale="ru"></b-calendar>
+              <b-calendar  id="ex-disabled-readonly" v-model="value_data" :value_data="value_data" locale="ru"></b-calendar>
             </div>
             <div class="col-12 col-lg-6 text-start">
               <div
@@ -220,7 +220,8 @@ export default {
       time: "",
       resp_ok: false,
       phone_owner: "",
-      active_el:0
+      active_el:0,
+      succes:true
 
     };
   },
@@ -274,8 +275,10 @@ export default {
               this.phone_owner = "";
               this.time = "";
               this.resp_ok = true;
+              this.succes = false
               setTimeout(() => {
                 this.resp_ok = false;
+                this.succes = true
               }, 5000);
 
               console.log(resp);
