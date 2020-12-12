@@ -3,11 +3,11 @@
 
     <section id="header" class="mt-1">
       <div class="row">
-        <div class="discripchion order-1 col-12 col-lg-6 mb-4 mb-lg-0">
+        <div class="discripchion order-lg-1  order-2 col-12 col-lg-6 mb-4 mb-lg-0">
           <div class="about-h">
 
-          <h1 class="text-left"> Запишись</h1>
-          <img class="img-fluid logo-head" src="/logo.png" alt="">
+          <h1 class="text-left"><img class="img-fluid logo-head" src="/logo.png" alt=""> Запишись</h1>
+
           </div>
           <hr />
           <div></div>
@@ -19,7 +19,7 @@
           </p>
         </div>
 
-        <div class="img_header col-12 col-lg-6 mb-4 mb-lg-0 order-2">
+        <div class="img_header order-lg-2  order-1 col-12 col-lg-6 mb-4 mb-lg-0 ">
           <img class="img-fluid" src="/lg.png" />
         </div>
       </div>
@@ -162,13 +162,8 @@ hr {
 }
 .logo-head{
     width: 5rem;
-    position: absolute;
-    z-index: 1;
-    margin-right: 78%;
-    margin-top: 0.3rem;
 }
 h1{
-  z-index: 2;
   text-shadow: 2px 2px 2px #7c869096;
 }
 #section-users{
@@ -184,18 +179,27 @@ option {
 }
 @media (max-width: 390px) {
   h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 }
-
-
-@media (max-width: 400px) {
-  .logo-head {
+@media (max-width: 390px) {
+  .img_header {
+    margin-top: 0;
+  }
+}
+@media (max-width: 390px) {
+  .discripchion {
+    margin-top: 1rem;
+  }
+}
+@media (max-width: 390px) {
+.logo-head {
     width: 3rem;
-   left: -1;
-    margin-top: 0.3rem;
-  }
 }
+}
+
+
+
 .form-control {
   width: 15rem;
 }
@@ -207,11 +211,7 @@ option {
   font-size: 3.5rem;
 }
 
-@media (max-width: 500px) {
-  .discripchion {
-    order: 2;
-  }
-}
+
 @media (max-width: 500px) {
   .about {
     font-size: 2rem;
