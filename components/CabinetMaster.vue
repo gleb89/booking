@@ -88,9 +88,9 @@
         <section>
           <div id="calendar-data" class="row">
             <div class="col-12 col-lg-6 text-center">
-              <p>Выберите дату</p>
+              <p v-if="!resp_ok">Выберите дату</p>
 
-              <b-calendar id="ex-disabled-readonly" v-model="value_data" :value_data="value_data" locale="ru"></b-calendar>
+              <b-calendar v-if="!resp_ok" id="ex-disabled-readonly" v-model="value_data" :value_data="value_data" locale="ru"></b-calendar>
             </div>
             <div class="col-12 col-lg-6 text-start">
               <div
