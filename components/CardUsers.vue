@@ -95,7 +95,7 @@ export default {
 }
 </script>
 
-<style >
+<style scoped>
     .card {
     border-radius: 0% 20%;
     /* border: 1px solid #3cbfa6; */

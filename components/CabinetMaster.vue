@@ -87,16 +87,21 @@
       <div id="zapis" v-if="zapis" class="col-12 mt-3">
         <section>
           <div id="calendar-data" class="row">
-            <div class="col-12 col-lg-4">
+            <div class="col-12 col-lg-6 text-center">
               <p>Выберите дату</p>
-              <b-calendar v-model="value_data" :value_data="value_data"></b-calendar>
+
+              <b-calendar id="ex-disabled-readonly" v-model="value_data" :value_data="value_data" locale="ru"></b-calendar>
             </div>
-            <div class="col-12 col-lg-8">
+            <div class="col-12 col-lg-6 text-start">
               <div
                 v-if="resp_ok"
                 class="alert alert-info"
                 role="alert"
-              >Специалист свяжеться с вами в ближайшее время</div>
+              >Вы успешно записались</div>
+              <div v-if="resp_ok">
+                <img class="img-fluid img-zapis" src="/header.png" alt="">
+                <p>Специалист свяжеться с вами в ближайшее время</p>
+              </div>
               <div id="new-data" v-if="value_data">
                 <div>
                   <RegistrationMaster
@@ -109,10 +114,8 @@
                 </div>
 
                 <h5>Выбрана дата: {{value_data}}</h5>
-                <h5>Выбрано время: {{ clock }}</h5>
-                <p>{{time_id}}</p>
                 <div v-if="message">
-                  <p>
+                  <p class="info-user">
                     У специалиста не отмечено время на этот день:
                     <br />Укажите удобное для вас время на указанную дату и специалист свяжеться с вами
                   </p>
@@ -126,21 +129,32 @@
                       v-bind:value="time.id"
                     >{{time.time.slice(0,5)}}</option>
                   </select> -->
-                  <div class="row" v-if="!message">
-                    <div class="col-3" @click="timeCostum(time.id)"  v-for="time in user_time"
+                  <div class="container">
+                  <div class="row justify-content-start" v-if="!message">
+                    <div class="col-12">
+                      <p>Выбрать время</p>
+
+                    </div>
+                    <div class=" time-clock" :class="{ active : active_el == time.id }"  @click="timeCostum(time.id)"  v-for="time in user_time"
                       :key="time.id" >{{time.time.slice(0,5)}}</div>
                   </div>
-                  <input v-if="message" type="time" required v-model="time" />
-                  <label for="phone">Ведите номер в формате +7-XXX-XXX-XX-XX</label>
+                  </div>
+                  <label v-if="message" for="time">Выбрать время</label>
+                  <br>
+                  <input class="time-new" v-if="message" name="time" type="time" required v-model="time"  />
+                  <br>
+                  <label for="phone">Введите номер </label>
+                  <br>
                   <input
                     type="tel"
                     v-model="phone_owner"
                     required
                     id="phone"
                     name="phone"
-                    pattern="[+]{1}[7]{1}-[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}"
+                    placeholder="+7 XXX XXX XX XX"
                   />
-                  <button type="submit" class="btn-cal btn-primary">Записаться</button>
+                  <br>
+                  <button type="submit" class="btn-cal btn mt-2 ">Записаться</button>
                 </form>
               </div>
             </div>
@@ -152,6 +166,7 @@
 </template>
 
 <script>
+
 import Login from "@/components/Login";
 import RegistrationMaster from "@/components/RegistrationMaster";
 export default {
@@ -165,6 +180,7 @@ export default {
       }
     },
     masterDate() {
+      let headerCalendar = document.querySelector('#ex-disabled-readonly').style.display = 'block'
       if (this.value_data != "") {
         const date = this.value_data;
         const user = this.user.id;
@@ -203,7 +219,9 @@ export default {
       time_id: null,
       time: "",
       resp_ok: false,
-      phone_owner: ""
+      phone_owner: "",
+      active_el:0
+
     };
   },
   component: {
@@ -213,6 +231,8 @@ export default {
   methods: {
     timeCostum(time){
       this.clock = time
+      this.active_el = time;
+
     },
     openHome() {
       this.home = true;
@@ -303,13 +323,47 @@ export default {
 };
 </script>
 
-<style>
+<style >
+.active {
+  color: #3cbea6;
+  width: 4rem;
+}
+.time-new {
+    width: 100%;
+    box-shadow: 4px -4px 10px 1px #daecff;
+    border: 1px solid lightblue;
+}
+#phone{
+    width: 100%;
+    box-shadow: 4px -4px 10px 1px #daecff;
+    border: 1px solid lightblue;
+}
+input[type="time"]::-webkit-calendar-picker-indicator {
+   filter: invert(0.5) sepia(1) saturate(5) hue-rotate(175deg);
+}
+.info-user{
+  background: #ffebcd3b;
+}
 .navbar-user {
   background-color: #3cbea6 !important;
   box-shadow: 3px 3px 3px 3px #c6ccd2;
+  opacity: 0.7;
+  color: black;
 }
 .profile {
   margin-top: 5rem;
+}
+
+
+.time-clock{
+    background: aliceblue;
+    border: solid 1px #e0e1e2;
+    margin: 3px;
+    text-align: center;
+    min-width: 7rem;
+    height: 2rem;
+    cursor: pointer;
+
 }
 
 .img {
@@ -335,9 +389,12 @@ export default {
   width: 100%;
   min-width: 100%;
 }
+#ex-disabled-readonly{
+  display: none;
+}
 .btn-cal {
   border: 1px solid black;
-  background: #007bff63;
+  background: lightblue;;
   color: aliceblue;
   box-shadow: 2px 2px 2px #d6d8db;
 }
@@ -353,20 +410,29 @@ select {
 .b-calendar .b-calendar-grid-body .col[data-date] .btn {
   width: 32px;
   height: 32px;
-  background: center;
+  background: white;
   font-size: 14px;
   line-height: 1;
   margin: 3px auto;
   padding: 9px 0;
 }
-.b-calendar output {
+/* .b-calendar output {
   display: none;
-}
-small,
-.small {
-  display: none;
+} */
+small, .small {
+    display: none;
 }
 .b-calendar .b-calendar-grid-body .col[data-date] .btn {
   color: #28a745;
+}
+.b-calendar .b-calendar-nav .btn {
+    padding: 0.25rem;
+    background: none;
+}
+.b-calendar .b-calendar-grid {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    width: auto;
 }
 </style>

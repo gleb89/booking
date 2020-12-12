@@ -14,6 +14,7 @@
             <br />в вашем городе
           </p>
         </div>
+
         <div class="img_header col-12 col-lg-6 mb-4 mb-lg-0">
           <img class="img-fluid" src="/header.png" />
         </div>
