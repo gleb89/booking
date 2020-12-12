@@ -20,7 +20,7 @@
         </div>
 
         <div class="img_header order-lg-2  order-2 col-12 col-lg-6 mb-4 mb-lg-0 ">
-          <img class="img-fluid" src="/lg.png" />
+          <img class="img-other img-fluid" src="/lg.png" />
         </div>
       </div>
     </section>
@@ -218,6 +218,12 @@ option {
 @media (max-width: 500px) {
   .img_header{
     margin-top: 1rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .img-other{
+    width: 12rem;
   }
 }
 
