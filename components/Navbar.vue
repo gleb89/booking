@@ -2,7 +2,7 @@
   <div>
   <b-navbar toggleable="sm" type="light" variant="light" class="fixed-top">
           <nuxt-link no-prefetch class="navbar-brand" to="/">
-        <img src="/logotip.png" width="100" height="auto" alt />
+        <img src="/logo.png" class="logo-nav" height="auto" alt />
      </nuxt-link>
       <div class="dropdown-div d-block d-sm-none">
 
@@ -11,7 +11,7 @@
             {{authName}}
         </button>
             <div class=" row d-block d-sm-none justify-content-center">
-          <div class="drop-menu mr-5" v-if="onDropdown">
+          <div class="drop-m drop-menu mr-5" v-if="onDropdown">
           <div v-if="authName != null">
             <button @click="lkOpen" class=" btn-kabinet m-2 text-center" >Личный кабинет</button>
           <br>
@@ -39,7 +39,7 @@
             {{authName}}
         </button>
           <div class=" row justify-content-center">
-          <div class="drop-menu mr-5" v-if="onDropdown">
+          <div class="drop-m drop-menu mr-5" v-if="onDropdown">
           <div v-if="authName != null">
             <button @click="lkOpen" class=" btn-kabinet m-2" >Личный кабинет</button>
           <br>
@@ -117,9 +117,13 @@ export default {
   display: flex;
   justify-content: flex-end;
 }
+.logo-nav{
+  width: 1.5rem;
+}
 .btn-logout {
   background: none;
   border: none;
+  width: 100%;
 }
 .btn-kabinet{
   background: none;
@@ -129,10 +133,24 @@ export default {
   background: none;
   border: none;
 }
+.icon-user{
+  color: black;
+}
+.drop-m{
+    padding: 3.3rem;
+    right: -20px;
+    width: 7rem;
+    min-width: max-content;
+    height: 10rem;
+    display: flex;
+    display: grid;
+    background: white;
+}
 .btn-reg {
   background: none;
   border: none;
 }
+
 .btn-drop {
   background: none;
   border: none;

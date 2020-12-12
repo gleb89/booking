@@ -4,7 +4,11 @@
     <section id="header" class="mt-1">
       <div class="row">
         <div class="discripchion col-12 col-lg-6 mb-4 mb-lg-0">
-          <h1 class="text-left"><img class="image-h1 img-fluid" src="/logoh1.png" />Запишись</h1>
+          <div class="about-h">
+
+          <h1 class="text-left"> Запишись</h1>
+          <img class="img-fluid logo-head" src="/logo.png" alt="">
+          </div>
           <hr />
           <div></div>
 
@@ -16,7 +20,7 @@
         </div>
 
         <div class="img_header col-12 col-lg-6 mb-4 mb-lg-0">
-          <img class="img-fluid" src="/header.png" />
+          <img class="img-fluid" src="/lg.png" />
         </div>
       </div>
     </section>
@@ -152,8 +156,20 @@ hr {
 #cityUser {
   box-shadow: 4px 4px 4px #d2d5d7;
 }
-h1 {
-  font-size: 1.5rem;
+.about-h{
+      display: flex;
+    justify-content: space-around;
+}
+.logo-head{
+    width: 5rem;
+    position: absolute;
+    z-index: 1;
+    margin-right: 78%;
+    margin-top: 0.3rem;
+}
+h1{
+  z-index: 2;
+  text-shadow: 2px 2px 2px #7c869096;
 }
 #section-users{
   min-height: 100vh;
@@ -164,6 +180,18 @@ option {
 @media (min-width: 390px) {
   h1 {
     font-size: 4.5rem;
+  }
+}
+@media (max-width: 390px) {
+  h1 {
+    font-size: 3rem;
+  }
+}
+@media (max-width: 400px) {
+  .logo-head {
+    width: 3rem;
+    margin-right: 78%;
+    margin-top: 0.3rem;
   }
 }
 .form-control {

@@ -401,4 +401,9 @@ input[type="email"]:placeholder {
   width: max-content;
   position: absolute;
 }
+.alert{
+  width: 100%;
+  text-align: center;
+  margin: 1rem;
+}
 </style>

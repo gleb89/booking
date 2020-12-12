@@ -347,11 +347,11 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 .info-user{
   background: #ffebcd3b;
 }
-@media (max-width: 500px) {
+
 .zapis-table{
   margin-top: 3rem;
 }
-}
+
 
 .navbar-user {
   background-color: #3cbea6 !important;
