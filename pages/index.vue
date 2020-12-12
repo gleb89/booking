@@ -131,8 +131,6 @@ export default {
       this.$router.push(`/users/${user}`);
     },
 
-
-
   },
 
 
