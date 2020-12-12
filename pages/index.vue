@@ -3,7 +3,7 @@
 
     <section id="header" class="mt-1">
       <div class="row">
-        <div class="discripchion col-12 col-lg-6 mb-4 mb-lg-0">
+        <div class="discripchion order-1 col-12 col-lg-6 mb-4 mb-lg-0">
           <div class="about-h">
 
           <h1 class="text-left"> Запишись</h1>
@@ -19,7 +19,7 @@
           </p>
         </div>
 
-        <div class="img_header col-12 col-lg-6 mb-4 mb-lg-0">
+        <div class="img_header col-12 col-lg-6 mb-4 mb-lg-0 order-2">
           <img class="img-fluid" src="/lg.png" />
         </div>
       </div>
@@ -187,10 +187,12 @@ option {
     font-size: 3rem;
   }
 }
+
+
 @media (max-width: 400px) {
   .logo-head {
     width: 3rem;
-   left: 15px;
+   left: -1;
     margin-top: 0.3rem;
   }
 }
