@@ -177,7 +177,7 @@ option {
 }
 @media (max-width: 390px) {
   h1 {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
   }
 }
 @media (max-width: 390px) {
@@ -192,7 +192,7 @@ option {
 }
 @media (max-width: 390px) {
 .logo-head {
-    width: 3rem;
+    width:1rem;
 }
 }
 
