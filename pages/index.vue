@@ -215,6 +215,14 @@ option {
     font-size: 2rem;
   }
 }
+@media (max-width: 500px) {
+  . img_header{
+    margin-top: 1rem;
+  }
+}
+
+
+
 .search-form {
   display: flex;
   justify-content: center;
