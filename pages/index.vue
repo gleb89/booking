@@ -192,7 +192,7 @@ option {
 }
 @media (max-width: 500px) {
 .logo-head {
-    width:1rem;
+    width:1.5rem;
 }
 }
 
@@ -216,7 +216,7 @@ option {
   }
 }
 @media (max-width: 500px) {
-  . img_header{
+  .img_header{
     margin-top: 1rem;
   }
 }
