@@ -164,6 +164,7 @@ export default {
   background: none;
   border: none;
 }
+
 .icon-drop {
   font-size: 1.5rem;
   color: #3cbfa6;

@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <div class="profile">
+            <Gallery v-if="image" :closeGall="closeGall" :openImageUp="openImageUp" :bigimage="bigimage" :openImageIn="openImageIn" :gallery_image="gallery_image"/>
       <nav class="navbar navbar-light navbar-user">
         <ul class="navbar-nav mr-auto d-flex flex-row">
           <li class="nav-item m-2">
@@ -32,45 +33,17 @@
               <p>Город:{{user.city}}</p>
             </div>
             <div class="col-12 col-lg-8 img-block">
-              <h2>Фото работ</h2>
-              <div id="photo" class="row justify-content-center gallery">
-                <img
-                  @click.prevent="openImg($event)"
-                  class="col-4 col-lg-2 mb-2 gallery-img img-fluid"
-                  src="https://media.gettyimages.com/photos/skyline-of-berlin-with-tv-tower-at-dusk-picture-id925669312?s=170667a"
-                  alt
-                />
-                <img
-                  @click.prevent="openImg($event)"
-                  class="col-4 col-lg-2 mb-2 gallery-img img-fluid"
-                  src="https://media.gettyimages.com/photos/woman-lifts-her-arms-in-victory-mount-everest-national-park-picture-id507910624?s=612x612"
-                  alt
-                />
-                <img
-                  @click.prevent="openImg($event)"
-                  class="col-4 col-lg-2 mb-2 gallery-img img-fluid"
-                  src="https://p.bigstockphoto.com/GeFvQkBbSLaMdpKXF1Zv_bigstock-Aerial-View-Of-Blue-Lakes-And--227291596.jpg"
-                  alt
-                />
-                <img
-                  @click.prevent="openImg($event)"
-                  class="col-4 col-lg-2 mb-2 gallery-img img-fluid"
-                  src="https://html5css.ru/css/img_lights.jpg"
-                  alt
-                />
-                <img
-                  @click.prevent="openImg($event)"
-                  class="img col-4 col-lg-2 mb-2 gallery-img img-fluid"
-                  src="https://media.gettyimages.com/photos/skyline-of-berlin-with-tv-tower-at-dusk-picture-id925669312?s=170667a"
-                  alt
-                />
-                <img
-                  @click.prevent="openImg($event)"
-                  class="col-4 col-lg-2 mb-2 gallery-img img-fluid"
-                  src="https://media.gettyimages.com/photos/skyline-of-berlin-with-tv-tower-at-dusk-picture-id925669312?s=170667a"
-                  alt
-                />
 
+              <h2>Фото работ</h2>
+              <div id="photo" class="row justify-content-center">
+                <img
+                v-for="(photo,projectIndex) in gallery_image"
+                :key="photo"
+                  @click.prevent="openImg(projectIndex)"
+                  class="col-4 col-lg-2 mb-2 gallery-img img-fluid"
+                  :src='photo'
+                  alt
+                />
                 <div class="col-12 col-lg-12 block-img">
                   <img
                     class="img-box mb-2 img-fluid"
@@ -104,12 +77,6 @@
               </div>
               <div id="new-data" v-if="value_data">
                 <div>
-                  <RegistrationMaster
-                    v-if="authoriz"
-                    class="mt-5"
-                    :onCloseReg="onCloseReg"
-                    :onLogin="onLogin"
-                  />
                   <Login v-if="login_user" :onClose="onClose" />
                 </div>
 
@@ -122,13 +89,6 @@
                 </div>
                 <i>{{masterDate}}</i>
                 <form v-on:submit="inputData($event)">
-                  <!-- <select required v-if="!message" v-model="clock">
-                    <option
-                      v-for="time in user_time"
-                      :key="time.id"
-                      v-bind:value="time.id"
-                    >{{time.time.slice(0,5)}}</option>
-                  </select> -->
                   <div class="container">
                   <div class="row justify-content-start" v-if="!message">
                     <div class="col-12">
@@ -167,8 +127,9 @@
 
 <script>
 
-import Login from "@/components/Login";
+import Gallery from "@/components/Gallery";
 import RegistrationMaster from "@/components/RegistrationMaster";
+import Login from "@/components/Login";
 export default {
   computed: {
     authName() {
@@ -221,13 +182,22 @@ export default {
       resp_ok: false,
       phone_owner: "",
       active_el:0,
-      succes:true
+      succes:true,
+      image:false,
+      bigimage:'',
+      big_image_index:0,
+      gallery_image:["https://media.gettyimages.com/photos/skyline-of-berlin-with-tv-tower-at-dusk-picture-id925669312?s=170667a",
+                  "https://html5css.ru/css/img_lights.jpg",
+                  "https://p.bigstockphoto.com/GeFvQkBbSLaMdpKXF1Zv_bigstock-Aerial-View-Of-Blue-Lakes-And--227291596.jpg",
+                  "https://media.gettyimages.com/photos/woman-lifts-her-arms-in-victory-mount-everest-national-park-picture-id507910624?s=612x612"]
+
 
     };
   },
   component: {
     Login,
-    RegistrationMaster
+    RegistrationMaster,
+    Gallery
   },
   methods: {
     timeCostum(time){
@@ -235,9 +205,31 @@ export default {
       this.active_el = time;
 
     },
+    openImageIn(){
+            this.big_image_index++
+            this.bigimage = this.gallery_image[this.big_image_index]
+            if (this.bigimage === undefined){
+              this.big_image_index = 0
+              this.bigimage = this.gallery_image[this.big_image_index]
+      }
+    },
+    openImageUp(){
+      this.big_image_index--
+      this.bigimage = this.gallery_image[this.big_image_index]
+      if (this.bigimage === undefined){
+              let indList = this.gallery_image.length-1
+              this.big_image_index = indList
+              this.bigimage = this.gallery_image[this.big_image_index]
+      }
+    },
+
+
     openHome() {
       this.home = true;
       this.zapis = false;
+    },
+    closeGall(){
+      this.image = !this.image
     },
     onCloseReg() {
       this.authoriz = false;
@@ -246,15 +238,19 @@ export default {
       this.home = false;
       this.zapis = true;
     },
-    openImg(smallImg) {
-      document.querySelector(".img-box").srcset =
-        smallImg.srcElement.currentSrc;
+    openImg(ind) {
+      // document.querySelector(".img-box").srcset =
+      //   smallImg.srcElement.currentSrc;
+      this.big_image_index = ind
+      this.bigimage = this.gallery_image[ind]
+      this.image = true
+
     },
     inputData(event) {
       event.preventDefault();
       if (this.time != "") {
         if (this.authName === null) {
-          this.authoriz = true;
+          this.login_user = true;
         } else {
           let data = {
             user_id: this.user.id,
@@ -351,7 +347,10 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 .zapis-table{
   margin-top: 3rem;
 }
-
+.navbar-light .navbar-nav .nav-link {
+    color: #000000;
+    text-shadow: 2px 2px 2px #00000042;
+}
 
 .navbar-user {
   background-color: #3cbea6 !important;
@@ -391,6 +390,8 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   filter: grayscale(100%);
   transform: scale(1.1);
 }
+
+
 .new-img {
   width: 100%;
 }
@@ -443,5 +444,11 @@ small, .small {
     margin: 0;
     overflow: hidden;
     width: auto;
+}
+.b-calendar {
+    box-shadow: 7px 5px 15px 9px #add8e629;
+}
+.b-calendar .b-calendar-grid {
+    border: none;
 }
 </style>
