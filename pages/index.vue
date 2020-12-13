@@ -153,6 +153,7 @@ hr {
 }
 #cityUser {
   box-shadow: 4px 4px 4px #d2d5d7;
+  background: #6c63ff26;
 }
 .about-h{
       display: flex;
@@ -188,7 +189,7 @@ option {
 }
 @media (max-width: 500px) {
   .discripchion {
-    margin-top: 1rem;
+    margin-top: 3rem;
   }
 }
 @media (max-width: 500px) {
@@ -229,7 +230,11 @@ option {
 }
 
 
-
+@media (min-width: 600px) {
+  #filter-users {
+    margin-top: 3rem;
+  }
+}
 .search-form {
   display: flex;
   justify-content: center;

@@ -1,6 +1,6 @@
 <template>
   <div>
-  <b-navbar toggleable="sm" type="light" variant="light" class="fixed-top">
+  <b-navbar  toggleable="sm" type="light" variant="light" class="nav fixed-top">
           <nuxt-link no-prefetch class="navbar-brand" to="/">
         <img src="/logo.png" class="logo-nav" height="auto" alt />
      </nuxt-link>
@@ -11,16 +11,16 @@
             {{authName}}
         </button>
             <div class=" row d-block d-sm-none justify-content-center">
-          <div class="drop-m drop-menu mr-5" v-if="onDropdown">
+          <div class="mobile-drop" v-if="onDropdown">
           <div v-if="authName != null">
-            <button @click="lkOpen" class=" btn-kabinet m-2 text-center" >Личный кабинет</button>
+            <button @click="lkOpen" class=" btn-kabinet m-2 text-center" ><fa icon="user-cog"></fa>Личный кабинет</button>
           <br>
-          <button @click="logout" class=" btn-logout" >выйти</button>
+          <button @click="logout" class=" btn-logout" ><fa icon="sign-out-alt"></fa>выйти</button>
           </div>
           <div v-if="authName === null">
-          <button  class="btn-login" @click="onLogin">Вход</button>
+          <button  class="btn-login" @click="onLogin"><fa icon="sign-in-alt"></fa>Вход</button>
           <br />
-          <button class=" btn-reg" @click="onRegister">Регистрация</button>
+          <button class=" btn-reg" @click="onRegister"><fa icon="arrow-alt-circle-right"></fa>Регистрация</button>
           </div>
           </div>
           </div>
@@ -41,14 +41,14 @@
           <div class=" row justify-content-center">
           <div class="drop-m drop-menu mr-5" v-if="onDropdown">
           <div v-if="authName != null">
-            <button @click="lkOpen" class=" btn-kabinet m-2" >Личный кабинет</button>
+            <button @click="lkOpen" class=" btn-kabinet m-2" ><fa icon="user-cog"></fa>Личный кабинет</button>
           <br>
-          <button @click="logout" class=" btn-logout" >выйти</button>
+          <button @click="logout" class=" btn-logout" ><fa icon="sign-out-alt"></fa>выйти</button>
           </div>
           <div v-if="authName === null">
-          <button  class="btn-login" @click="onLogin">Вход</button>
+          <button  class="btn-login" @click="onLogin"><fa icon="sign-in-alt"></fa>Вход</button>
           <br />
-          <button class=" btn-reg" @click="onRegister">Регистрация</button>
+          <button class=" btn-reg" @click="onRegister"><fa icon="arrow-alt-circle-right"></fa>Регистрация</button>
           </div>
           </div>
     </div>
@@ -117,6 +117,13 @@ export default {
   display: flex;
   justify-content: flex-end;
 }
+.mobile-drop{
+    position: absolute;
+    background: white;
+    min-height: 5rem;
+    padding: .5rem;
+    margin-top: 1rem;
+}
 .logo-nav{
   width: 1.5rem;
 }
@@ -150,7 +157,9 @@ export default {
   background: none;
   border: none;
 }
-
+.nav{
+  box-shadow: 11px 6px 20px 5px #b9bfc5;
+}
 .btn-drop {
   background: none;
   border: none;
