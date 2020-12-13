@@ -2,8 +2,8 @@
 <div class="gallery">
     <div class="container">
         <div class="row">
-            <div class="col-12  d-flex justify-content-end">
-              <fa @click="closeGall()" class="m-2 icons-close" icon="times"></fa>
+            <div class="col-12 close-box  d-flex justify-content-end">
+              <fa @click="closeGall()" class="icons-close" icon="times"></fa>
               </div>
               <div class="col-12 d-flex justify-content-center align-items-center image-box">
                   <div class="row">
@@ -46,9 +46,14 @@ methods: {
     left: 0;
     z-index: 1;
     opacity: 0.95;
+    top: 0;
+    position: fixed;
 }
 .close-gallery{
     text-align: end;
+}
+.close-box{
+    padding-top: 4rem;
 }
 .image-box{
     height: 100vh;
@@ -61,5 +66,6 @@ methods: {
 .icons-close{
     color: aliceblue;
     font-size: 2rem;
+    cursor: pointer;
 }
 </style>
