@@ -114,7 +114,9 @@
                     placeholder="+7 XXX XXX XX XX"
                   />
                   <br>
-                  <button type="submit" class="btn-cal btn mt-2 ">Записаться</button>
+                  <div class="d-flex justify-content-end box-sibmit">
+                  <button type="submit" class="btn-cal rounded-pill btn mt-2 ">Записаться</button>
+                  </div>
                 </form>
               </div>
             </div>
@@ -361,7 +363,9 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 .profile {
   margin-top: 5rem;
 }
-
+.box-sibmit{
+  height: 7rem;
+}
 
 .time-clock{
     background: aliceblue;
@@ -403,10 +407,12 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   display: none;
 }
 .btn-cal {
-  border: 1px solid black;
+  border: none;
   background: lightblue;;
   color: aliceblue;
   box-shadow: 2px 2px 2px #d6d8db;
+  height: 2.3rem;
+  box-shadow: 3px 3px 3px rgba(0,0,0,0.47843);
 }
 select {
   width: 100%;

@@ -8,22 +8,13 @@
         <hr>
         <p>Стоматолог</p>
         <p>Город:{{ user.city}}</p>
-        <!-- <p
-          class="card-text"> -->
-          <!-- <div> -->
-            <!-- <fa v-for="star in max_rating" :key="star" class="icons_rating" icon="star"></fa> -->
-            <!-- <Rating/> -->
             <div v-if="alert" class="alert  alert-warning alert-dismissible fade show" role="alert">Нужна регистрация</div>
-             <fa @click="onStar(star,user.id)" v-for="star in max_rating"
-            :key="star"
+            <fa  v-for="star of user.rating "  :key="star.id"
             class="icons_rating"
-            v-model="rating"
-            icon="star" ></fa>
-             <p>Рейтинг -:{{user.rating}}</p>
 
+            icon="star"></fa>
 
-        <!-- </div> -->
-
+            <p>Рейтинг:{{user.rating}}</p>
 
         <button @click="openUser(user.id)" class="btn rounded-pill">Смотреть</button>
 
@@ -49,6 +40,7 @@ export default {
   },
     props:["users","openUser","items"],
     methods: {
+
       onStar(star,user_id) {
       if(this.authName != null){
           this.rating = star
@@ -87,7 +79,8 @@ export default {
       return {
         max_rating:5,
         rating:0,
-        alert:false
+        alert:false,
+        gg:false
       }
     },
 
@@ -106,15 +99,14 @@ export default {
   z-index: 1;
   width: max-content;
 }
-.icons_rating {
-  color: blanchedalmond;
-}
+
 .card:hover{
     background-color: #f0f8f6;
 }
 .icons_rating {
   color: blanchedalmond;
 }
+
 .btn {
     background: #3cbfa7;
     box-shadow: 3px 3px 3px #0000007a;
