@@ -32,8 +32,8 @@ export default {
   '@/theme/index.css'
 ],
 loading: {
-  color: 'green',
-  height: '5px'
+  color: 'blue',
+  height: '3px'
 },
   /*
   ** Plugins to load before mounting the App

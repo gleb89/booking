@@ -21,13 +21,37 @@
             <div class="col-12 col-lg-4">
               <img
                 class="img img-fluid rounded-circle"
-                src="https://atlantgrup.ru/wa-data/public/site/themes/dummy2/img/pages/page-32-2.png"
+                :src="user.avatar"
                 alt
                 width="108rem"
               />
 
               <!-- <Rating class="mb-2" /> -->
-              <p>Рейтинг:4.5</p>
+              <p v-if="!ratingChange">Рейтинг:{{user.rating}}</p>
+              <p v-if="ratingChange">Рейтинг:{{ authrating}}</p>
+                    <div v-if="rating_click" class="alert-rating alert alert-warning" role="alert">
+                    Спасибо за оценку!
+                   </div>
+              <p v-if="!ratingChange"><fa
+
+            v-for="(star,index) of usRating(user.rating)"
+            :key="
+          star.id"
+          @click="clickRating(index+1,user.id)"
+            :class="{active : active_el == star }"
+            class="icons_rating"
+            icon="star"
+          ></fa></p>
+           <p v-if="ratingChange"><fa
+
+            v-for="(star,index) of usRating(authrating)"
+            :key="
+          star.id"
+          @click="clickRating(index+1,user.id)"
+            :class="{active : active_el == star }"
+            class="icons_rating"
+            icon="star"
+          ></fa></p>
               <p>Специалист:{{user.name}}</p>
               <p>Услуги:Маникюр</p>
               <p>Город:{{user.city}}</p>
@@ -142,6 +166,7 @@ export default {
         return name_user.user.id;
       }
     },
+
     masterDate() {
       let headerCalendar = document.querySelector('#ex-disabled-readonly').style.display = 'block'
       if (this.value_data != "") {
@@ -168,7 +193,7 @@ export default {
       }
     }
   },
-  props: ["user_id", "user"],
+  props: ["user_id", "user",'usRating','clickRating','rating_click','ratingChange','authrating'],
   data() {
     return {
       home: true,
@@ -201,11 +226,26 @@ export default {
     RegistrationMaster,
     Gallery
   },
+
   methods: {
+
     timeCostum(time){
       this.clock = time
       this.active_el = time;
 
+    },
+      userRating(rating) {
+      let arrRating = [];
+      for (var i = 0; i < rating; i++) {
+        arrRating.push(1);
+      }
+      if (arrRating.length != 5) {
+        let nonactive = 5 - arrRating.length;
+        for (var i = 0; i < nonactive; i++) {
+          arrRating.push(0);
+        }
+      }
+      return arrRating;
     },
     openImageIn(){
             this.big_image_index++
@@ -328,6 +368,7 @@ export default {
 .active {
   color: #3cbea6;
   width: 4rem;
+
 }
 .time-new {
     width: 100%;
@@ -354,6 +395,20 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     text-shadow: 2px 2px 2px #00000042;
 }
 
+.icons_rating {
+  color: blanchedalmond;
+  cursor: pointer;
+}
+.active {
+  color: aliceblue;
+  cursor: pointer;
+}
+.alert-rating{
+  position: absolute;
+  z-index: 0;
+  width: auto;
+  left: 0;
+}
 .navbar-user {
   background-color: #3cbea6 !important;
   box-shadow: 3px 3px 3px 3px #c6ccd2;
