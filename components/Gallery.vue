@@ -1,7 +1,7 @@
 <template>
 <div class="gallery">
     <div class="container">
-        <div class="row">
+        <div @click="onCloseTar($event)" class="row ">
             <div class="col-12 close-box  d-flex justify-content-end">
               <fa @click="closeGall()" class="icons-close" icon="times"></fa>
               </div>
@@ -10,7 +10,7 @@
                 <div class="col-12 d-flex justify-content-center">
               <img class="img-fluid  " :src="bigimage" alt="">
               </div >
-              <div class="col-12 d-flex justify-content-center">
+              <div class="col-12 button-img d-flex justify-content-center">
                   <fa @click="openImageUp()" class="m-2 icons" icon="long-arrow-alt-left"></fa>
                   <fa @click="openImageIn()" class="m-2 icons" icon="long-arrow-alt-right"></fa>
               </div>
@@ -24,7 +24,7 @@
 
 <script>
 export default {
-    props:['image ', 'openImageIn', 'openImageUp', 'gallery_image', 'bigimage', 'closeGall'],
+    props:['image ', 'openImageIn', 'openImageUp', 'gallery_image', 'bigimage', 'closeGall','onCloseTar'],
 
 data() {
     return {
@@ -62,6 +62,9 @@ methods: {
     cursor: pointer;
     font-size: 3rem;
     color: #f0f8ff5e;
+}
+.button-img{
+    margin-bottom: 8rem;
 }
 .icons-close{
     color: aliceblue;

@@ -33,7 +33,7 @@ export default {
 ],
 loading: {
   color: 'blue',
-  height: '3px'
+  height: '1px'
 },
   /*
   ** Plugins to load before mounting the App

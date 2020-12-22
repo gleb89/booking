@@ -88,7 +88,7 @@ export default {
       this.onLogout()
     },
     lkOpen(){
-      this.$router.push((`/kabinet`))
+      this.$router.push((`/profile`))
       this.onLogout()
     }
 
