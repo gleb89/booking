@@ -82,15 +82,8 @@ export default {
         })
         .then(
            resp => {
-            console.log(resp);
-            if (this.category_id.title){
-                this.user_category = this.category_id.title
-            }
-            else{
-                this.user_category = this.user_category
-            }
-        console.log(this.user_category);
-
+            console.log(this.category_id.title);
+            this.user_category = this.category_id
             this.change = !this.change
 
 
