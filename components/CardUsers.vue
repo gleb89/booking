@@ -6,7 +6,7 @@
         <div class="card-body">
           <h5 class="card-title">{{ user.name}}</h5>
           <hr />
-          <p >{{user.category.title}}</p>
+          <p v-if="user.category" >{{user.category.title}}</p>
           <p>Город:{{ user.city}}</p>
           <div
             v-if="alert"

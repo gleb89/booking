@@ -16,7 +16,7 @@
         <p><input v-if="change" type="text" v-model="user_email"></p>
         <p><span>Город:</span> {{user_city}} </p>
         <p><input v-if="change" type="text" v-model="user_city"></p>
-        <p v-if="user_category"><span>Категория:</span> {{user_category}}</p>
+        <p v-if="user_category"><span>Категория:</span> {{user_category.title}}</p>
             <select v-if="change" id="cityUser" class="form-control" v-model="category_id">
             <option value selected>Выбрать Категории</option>
             <option v-for="cat in categories"  :key="cat.id" :value="(cat)">{{cat.title}}</option>
@@ -49,7 +49,7 @@ export default {
             user_name:this.user.name,
             user_email:this.user.email,
             user_city:this.user.city,
-            user_category:this.user.category.title,
+            user_category:this.user.category,
             category_id:{},
             resimage:false,
             updateIm:false
