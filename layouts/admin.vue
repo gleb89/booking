@@ -15,9 +15,19 @@
 <script>
 import NavAdmin from "@/components/NavAdmin";
 export default {
-    comments:{
+    data() {
+        return {
+        showMobileMenu:false
+        }
+    },
+    components:{
         NavAdmin
-    }
+    },
+    methods: {
+              menuClick() {
+        this.showMobileMenu = ! this.showMobileMenu
+        },
+    },
 }
 </script>
 
