@@ -21,11 +21,17 @@
             <nuxt-link  to="/">Главная</nuxt-link>
         </li>
         <hr />
-        <li class="nav-item" @click="closeMenu">
-          <nuxt-link no-prefetch to="/category">Мои записи</nuxt-link>
+            <li class="nav-item" @click="closeMenu">
+          <nuxt-link no-prefetch to="/profile">Профиль</nuxt-link>
         </li>
         <hr />
-        <li class="nav-item" @click="closeMenu">Новые записи</li>
+        <li class="nav-item" @click="closeMenu">
+          <nuxt-link no-prefetch to="/profile/zapic">Мои записи</nuxt-link>
+        </li>
+        <hr />
+          <li class="nav-item" @click="closeMenu">
+          <nuxt-link no-prefetch to="/profile/datetime">Добавить время</nuxt-link>
+        </li>
         <hr />
         <li class="nav-item" @click="closeMenu">Добавить дату и время</li>
         <hr />
@@ -85,6 +91,13 @@ export default {
 }
 .nav-item {
   font-size: 1.5rem;
+
+}
+@media (max-width: 500px) {
+  .nav-item {
+    font-size: 0.5rem;
+
+}
 }
 .my_nav {
   display: flex;
@@ -95,7 +108,7 @@ export default {
   left: 0;
   top: 0;
   z-index: 99;
-  width: 50%;
+  width: 30%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -103,12 +116,15 @@ export default {
   background-color: #fff;
   transition: 1.2s;
   transform: translateX(-100%);
+
 }
 .menu_active {
   transform: translateX(0%);
-  width: 60%;
+  width: 50%;
   opacity: 0.99;
+  box-shadow: 10px -2px 13px 6px #0000004f;
 }
+
 #check {
   position: absolute;
   z-index: -9999;

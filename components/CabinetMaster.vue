@@ -74,13 +74,6 @@
                   :src="photo"
                   alt
                 />
-                <!-- <div class="col-12 col-lg-12 block-img">
-                  <img
-                    class="img-box mb-2 img-fluid"
-                    src="https://media.gettyimages.com/photos/skyline-of-berlin-with-tv-tower-at-dusk-picture-id925669312?s=170667a"
-                    alt
-                  />
-                </div> -->
               </div>
             </div>
           </div>
@@ -127,7 +120,7 @@
                       </div>
                       <div
                         class="time-clock"
-                        :class="{ active : active_el == time.id }"
+                        :class="{ timeclock : active_el == time.id }"
                         @click="timeCostum(time.id)"
                         v-for="time in user_time"
                         :key="time.id"
@@ -393,8 +386,12 @@ export default {
 };
 </script>
 
-<style >
+<style>
 .active {
+  color: #3cbea6;
+  width: 4rem;
+}
+.timeclock{
   color: #3cbea6;
   width: 4rem;
 }
