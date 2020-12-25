@@ -33,8 +33,6 @@
           <nuxt-link no-prefetch to="/profile/datetime">Добавить время</nuxt-link>
         </li>
         <hr />
-        <li class="nav-item" @click="closeMenu">Добавить дату и время</li>
-        <hr />
         <div class="cabinet">
           <!-- <img class="img-fluid person-img" src="/person.png" alt /> -->
           <svg
@@ -94,9 +92,8 @@ export default {
 
 }
 @media (max-width: 500px) {
-  .nav-item {
-    font-size: 0.5rem;
-
+  .nuxt-link-active {
+    font-size: 1rem;
 }
 }
 .my_nav {
@@ -118,11 +115,18 @@ export default {
   transform: translateX(-100%);
 
 }
+
 .menu_active {
   transform: translateX(0%);
-  width: 50%;
+  width: 20%;
   opacity: 0.99;
   box-shadow: 10px -2px 13px 6px #0000004f;
+}
+
+@media (max-width: 500px) {
+  .menu_active {
+    width: 80%;
+}
 }
 
 #check {

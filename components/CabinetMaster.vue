@@ -9,7 +9,7 @@
         :openImageIn="openImageIn"
         :gallery_image="gallery_image"
         :onCloseTar="onCloseTar"
-      />
+      /> title
       <nav class="navbar navbar-light navbar-user">
         <ul class="navbar-nav mr-auto d-flex flex-row">
           <li class="nav-item m-2">
@@ -60,7 +60,7 @@
                 ></fa>
               </p>
               <p>Специалист:{{user.name}}</p>
-              <p>Услуги:{{user.category.title}}</p>
+              <!-- <p>Услуги:{{user.category.title}}</p> -->
               <p>Город:{{user.city}}</p>
             </div>
             <div class="col-12 col-lg-8 img-block">

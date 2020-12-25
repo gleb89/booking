@@ -1,143 +1,135 @@
 <template>
-    <div class="container">
-          <div id="calendar-data mt-4" class="row">
-            <div  class="col-12 col-lg-6 data text-center">
-              <p>Выберите дату</p>
-              <b-calendar
-                id="ex-disabled-readonly"
-                v-model="user_data"
-              ></b-calendar>
-              {{ondate}}
+  <div class="container">
+    <div id="calendar-data mt-4" class="row">
+      <div class="col-12 col-lg-6 data text-center">
+        <p>Выберите дату</p>
+        <b-calendar id="ex-disabled-readonly" v-model="user_data"></b-calendar>
+        {{ondate}}
+      </div>
+      <div class="col-12 col-lg-6 zapis-table text-start">
+        <div class="row justify-content-center p-1">
+          <div
+            v-if="alerts"
+            class="col-12 alert new-alert alert-danger"
+            role="alert"
+          >Не выбрана дата</div>
+        </div>
+        <p class="show-data">Выбрана дата: {{user_data}}</p>
+        <p>Выбрано время: {{time}}</p>
+
+        <div>
+          <form v-on:submit="inputTime($event)" action>
+            <input class="time-new" name="time" type="time" required v-model="time" />
+            <br />
+            <div class="d-flex justify-content-end">
+            <button type="submit" class="btn-cal rounded-pill btn">добавить время</button>
             </div>
-            <div class="col-12 col-lg-6 zapis-table text-start">
-                <p class="show-data">Выбрана дата: {{user_data}}</p>
-                <p>Выбрано время: {{time}}</p>
-                <div>
-
-                    <form v-on:submit="inputTime($event)" action="">
-                    <input
-                    class="time-new"
-                    name="time"
-                    type="time"
-                    required
-                    v-model="time"
-                  />
-                  <br>
-                  <button type="submit" class="btn-cal rounded-pill btn mt-2">добавить время</button>
-                  <div class="row justify-content-center p-1">
-                  <div v-if="alerts" class="col-12 alert new-alert alert-danger" role="alert">
-                      Не выбрана дата
-                  </div>
-                  </div>
-                  </form>
-                  <div class="row mt-5 block-date">
-
-                <div class="col-lg-3 col-6 box-time" v-for="time in timeAppend" :key="time.id">
-                <p >Время: <br>{{time.uptime}}
-                <fa class="checks"  icon="check"></fa>
-                </p>
-                <p>Дата: <br>{{time.update}} </p>
-                </div>
-                </div>
-                </div>
-
+          </form>
+          <div class="row mt-5 block-date">
+            <div class="col-lg-3 col-6 box-time" v-for="time in timeAppend" :key="time.id">
+              <p>
+                Время:
+                <br />
+                {{time.uptime}}
+                <fa class="checks" icon="check"></fa>
+              </p>
+              <p>
+                Дата:
+                <br />
+                {{time.update}}
+              </p>
+            </div>
           </div>
+        </div>
+      </div>
     </div>
-    </div>
+  </div>
 </template>
 
 <script>
 export default {
-    layout: 'admin',
-    computed:{
-    ondate(){
-      if (this.user_data != ''){
+  layout: "admin",
+  computed: {
+    ondate() {
+      if (this.user_data != "") {
         let headerCalendar = (document.querySelector(
-        "#ex-disabled-readonly"
-      ).style.display = "block");
-      this.alerts = false
+          "#ex-disabled-readonly"
+        ).style.display = "block");
+        this.alerts = false;
       }
-      }
-    },
-    data() {
-        return {
-             user_data:'',
-             time:'',
-             timeAppend:[],
-             alerts:false,
+    }
+  },
+  data() {
+    return {
+      user_data: "",
+      time: "",
+      timeAppend: [],
+      alerts: false
+    };
+  },
+  methods: {
+    inputTime($event) {
+      event.preventDefault();
+      let user_id = this.$store.state.auth.user.id;
 
-        }
-    },
-    methods: {
-    inputTime($event){
-        event.preventDefault()
-        let user_id = this.$store.state.auth.user.id
-
-        if (this.user_data){
-                this.timeAppend.push({'uptime':this.time,'update':this.user_data})
-                let data =
-                {
-                  "user_id": user_id,
-                  "time": this.time,
-                  "date": this.user_data,
-                  "is_booking": true
-                }
-                const headers = {
-                "Content-Type": "application/json"
-                };
-            this.$axios
-            .$post("https://glebhleb.herokuapp.com/booking-create_time", data, {
-              headers: headers
+      if (this.user_data) {
+        this.timeAppend.push({ uptime: this.time, update: this.user_data });
+        let data = {
+          user_id: user_id,
+          time: this.time,
+          date: this.user_data,
+          is_booking: true
+        };
+        const headers = {
+          "Content-Type": "application/json"
+        };
+        this.$axios
+          .$post("https://glebhleb.herokuapp.com/booking-create_time", data, {
+            headers: headers
           })
 
-               .then(
-          res => {
-            console.log(res);
-
-          },
-          error => {
+          .then(
+            res => {
+              console.log(res);
+            },
+            error => {
               console.log(error);
-
-          }
-        );
-
-        }
-        else{
-            this.alerts = true
-              setTimeout(() => {
-                this.alerts = false
-              }, 2000);
-
-        }
-    },
+            }
+          );
+      } else {
+        this.alerts = true;
+        setTimeout(() => {
+          this.alerts = false;
+        }, 2000);
+      }
     }
-}
+  }
+};
 </script>
 
 <style >
-.data{
-    margin-top: 8rem;
+.data {
+  margin-top: 8rem;
 }
-.show-data{
-    margin-top: 15rem;
+.show-data {
+  margin-top: 15rem;
 }
 @media (max-width: 500px) {
-.show-data{
-      margin-top: 2rem;
+  .show-data {
+    margin-top: 2rem;
   }
 }
 @media (max-width: 500px) {
-  .block-date{
-      justify-content: center;
+  .block-date {
+    justify-content: center;
   }
 }
 
-.checks{
+.checks {
   color: green;
 }
 
-
-.box-time{
+.box-time {
   background: aliceblue;
   margin: 2px;
 }
@@ -150,7 +142,10 @@ export default {
   height: 2.3rem;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.47843);
 }
-.new-alert{
+.btn {
+  margin-top: 2rem;
+}
+.new-alert {
   position: absolute;
   z-index: 0;
 }
@@ -182,7 +177,7 @@ small,
 .b-calendar .b-calendar-grid {
   border: none;
 }
-#ex-disabled-readonly{
+#ex-disabled-readonly {
   display: none;
   width: 100%;
 }
