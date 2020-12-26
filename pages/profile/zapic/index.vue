@@ -1,38 +1,54 @@
 <template>
-    <div>
-        <h1>Созданное время {{user_id}}</h1>
-        <div class="row">
-            <div class="col-12">
-
-            </div>
-        </div>
+    <div class="container">
+        <h1>Созданное время</h1>
+        <ListZapic :date_time="date_time" :openTime="openTime" :time_data="time_data" :new_time="new_time"/>
     </div>
 </template>
 
 <script>
+import ListZapic from "@/components/ListZapic";
 export default {
     layout: 'admin',
     data() {
         return {
-            user_id:this.$store.state.auth.user.id
+            time_data:[],
+            new_time:false
         }
     },
-    asyncData({ $axios, error }) {
+    components:{
+        ListZapic
+    },
+    asyncData({ $axios,store, error }) {
     const headers = {
         "Content-Type": "application/json"
     };
-
-
+    let user_id = store.state.auth.user.id
     return $axios
-        .$get(`https://glebhleb.herokuapp.com/user/${user_id}`, {
+        .$get(`https://glebhleb.herokuapp.com/booking-data/${Number(user_id)}`, {
         headers: headers
         })
         .then(
-        user => {
-            return {user}
-
+        date_time => {
+            return {date_time}
         })
 
+    },
+    methods: {
+        openTime(date_id){
+            const headers = {
+            "Content-Type": "application/json"
+            };
+            return this.$axios
+        .$get(`https://glebhleb.herokuapp.com/booking_time/${date_id}`, {
+        headers: headers
+        })
+        .then(
+        time_for_date => {
+            this.time_data = time_for_date
+            this.new_time = !this.new_time
+        })
+
+      }
     },
 
 }
