@@ -94,7 +94,7 @@ export default {
             };
 
             this.$axios
-            .$put("http://localhost:8000/confirm-time/", data, {
+            .$put("https://glebhleb.herokuapp.com/confirm-time/", data, {
               headers: headers
             })
             .then(resp =>{
