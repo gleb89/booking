@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-        <h1>Созданное время</h1>
-        <ListZapic :date_time="date_time" :openTime="openTime" :time_data="time_data" :new_time="new_time"/>
+        <h1>Мои записи</h1>
+        <ListZapic :date_time="date_time" :openTime="openTime" :time_data="time_data" :new_time="new_time" />
     </div>
 </template>
 
@@ -12,7 +12,8 @@ export default {
     data() {
         return {
             time_data:[],
-            new_time:false
+            new_time:false,
+
         }
     },
     components:{
@@ -35,21 +36,16 @@ export default {
     },
     methods: {
         openTime(date_id){
-            const headers = {
-            "Content-Type": "application/json"
-            };
-            return this.$axios
-        .$get(`https://glebhleb.herokuapp.com/booking_time/${date_id}`, {
-        headers: headers
-        })
-        .then(
-        time_for_date => {
-            this.time_data = time_for_date
-            this.new_time = !this.new_time
-        })
+          this.$router.push(`/profile/zapic/${date_id}`)
 
       }
     },
 
 }
 </script>
+
+<style >
+.navbar-master{
+    background: wheat;
+}
+</style>
