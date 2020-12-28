@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <h1>Мои записи</h1>
-        <ListZapic :date_time="date_time" :openTime="openTime" :time_data="time_data" :new_time="new_time" />
+        <ListZapic :Datetime="Datetime" :openTime="openTime" :time_data="time_data" :new_time="new_time" />
     </div>
 </template>
 
@@ -34,9 +34,18 @@ export default {
         })
 
     },
+    computed:{
+        Datetime(){
+            return this.date_time.filter(elem =>{
+                return elem.time.length
+            })
+
+
+        }
+    },
     methods: {
-        openTime(date_id){
-          this.$router.push(`/profile/zapic/${date_id}`)
+        openTime(date_id,date){
+          this.$router.push(`/profile/zapic/${date_id}?data=${date}`)
 
       }
     },

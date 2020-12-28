@@ -30,7 +30,7 @@
         </li>
         <hr />
           <li class="nav-item" @click="closeMenu">
-          <nuxt-link no-prefetch to="/profile/datetime">Добавить время</nuxt-link>
+          <nuxt-link no-prefetch to="/profile/datetime">Добавить <br>время</nuxt-link>
         </li>
         <hr />
         <div class="cabinet">
@@ -92,8 +92,8 @@ export default {
 
 }
 @media (max-width: 500px) {
-  .nuxt-link-active {
-    font-size: 1rem;
+  .nuxt-link {
+    font-size: 1.5rem;
 }
 }
 .my_nav {
@@ -102,7 +102,7 @@ export default {
 }
 .nav {
   position: fixed;
-  left: 0;
+  left: -50px;
   top: 0;
   z-index: 99;
   width: 30%;
@@ -113,11 +113,11 @@ export default {
   background-color: #fff;
   transition: 1.2s;
   transform: translateX(-100%);
-
 }
 
 .menu_active {
   transform: translateX(0%);
+  left: 0;
   width: 20%;
   opacity: 0.99;
   box-shadow: 10px -2px 13px 6px #0000004f;
