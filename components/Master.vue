@@ -1,63 +1,62 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 mt-4">
         <img class="img-prof" v-if="new_image" :src="new_image" alt width="108rem" />
         <br />
-        <input v-if="resimage" id="ttt" name="myFile" type="file" @change="resImage($event)" />
+        <input v-if="resimage" id="ttt"  name="myFile" type="file" @change="resImage($event)" />
         <br />
-        <button class="btn rounded-pill" v-if="updateIm" @click="postImage">сохранить</button>
+        <button class="btn btn-soxr rounded-pill " v-if="updateIm" @click="postImage">сохранить</button>
         <button
-          class="btn rounded-pill btn-otmena"
+          class="btn rounded-pill btn-otmena "
           v-if="resimage"
-          @click="resimage = !resimage"
+          @click="resimage = !resimage,updateIm = false"
         >отмена</button>
         <button
-          class="btn rounded-pill"
+          class="btn btn-change-image rounded-pill"
           v-if="!resimage"
           @click="resimage = true"
         >изменить изображение</button>
         <div class="p-text">
           <p>
-            <span>Имя:</span>
+            <span><fa icon="file-signature"></fa> Имя:</span>
             {{user_name}}
           </p>
           <p>
             <input v-if="change" type="text" v-model="user_name" />
           </p>
           <p>
-            <span>Почта:</span>
+            <span><fa icon="envelope"></fa> Почта:</span>
             {{user_email}}
           </p>
           <p>
             <input v-if="change" type="text" v-model="user_email" />
           </p>
           <p>
-            <span>Город:</span>
+            <span><fa icon="building"></fa> Город:</span>
             {{user_city}}
           </p>
           <p>
             <input v-if="change" type="text" v-model="user_city" />
           </p>
-          <p v-if="user_category">
-            <span>Категория:</span>
-            {{user_category.title}}
-          </p>
+          <p>
+            <span><fa icon="list-ol"></fa> Категория:</span>
+            <div v-if="!category_id.title">{{user_category.title}}</div>
+            <div v-if="category_id.title">{{category_id.title}}</div>
+
+
           <select v-if="change" id="cityUser" class="form-control" v-model="category_id">
             <option value selected>Выбрать Категории</option>
             <option v-for="cat in categories" :key="cat.id" :value="(cat)">{{cat.title}}</option>
           </select>
-
-          <div v-if="category">
-            <p v-for="categ of categories" :key="
-            categ.id">{{categ.title}}</p>
-          </div>
           <p>
-            <span>Мой рейтинг:</span>
+            <span><fa icon="star-half-alt"></fa> Мой рейтинг:</span>
             {{user.rating}}
           </p>
-          <button class="btn rounded-pill" v-if="!change" @click="changeNew">изменить данные</button>
-          <button class="btn rounded-pill" v-if="change" @click="changeData">сохранить</button>
+          <button class="btn btn-ch rounded-pill" v-if="!change" @click="changeNew">изменить данные</button>
+          <button class="btn rounded-pill btn-otmena" v-if="change" @click="nonChange">отмена</button>
+          <button class="btn btn-soxr rounded-pill" v-if="change" @click="changeData">сохранить</button>
+
         </div>
       </div>
     </div>
@@ -86,19 +85,14 @@ export default {
   },
   methods: {
     changeData() {
-      let category_true;
-      if (this.category_id.id === undefined) {
-        category_true = Number(this.user.category.id);
-      } else {
-        category_true = Number(this.category_id.id);
-      }
+
 
       const data = {
         id: this.user.id,
         name: this.user_name,
         email: this.user_email,
         master: true,
-        category: category_true,
+        category: Number(this.category_id.id),
         city: this.user_city
       };
       const headers = {
@@ -109,7 +103,6 @@ export default {
           headers: headers
         })
         .then(resp => {
-          console.log(this.category_id.title);
           this.user_category = this.category_id;
           this.change = !this.change;
         });
@@ -129,8 +122,18 @@ export default {
         });
     },
     resImage(event) {
+      console.log('ll');
+
       this.select = event.target.files[0];
       this.updateIm = true;
+    },
+    nonChange(){
+      this.user_name = this.user.name,
+      this.user_email = this.user.email,
+      this.user_city = this.user.city,
+      this.user_category = this.user.category
+      this.category_id = {}
+      this.change = !this.change
     },
 
     postImage() {
@@ -169,20 +172,39 @@ export default {
   font-size: 2rem;
   margin-bottom: 10rem;
   background: #ffffff;
-  box-shadow: 4px 6px 6px 5px #0000004a;
+  box-shadow: 4px 6px 6px 5px #3f51b542;
   margin-top: 2rem;
   padding: 2rem;
 }
-.btn {
+.btn-change-image {
   margin-top: 2rem;
-  background: #3cbfa7;
-  color: white;
-  box-shadow: 3px 3px 3px #0000007a;
+    background: cornflowerblue;
+    color: white;
+    box-shadow: 7px 3px 7px 3px #00000082;
+    border: none;
+}
+.btn-soxr{
+    margin-top: 2rem;
+    background: cornflowerblue;
+    color: white;
+    box-shadow: 7px 3px 7px 3px #00000082;
+    border: none;
+}
+.btn-ch {
+  margin-top: 2rem;
+    background: #3dc0a7;
+    color: white;
+    box-shadow: 7px 3px 7px 3px #00000082;
+    border: none;
 }
 .btn-otmena {
+  margin-top: 2rem;
+  border: none;
   background: #007bff54;
+  color: white;
 }
-span {
-  font-weight: 900;
+span path{
+
+  color: deepskyblue;;
 }
 </style>

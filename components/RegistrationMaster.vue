@@ -58,6 +58,18 @@
                 <input type="checkbox" id="checkbox" v-model="checked" />
                 <label class="form-check-label" for="exampleCheck1">Нажмите если вы мастер</label>
               </div>
+
+                {{Allcategories}}
+
+                <div v-if="checked" class="newflex form-group mt-3 ">
+
+                  <div class="d-flex justify-content-center">
+                <select  id="inputState" class="form-control" v-model="category_id">
+                  <option v-for="cat in categories" :key="cat.id" :value="(cat.id)">{{cat.title}}</option>
+                </select>
+                </div>
+                <label for="inputState">Категория услуг</label>
+              </div>
               <!-- <div id="formFooter" class="justify-content-center">
                 <nuxt-link class="text-center" to="/login">Уже зарегестрированы?</nuxt-link>
               </div> -->
@@ -69,10 +81,26 @@
     </div>
   </div>
 </template>
-
+flex-end
 <script>
 export default {
   props: ["onCloseReg","onLogin"],
+    computed:{
+      Allcategories(){
+      const headers = {
+        "Content-Type": "application/json"
+      };
+        this.$axios
+        .$get(`https://glebhleb.herokuapp.com/categories/`, {
+          headers: headers
+        })
+        .then(resp => {
+          this.categories =  resp
+
+        });
+
+        }
+    },
   data() {
     return {
       name: "",
@@ -81,7 +109,9 @@ export default {
       city: "",
       alert: false,
       checked: false,
-      form_err: ""
+      form_err: "",
+      category_id: 0,
+      categories:[]
     };
   },
   methods: {
@@ -95,7 +125,8 @@ export default {
         password: this.password,
         email: this.email,
         city: this.city,
-        master: this.checked
+        master: this.checked,
+        category_id:Number(this.category_id)
       };
       console.log(this.checked);
 
@@ -106,7 +137,6 @@ export default {
         .$post("https://glebhleb.herokuapp.com/user", data, {
           headers: headers
         })
-
         .then(
           response => {
             this.onLogin()
@@ -127,6 +157,8 @@ export default {
 
 
 <style >
+
+
 .btn-form{
   width: 80%;
   border: none;
@@ -135,9 +167,12 @@ export default {
   margin-bottom: 2rem;
   margin-top: 2rem;
 }
-.alert {
-  /* margin-top: 3rem; */
+.newflex{
+  display: flex;
+  /* justify-content: end; */
+  flex-direction: column;
 }
+
 .login {
   margin-top: 20rem;
 }

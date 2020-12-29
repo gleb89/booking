@@ -15,12 +15,12 @@
           <div v-if="authName != null">
             <button @click="lkOpen" class=" btn-kabinet m-2 text-center" ><fa icon="user-cog"></fa>Личный кабинет</button>
           <br>
-          <button @click="logout" class=" btn-logout" ><fa icon="sign-out-alt"></fa>выйти</button>
+          <button @click="logout" class=" btn-logout mt-1" ><fa icon="sign-out-alt"></fa>выйти</button>
           </div>
           <div v-if="authName === null">
           <button  class="btn-login" @click="onLogin"><fa icon="sign-in-alt"></fa>Вход</button>
           <br />
-          <button class=" btn-reg" @click="onRegister"><fa icon="arrow-alt-circle-right"></fa>Регистрация</button>
+          <button class=" btn-reg mt-1" @click="onRegister"><fa icon="arrow-alt-circle-right"></fa>Регистрация</button>
           </div>
           </div>
           </div>

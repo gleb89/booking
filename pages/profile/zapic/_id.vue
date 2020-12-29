@@ -55,10 +55,7 @@ export default {
                 return {time_for_date}
         })
         .catch(function (error) {
-
-
             redirect('/profile/zapic')
-
         })
 
 
