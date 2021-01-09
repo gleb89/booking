@@ -23,8 +23,8 @@
           подтвердить
         </button>
         <b-spinner
-          class="noactive"
-          :class="{ active: active_el == times.id }"
+          class="noactive btn-con"
+          :class="{ actives: active_el == times.id }"
           label="Spinning"
         ></b-spinner>
       </div>
@@ -38,7 +38,7 @@
         </button>
         <b-spinner
           class="noactive"
-          :class="{ active: active_el == times.id }"
+          :class="{ actived: active_el == times.id }"
           label="Spinning"
         ></b-spinner>
       </div>
@@ -87,6 +87,18 @@ span {
 }
 .active {
   display: block;
+}
+.actives{
+  display: block;
+  bottom: 0;
+  margin-bottom: 2rem;
+}
+.actived{
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 2rem;
+  margin-bottom: 2rem;
 }
 .noactivebutton {
   display: none;
