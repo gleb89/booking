@@ -1,60 +1,120 @@
 <template>
-  <div>
+
+  
     <div v-if="!error_mes" class="conf">
-      <p><fa icon="calendar-alt"></fa> <span>Дата:</span>  {{click_data}}</p>
-      <p><fa icon="clock"></fa> <span>Время:</span>  {{times.time.slice(0,5)}}</p>
-      <p v-if="times.owner_id"><fa icon="user-clock"></fa> <span>Имя клиента:</span>  {{times.owner_id}}</p>
+      <p><fa icon="calendar-alt"></fa> <span>Дата:</span> {{ click_data }}</p>
+      <p>
+        <fa icon="clock"></fa> <span>Время:</span> {{ times.time.slice(0, 5) }}
+      </p>
+      <p v-if="times.owner_id">
+        <fa icon="user-clock"></fa> <span>Имя клиента:</span>
+        {{ times.owner_id }}
+      </p>
       <p v-if="times.phone_owner">
         <fa icon="mobile-alt"></fa>
-        <span>Номер
-        клиента :</span>
-         {{times.phone_owner}}
+        <span>Номер клиента :</span>
+        {{ times.phone_owner }}
       </p>
       <div v-if="times.phone_owner && !times.master_confirm">
-        <button @click="onMasterConf(times.id)">подтвердить</button>
+        <button class="btn-cal rounded-pill btn"
+          :class="{ noactive: active_el == times.id }"
+          @click="onMasterConf(times.id, idx)"
+        >
+          подтвердить
+        </button>
+        <b-spinner
+          class="noactive"
+          :class="{ active: active_el == times.id }"
+          label="Spinning"
+        ></b-spinner>
       </div>
       <div v-if="!times.phone_owner && !times.master_confirm">
-        <button @click="onTimeDel(times.id)">удалить</button>
-        <button @click="onChangeTime(times.id)">изменить</button>
+        <button
+          class="btn-del  rounded-pill btn"
+          :class="{ noactive: active_el == times.id }"
+          @click="onTimeDel(times.id, idx)"
+        >
+          удалить
+        </button>
+        <b-spinner
+          class="noactive"
+          :class="{ active: active_el == times.id }"
+          label="Spinning"
+        ></b-spinner>
       </div>
     </div>
-    <br />
 
-    <div></div>
-  </div>
 </template>
 
 <script>
 export default {
   props: [
     "times",
+    "idx",
     "onMasterConf",
     "onTimeDel",
-    "del",
     "error_mes",
     "onChangeTime",
-    "click_data"
+    "click_data",
+    "timing",
+    "active_el",
   ],
   data() {
     return {};
-  }
+  },
 };
 </script>
 
-<style >
+<style scoped>
 .non-conf {
   background: turquoise;
 }
 .conf {
+  min-height: 16rem;
   padding: 1rem;
-    background: white;
-    box-shadow: -3px 5px 10px 3px #3f51b542;
+  background: white;
+  box-shadow: -3px 5px 10px 3px #3f51b542;
 }
 .new-conf {
   background: wheat;
 }
-span{
+span {
   color: rgb(0 150 136 / 65%);
   font-weight: 900;
+}
+.noactive {
+  display: none;
+}
+.active {
+  display: block;
+}
+.noactivebutton {
+  display: none;
+}
+.noactivebutton {
+  display: block;
+}
+.btn-cal {
+  border: none;
+  background: lightblue;
+  color: aliceblue;
+  box-shadow: 2px 2px 2px #d6d8db;
+  height: 2.3rem;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.47843);
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 2rem;
+}
+.btn-del {
+  border: none;
+  background: #d43535bd;
+  color: aliceblue;
+  box-shadow: 2px 2px 2px #d6d8db;
+  height: 2.3rem;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.47843);
+  position: absolute;
+  bottom: 0;
+  right: 2rem;
+  margin-bottom: 2rem;
 }
 </style>

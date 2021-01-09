@@ -24,12 +24,16 @@
         </div>
         </section>
 
-        <section id="section-time" class="mt-4">
-        <div v-for=" times in itemsTime" :key="times.id" >
-          <CardZapis  :times="times" :onMasterConf="onMasterConf"
+        <section id="section-time" class="mt-4 mb-4">
+        <div class="row">
+            
+        <div class="col-lg-4 col-12 mt-4"  v-for=" (times,idx) in itemsTime" :key="times.id" >
+          <CardZapis  :times="times" :active_el="active_el" :timing="timing" :idx="idx" :onMasterConf="onMasterConf"
            :onTimeDel="onTimeDel"
            :onChangeTime="onChangeTime"
-            :del="del" :error_mes="error_mes" :click_data="click_data"/>
+            :error_mes="error_mes" :click_data="click_data"/>
+            </div>
+        
         </div>
         </section>
     </div>
@@ -85,8 +89,6 @@ export default {
                 return this.time_for_date
             }
 
-
-
         }
 
     },
@@ -97,13 +99,15 @@ export default {
             comf:false,
             new_timi:false,
             nocomf:false,
-            del:false,
             error_mes:false,
-            all_time:true
+            all_time:true,
+            timing:false,
+            active_el:0
         }
     },
     methods: {
-        onMasterConf(time_id){
+        onMasterConf(time_id,idx){
+            this.active_el = time_id
             let data = {
                 "id": Number(time_id),
                 "master_confirm": true
@@ -118,11 +122,32 @@ export default {
               headers: headers
             })
             .then(resp =>{
-                console.log(resp);
+                this.time_for_date.splice(idx, 1)
+                this.onNewData()
+                this.timing = false
 
             })
     },
-    onTimeDel(time_id){
+    onNewData(){
+        const headers = {
+            "Content-Type": "application/json"
+            };
+        const date_id = this.$route.params.id
+        return this.$axios
+        .$get(`https://glebhleb.herokuapp.com/booking_time/${date_id}`, {
+        headers: headers
+        })
+        .then(
+        time_for_date => {
+                return this.time_for_date = time_for_date
+        })
+        .catch(function (error) {
+            redirect('/profile/zapic')
+        })
+    },
+    onTimeDel(time_id,idx){
+       
+             this.active_el = time_id
             const headers = {
                 "Content-Type": "application/json"
             };
@@ -132,8 +157,10 @@ export default {
               headers: headers
             })
             .then(resp =>{
-                console.log(event);
-                this.del = true
+                
+                this.time_for_date.splice(idx, 1)
+                this.onNewData()
+                this.timing = false
             })
 
     },
