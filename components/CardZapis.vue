@@ -1,6 +1,6 @@
 <template>
 
-  
+
     <div v-if="!error_mes" class="conf">
       <p><fa icon="calendar-alt"></fa> <span>Дата:</span> {{ click_data }}</p>
       <p>
@@ -15,6 +15,7 @@
         <span>Номер клиента :</span>
         {{ times.phone_owner }}
       </p>
+
       <div v-if="times.phone_owner && !times.master_confirm">
         <button class="btn-cal rounded-pill btn"
           :class="{ noactive: active_el == times.id }"
@@ -32,7 +33,7 @@
         <button
           class="btn-del  rounded-pill btn"
           :class="{ noactive: active_el == times.id }"
-          @click="onTimeDel(times.id, idx)"
+          @click="onTimeDel(times.id, idx,$event)"
         >
           удалить
         </button>
@@ -58,6 +59,7 @@ export default {
     "click_data",
     "timing",
     "active_el",
+    "dels"
   ],
   data() {
     return {};

@@ -86,15 +86,25 @@ export default {
   methods: {
     changeData() {
 
+      let category_id
+      if (this.category_id.id){
+        category_id = this.category_id.id
+      }
+      else{
+        category_id = this.user.category.id
+      }
+
 
       const data = {
         id: this.user.id,
         name: this.user_name,
         email: this.user_email,
         master: true,
-        category: Number(this.category_id.id),
+        category:category_id,
         city: this.user_city
       };
+      console.log(data);
+
       const headers = {
         "Content-Type": "application/json"
       };

@@ -25,15 +25,21 @@
         </section>
 
         <section id="section-time" class="mt-4 mb-4">
-        <div class="row">
-            
+        <div class="row justify-content-center">
+            <div v-if="dels" class="conent-alert col-lg-10 col-12 text-center">
+                <div  class=" alert alert-info " role="alert">
+                Успешно!
+            </div>
+            </div>
+
         <div class="col-lg-4 col-12 mt-4"  v-for=" (times,idx) in itemsTime" :key="times.id" >
           <CardZapis  :times="times" :active_el="active_el" :timing="timing" :idx="idx" :onMasterConf="onMasterConf"
            :onTimeDel="onTimeDel"
+           :dels="dels"
            :onChangeTime="onChangeTime"
             :error_mes="error_mes" :click_data="click_data"/>
             </div>
-        
+
         </div>
         </section>
     </div>
@@ -102,7 +108,8 @@ export default {
             error_mes:false,
             all_time:true,
             timing:false,
-            active_el:0
+            active_el:0,
+            dels:false
         }
     },
     methods: {
@@ -145,23 +152,29 @@ export default {
             redirect('/profile/zapic')
         })
     },
-    onTimeDel(time_id,idx){
-       
+    onTimeDel(time_id,idx,evt){
+
              this.active_el = time_id
             const headers = {
                 "Content-Type": "application/json"
             };
 
-            this.$axios
-            .$delete(`https://glebhleb.herokuapp.com/booking_time/${Number(time_id)}`, {
-              headers: headers
-            })
-            .then(resp =>{
-                
-                this.time_for_date.splice(idx, 1)
-                this.onNewData()
-                this.timing = false
-            })
+
+
+            this.dels = true
+            this.time_for_date.splice(idx, 1)
+            setTimeout(() => this.dels = false, 1000);
+
+            // this.$axios
+            // .$delete(`https://glebhleb.herokuapp.com/booking_time/${Number(time_id)}`, {
+            //   headers: headers
+            // })
+            // .then(resp =>{
+
+            //     this.time_for_date.splice(idx, 1)
+            //     this.onNewData()
+            //     this.timing = false
+            // })
 
     },
     onChangeTime(time_id){
@@ -177,12 +190,26 @@ export default {
 </script>
 
 
-<style >
+<style scoped>
 .list-time {
     margin-top: 4rem;
     box-shadow: 4px 9px 9px 5px rgb(33 150 243 / 10%);
 }
 .filter{
     margin-top: 5rem;
+}
+.alert{
+    /* margin-top: 6rem; */
+}
+.conent-alert{
+    position: absolute;
+    z-index: 1;
+    top: 20%;
+    position:fixed;
+}
+@media(max-width:500px){
+    .conent-alert{
+        right: 15px;
+    }
 }
 </style>
