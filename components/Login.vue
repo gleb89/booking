@@ -88,7 +88,7 @@ export default {
           },
           error => {
             this.error_mess = true;
-            this.error = error.response.data.detail;
+            this.error = 'Неверные данные';
             setTimeout(() => {
               this.error_mess = false;
             }, 2000);

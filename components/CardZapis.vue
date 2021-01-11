@@ -57,7 +57,6 @@ export default {
     "error_mes",
     "onChangeTime",
     "click_data",
-    "timing",
     "active_el",
     "dels"
   ],

@@ -33,7 +33,7 @@
             </div>
 
         <div class="col-lg-4 col-12 mt-4"  v-for=" (times,idx) in itemsTime" :key="times.id" >
-          <CardZapis  :times="times" :active_el="active_el" :timing="timing" :idx="idx" :onMasterConf="onMasterConf"
+          <CardZapis  :times="times" :active_el="active_el"  :idx="idx" :onMasterConf="onMasterConf"
            :onTimeDel="onTimeDel"
            :dels="dels"
            :onChangeTime="onChangeTime"
@@ -130,8 +130,9 @@ export default {
             })
             .then(resp =>{
                 this.time_for_date.splice(idx, 1)
+                this.dels = true
+                setTimeout(() => this.dels = false, 1000);
                 this.onNewData()
-                this.timing = false
 
             })
     },
@@ -149,32 +150,25 @@ export default {
                 return this.time_for_date = time_for_date
         })
         .catch(function (error) {
-            redirect('/profile/zapic')
+            console.log(error);
         })
     },
     onTimeDel(time_id,idx,evt){
-
-             this.active_el = time_id
+            this.active_el = time_id
             const headers = {
                 "Content-Type": "application/json"
             };
+            this.$axios
+            .$delete(`https://glebhleb.herokuapp.com/booking_time/${Number(time_id)}`, {
+              headers: headers
+            })
+            .then(resp =>{
 
-
-
-            this.dels = true
-            this.time_for_date.splice(idx, 1)
-            setTimeout(() => this.dels = false, 1000);
-
-            // this.$axios
-            // .$delete(`https://glebhleb.herokuapp.com/booking_time/${Number(time_id)}`, {
-            //   headers: headers
-            // })
-            // .then(resp =>{
-
-            //     this.time_for_date.splice(idx, 1)
-            //     this.onNewData()
-            //     this.timing = false
-            // })
+                this.time_for_date.splice(idx, 1)
+                this.dels = true
+                setTimeout(() => this.dels = false, 1000);
+                this.onNewData(idx)
+            })
 
     },
     onChangeTime(time_id){

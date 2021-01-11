@@ -37,6 +37,11 @@
                 class="alert-rating alert alert-warning"
                 role="alert"
               >Спасибо за оценку!</div>
+              <div
+                v-if="nonrating"
+                class="alert-rating alert alert-danger"
+                role="alert"
+              >Нужна регистрация!</div>
               <p v-if="!ratingChange">
                 <fa
                   v-for="(star,index) of usRating(user.rating)"
@@ -212,7 +217,8 @@ export default {
     "clickRating",
     "rating_click",
     "ratingChange",
-    "authrating"
+    "authrating",
+    "nonrating"
   ],
   data() {
     return {

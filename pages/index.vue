@@ -67,7 +67,13 @@ export default {
     if (store.getters["users/users"].length === 0) {
       await store.dispatch("users/fetch");
     }
+    // if (store.state.auth = !null){
+    // if (store.getters["time/time"].length === 0) {
+    //   await store.dispatch("time/fetch");
+    // }
+    // }
   },
+
 
   component: {
     CardUsers

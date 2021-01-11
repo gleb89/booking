@@ -10,6 +10,7 @@ export const state = () => {
 export const mutations = {
     setUsers (state,users) {
     state.users = users
+    console.log('jjj');
     },
 
 

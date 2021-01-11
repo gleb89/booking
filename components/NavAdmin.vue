@@ -26,7 +26,7 @@
         </li>
         <hr />
         <li class="nav-item" @click="closeMenu">
-          <nuxt-link no-prefetch to="/profile/zapic">Мои записи</nuxt-link>
+          <nuxt-link no-prefetch to="/profile/zapic">Мои записи <fa v-if="new_times" class="icon-circle" icon="circle"></fa><p v-if="new_times"> новых: {{new_times}}</p> </nuxt-link>
         </li>
         <hr />
           <li class="nav-item" @click="closeMenu">
@@ -47,7 +47,8 @@ const Cookie = process.client ? require('js-cookie') : undefined
 export default {
   data() {
     return {
-      showMobileMenu: false
+      showMobileMenu: false,
+      new_times:this.$store.state.new_time.new_time
     };
   },
   methods: {

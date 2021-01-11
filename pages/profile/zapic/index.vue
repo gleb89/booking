@@ -3,7 +3,7 @@
         <h1 class="my_zapic">Мои записи</h1>
         <ListZapic v-if="!al_data" :Datetime="Datetime" :openTime="openTime" :time_data="time_data" :new_time="new_time" />
         <p v-if="al_data">У вас пока нет записей</p>
-        <button @click="appendtime" class="btn-append rounded-pill">Добавить время</button>
+        <button v-if="al_data" @click="appendtime" class="btn-append rounded-pill">Добавить время</button>
     </div>
 </template>
 

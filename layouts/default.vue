@@ -23,11 +23,36 @@
 </template>
 
 <script>
+
 import Navbar from "@/components/Navbar";
 import Login from "@/components/Login";
 import RegistrationMaster from "@/components/RegistrationMaster";
 export default {
+ asyncData({ $axios,$store,route, error }) {
+    const headers = {
+        "Content-Type": "application/json"
+      };
+      
+      let name_user = store.state.auth
+      if(name_user  === null){
+        console.log('none');
+        let user = false
+        return {userdd}
+      }
+      else{
+       let user_id = name_user.user.id
+       return $axios
+        .$get(`https://glebhleb.herokuapp.com/booking-data/${user_id}`, {
+          headers: headers
+        })
+        .then(
+          userdd => {
+            return {userdd}
 
+          })
+        }
+
+      },
 
   data() {
     return {

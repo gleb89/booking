@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <CabinetMaster :user_id="user_id" :user="user" :usRating="usRating" :clickRating="clickRating" :rating_click="rating_click" :authrating="authrating" :ratingChange="ratingChange"/>
+        <CabinetMaster :user_id="user_id" :user="user" :nonrating="nonrating" :usRating="usRating" :clickRating="clickRating" :rating_click="rating_click" :authrating="authrating" :ratingChange="ratingChange"/>
     </div>
 </template>
 
@@ -48,6 +48,7 @@ export default {
             rating_click:false,
             authrating:0,
             ratingChange:false,
+            nonrating:false
         }
     },
     methods: {
@@ -88,9 +89,9 @@ export default {
           }, 2000);
           });
       } else {
-
+        this.nonrating = true
         setTimeout(() => {
-          alert('kk')
+          this.nonrating = false
         }, 2000);
       }
 

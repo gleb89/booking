@@ -7,17 +7,20 @@
       <div class="dropdown-div d-block d-sm-none">
 
           <button  @click="onOpen" class="btn-drop">
-            <fa  class="icon-user" icon="user"></fa>
             {{authName}}
+            
+            <fa  class="icon-user" icon="user"></fa>
+            <fa v-if="new_time" class="icon-circle" icon="circle"></fa>
+            
         </button>
             <div class=" row d-block d-sm-none justify-content-center">
           <div class="mobile-drop" v-if="onDropdown">
-          <div v-if="authName != null">
-            <button @click="lkOpen" class=" btn-kabinet m-2 text-center" ><fa icon="user-cog"></fa>Личный кабинет</button>
+          <div >
+            <button @click="lkOpen" class=" btn-kabinet m-2 text-center" ><fa icon="user-cog"></fa>Кабинет<span class="ml-1" v-if="new_time">(Новых{{new_time}})</span></button>
           <br>
           <button @click="logout" class=" btn-logout mt-1" ><fa icon="sign-out-alt"></fa>выйти</button>
           </div>
-          <div v-if="authName === null">
+          <div >
           <button  class="btn-login" @click="onLogin"><fa icon="sign-in-alt"></fa>Вход</button>
           <br />
           <button class=" btn-reg mt-1" @click="onRegister"><fa icon="arrow-alt-circle-right"></fa>Регистрация</button>
@@ -35,13 +38,25 @@
       <b-navbar-nav class="ml-auto">
           <div class="dropdown-div d-none d-sm-block">
           <button  @click="onOpen" class="btn-drop">
-            <fa  class="icon-user" icon="user"></fa>
-            {{authName}}
+            
+            <div class="">
+              {{authName}}
+              
+            <fa  class="icon-user ml-1" icon="user"></fa>
+            <fa v-if="new_time" class="icon-circle" icon="circle"></fa>
+            </div>
+            
+            <div>
+            
+            </div>
+            
+      
+            
         </button>
           <div class=" row justify-content-center">
           <div class="drop-m drop-menu mr-5" v-if="onDropdown">
           <div v-if="authName != null">
-            <button @click="lkOpen" class=" btn-kabinet m-2" ><fa icon="user-cog"></fa>Личный кабинет</button>
+            <button @click="lkOpen" class=" btn-kabinet m-2" ><fa icon="user-cog"></fa>Кабинет<span class="ml-1" v-if="new_time">(Новых{{new_time}})</span></button>
           <br>
           <button @click="logout" class=" btn-logout" ><fa icon="sign-out-alt"></fa>выйти</button>
           </div>
@@ -60,22 +75,21 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 const Cookie = process.client ? require('js-cookie') : undefined
+
 export default {
   computed: {
     authName(){
       let name_user = this.$store.state.auth
       if(name_user  === null){
-        console.log('none');
-
         return null
       }
       else{
-        console.log('yes');
-
+        this.time_user(name_user.user.id)
         return name_user.user.name
       }
-    }
+    },
   },
   props: ["onLogin", "onRegister", "onDropdown", "onOpen","onLogout"],
 
@@ -83,6 +97,7 @@ export default {
       logout () {
       Cookie.remove('auth')
       this.$store.commit('setAuth', null)
+      this.new_time = 0
       this.token = false
       this.$router.push('/')
       this.onLogout()
@@ -90,14 +105,48 @@ export default {
     lkOpen(){
       this.$router.push((`/profile`))
       this.onLogout()
+    },
+    time_user(user_id){
+      const headers = {
+            "Content-Type": "application/json"
+          };
+        this.$axios
+        .$get(`https://glebhleb.herokuapp.com/booking-data/${user_id}`,{
+          headers: headers
+        })
+        .then(time_user =>{
+          console.log(time_user.status);
+        let new_count = []
+        let bbg = 0
+        
+
+        for(let i of time_user ){
+            new_count.push(i.time)
+        }
+
+        for(let i of new_count){
+          let co =  i.filter(elem =>{
+                if(elem.phone_owner && !elem.master_confirm){
+                  bbg += 1
+                }
+            })
+        }
+        this.new_time +=  bbg
+        // this.$store.commit("setNew_time", this.new_time);
+        
+        this.$store.dispatch('new_time/login',bbg)
+        // Cookie.set("time", time);
+        })
+        .catch(function (error) {
+        console.log(JSON.stringify(error))
+  });
     }
 
   },
   data() {
     return {
       token:false,
-
-
+      new_time:0
     };
   }
 };
@@ -127,6 +176,23 @@ export default {
 .logo-nav{
   width: 1.5rem;
 }
+@media(min-width:775px){
+  .icon-circle{
+    position: absolute;
+    right: 9px;
+    font-size: 9px;
+    bottom: 30px;
+}
+}
+@media(max-width:775px){
+  .icon-circle{
+    position: relative;
+    left: -6px;
+    bottom: 8px;
+    font-size: 10px;
+}
+}
+
 .btn-logout {
   background: none;
   border: none;
@@ -170,3 +236,5 @@ export default {
   color: #3cbfa6;
 }
 </style>
+
+
