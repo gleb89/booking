@@ -15,12 +15,12 @@
         </button>
             <div class=" row d-block d-sm-none justify-content-center">
           <div class="mobile-drop" v-if="onDropdown">
-          <div >
+          <div v-if="authName != null">
             <button @click="lkOpen" class=" btn-kabinet m-2 text-center" ><fa icon="user-cog"></fa>Кабинет<span class="ml-1" v-if="new_time">(Новых{{new_time}})</span></button>
           <br>
           <button @click="logout" class=" btn-logout mt-1" ><fa icon="sign-out-alt"></fa>выйти</button>
           </div>
-          <div >
+          <div v-if="authName === null">
           <button  class="btn-login" @click="onLogin"><fa icon="sign-in-alt"></fa>Вход</button>
           <br />
           <button class=" btn-reg mt-1" @click="onRegister"><fa icon="arrow-alt-circle-right"></fa>Регистрация</button>
