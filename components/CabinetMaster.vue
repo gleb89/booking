@@ -70,16 +70,21 @@
             </div>
             <div class="col-12 col-lg-8 img-block">
               <h2>Фото работ</h2>
-              <div id="photo" class="row justify-content-center">
+              
+              <div v-if="user.images.length > 0" id="photo" class="row justify-content-center p-1">
+                
                 <img
-                  v-for="(photo,projectIndex) in gallery_image"
-                  :key="photo"
+                  v-for="(photo,projectIndex) in imagesList" :key="photo.id"
                   @click.prevent="openImg(projectIndex)"
-                  class="col-12 col-lg-6 mb-2 gallery-img img-fluid"
+                  class="gallery-img img-fluid col-12 col-lg-4 p-1"
                   :src="photo"
                   alt
                 />
+                
               </div>
+              <div v-if="user.images.length === 0"  id="photo" class="row justify-content-center">
+                <h4>Мастер еще не загрузил фото</h4>
+                </div>
             </div>
           </div>
         </div>
@@ -181,7 +186,22 @@ export default {
         return name_user.user.id;
       }
     },
-
+    imagesList(){
+      console.log('ttt'); 
+    for(let photo of this.user.images){
+      this.gallery_image.push(photo.images)
+      console.log('ttt');
+    }
+    if (this.gallery_image.length >0){
+      this.imag_true = true
+      console.log('ttt');
+    }
+    else{
+      console.log('ggg');
+      this.imag_true = false
+    }
+    return this.gallery_image
+    },
     masterDate() {
       let headerCalendar = (document.querySelector(
         "#ex-disabled-readonly"
@@ -239,12 +259,9 @@ export default {
       image: false,
       bigimage: "",
       big_image_index: 0,
-      gallery_image: [
-        "https://media.gettyimages.com/photos/skyline-of-berlin-with-tv-tower-at-dusk-picture-id925669312?s=170667a",
-        "https://html5css.ru/css/img_lights.jpg",
-        "https://p.bigstockphoto.com/GeFvQkBbSLaMdpKXF1Zv_bigstock-Aerial-View-Of-Blue-Lakes-And--227291596.jpg",
-        "https://media.gettyimages.com/photos/woman-lifts-her-arms-in-victory-mount-everest-national-park-picture-id507910624?s=612x612"
-      ]
+      gallery_image:[],
+      imag_true:false
+      
     };
   },
   component: {
@@ -413,6 +430,10 @@ export default {
   box-shadow: 4px -4px 10px 1px #daecff;
   border: 1px solid lightblue;
 }
+.box-img{
+  border: 1px solid #00000038;
+  margin: 1px;
+}
 input[type="time"]::-webkit-calendar-picker-indicator {
   filter: invert(0.5) sepia(1) saturate(5) hue-rotate(175deg);
 }
@@ -473,9 +494,8 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   margin-bottom: 2rem;
 }
 .gallery-img {
-  transition: 1s;
-  cursor: pointer;
-  height: auto;
+    transition: 1s;
+    cursor: pointer;
 }
 .gallery-img:hover {
   filter: grayscale(100%);

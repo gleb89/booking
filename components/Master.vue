@@ -58,6 +58,41 @@
           <button class="btn btn-soxr rounded-pill" v-if="change" @click="changeData">сохранить</button>
 
         </div>
+        <div class="p-text">
+          <h3>Все мои фото</h3>
+          <div v-if="user_images.length > 0 && list_add_images.length === 0" id="photo" class="row justify-content-center p-1">
+                <img
+                  v-for="photo in user_images" :key="photo.id"
+                  
+                  class="gallery-img img-fluid col-12 col-lg-4 p-1"
+                  :src="photo.images"
+                  alt
+                />
+                
+              </div>
+                <div v-if="list_add_images.length > 0" id="photo" class="row justify-content-center p-1">
+                <img
+                  v-for="photo in list_add_images" :key="photo.id"
+                  
+                  class="gallery-img img-fluid col-12 col-lg-4 p-1"
+                  :src="photo"
+                  alt
+                />
+                
+              </div>
+              <div v-if="user_images.length === 0 && list_add_images.length === 0" id="photo" class="row justify-content-center">
+                <h4>Вы еще не загрузили фото</h4>
+                <br>
+                
+            </div>
+            <div>
+                  <label for="myFile">Добавить фото</label>
+                  <br>
+                  <input  id="ttt"  name="myFile" type="file" @change="addImages($event)"/>
+                  <br />
+                <button class="btn rounded-pill " @click="postaddImages">сохранить</button>
+                </div>
+      </div>
       </div>
     </div>
   </div>
@@ -66,10 +101,25 @@
 <script>
 export default {
   props: ["user"],
+  computed:{
+    // allImages(){
+    //   if(this.list_add_images.length = !0){
+    //   for (let image of this.user_images){
+    //         this.list_add_images.push(image.images)
+    //   }
+ 
+    //   return this.list_add_images
+    //   }
+    //   else{
+    //     return this.list_add_images
+    //   }
+    // }
+  },
   data() {
     return {
       tt: "",
       select: null,
+      select_images:null,
       change: false,
       new_image: this.user.avatar,
       category: false,
@@ -78,9 +128,11 @@ export default {
       user_email: this.user.email,
       user_city: this.user.city,
       user_category: this.user.category,
+      user_images:this.user.images,
       category_id: {},
       resimage: false,
-      updateIm: false
+      updateIm: false,
+      list_add_images:[]
     };
   },
   methods: {
@@ -113,8 +165,10 @@ export default {
           headers: headers
         })
         .then(resp => {
-          this.user_category = this.category_id;
-          this.change = !this.change;
+ 
+                this.user_category = this.category_id;
+                this.change = !this.change;
+
         });
     },
 
@@ -137,6 +191,9 @@ export default {
       this.select = event.target.files[0];
       this.updateIm = true;
     },
+    addImages(event){
+      this.select_images = event.target.files[0];
+    },
     nonChange(){
       this.user_name = this.user.name,
       this.user_email = this.user.email,
@@ -144,6 +201,37 @@ export default {
       this.user_category = this.user.category
       this.category_id = {}
       this.change = !this.change
+    },
+    postaddImages(){
+       const formData = new FormData();
+      formData.append("image", this.select_images, this.select_images.name);
+      const headers = {
+        "Content-Type": "application/json"
+      };
+      this.$axios
+        .$post(
+          `https://glebhleb.herokuapp.com/add-images/${this.user.id}`,
+          formData,
+          {
+            headers: headers
+          }
+        )
+        .then(resp => {
+          let arrImages = []
+          if(this.user_images.length === 0){
+          this.list_add_images.push(resp)
+          console.log(this.list_add_images);
+          }
+          else{
+            this.list_add_images = []
+            for(let photo of this.user_images){
+              
+              arrImages.push(photo.images)
+            }
+            arrImages.push(resp)
+            this.list_add_images = arrImages
+          }
+        });
     },
 
     postImage() {

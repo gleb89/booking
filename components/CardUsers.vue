@@ -2,7 +2,10 @@
   <div class="container">
     <div class="row justify-content-center">
       <div v-for="user of users" :key="user.id" class="card col-12 col-lg-3 m-4">
-        <img class="card-img-top" src="/header.png" alt="Card image cap" />
+        <div class="p-1">
+        <img v-if="user.avatar" class="img card-img-top img-fluid rounded-circle" :src="user.avatar" alt="Card image cap" />
+        <img v-if="!user.avatar" class="img card-img-top img-fluid rounded-circle" src="/header.png" alt="Card image cap" />
+        </div>
         <div class="card-body">
           <h5 class="card-title">{{ user.name}}</h5>
           <hr />
@@ -108,5 +111,11 @@ export default {
 .btn {
   background: #3cbfa7;
   box-shadow: 3px 3px 3px #0000007a;
+}
+.img{
+  height: 5rem;
+  width: 5rem;
+  border: 1px solid #3cbea6;
+  box-shadow: 2px 2px 2px 2px #e9ecef;
 }
 </style>
