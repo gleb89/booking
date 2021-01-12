@@ -63,29 +63,29 @@
           <div v-if="user_images.length > 0 && list_add_images.length === 0" id="photo" class="row justify-content-center p-1">
                 <img
                   v-for="photo in user_images" :key="photo.id"
-                  
+
                   class="gallery-img img-fluid col-12 col-lg-4 p-1"
                   :src="photo.images"
                   alt
                 />
-                
+
               </div>
                 <div v-if="list_add_images.length > 0" id="photo" class="row justify-content-center p-1">
                 <img
                   v-for="photo in list_add_images" :key="photo.id"
-                  
+
                   class="gallery-img img-fluid col-12 col-lg-4 p-1"
                   :src="photo"
                   alt
                 />
-                
+
               </div>
               <div v-if="user_images.length === 0 && list_add_images.length === 0" id="photo" class="container">
                 <h4>Вы еще не загрузили фото</h4>
                 <br>
-                
+
             </div>
-        
+
             <!-- <form >
               <div class="form-group">
 
@@ -95,12 +95,12 @@
                 </div>
                 <button class="btn rounded-pill " @click="postaddImages">сохранить</button>
                 </form> -->
-            <form class="">
+
               <p class="pp">Добавить <br> изображение</p>
               <input type="file" name="myFile" class="form-control-file" id="exampleFormControlFile1" @change="addImages($event)">
             <button class="btn btn-primary rounded-pill " @click="postaddImages">сохранить</button>
-            </form>
-              
+
+
       </div>
       </div>
     </div>
@@ -116,7 +116,7 @@ export default {
     //   for (let image of this.user_images){
     //         this.list_add_images.push(image.images)
     //   }
- 
+
     //   return this.list_add_images
     //   }
     //   else{
@@ -174,7 +174,7 @@ export default {
           headers: headers
         })
         .then(resp => {
- 
+
                 this.user_category = this.category_id;
                 this.change = !this.change;
 
@@ -212,6 +212,8 @@ export default {
       this.change = !this.change
     },
     postaddImages(){
+
+
        const formData = new FormData();
       formData.append("image", this.select_images, this.select_images.name);
       const headers = {
@@ -234,12 +236,14 @@ export default {
           else{
             this.list_add_images = []
             for(let photo of this.user_images){
-              
+
               arrImages.push(photo.images)
             }
             arrImages.push(resp)
             this.list_add_images = arrImages
           }
+          console.log(resp);
+
         });
     },
 
