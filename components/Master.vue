@@ -58,7 +58,7 @@
           <button class="btn btn-soxr rounded-pill" v-if="change" @click="changeData">сохранить</button>
 
         </div>
-        <div class="p-text">
+        <div class="p-text container">
           <h3>Все мои фото</h3>
           <div v-if="user_images.length > 0 && list_add_images.length === 0" id="photo" class="row justify-content-center p-1">
                 <img
@@ -80,18 +80,27 @@
                 />
                 
               </div>
-              <div v-if="user_images.length === 0 && list_add_images.length === 0" id="photo" class="row justify-content-center">
+              <div v-if="user_images.length === 0 && list_add_images.length === 0" id="photo" class="container">
                 <h4>Вы еще не загрузили фото</h4>
                 <br>
                 
             </div>
-            <div>
-                  <label for="myFile">Добавить фото</label>
+        
+            <!-- <form >
+              <div class="form-group">
+
                   <br>
                   <input  id="ttt"  name="myFile" type="file" @change="addImages($event)"/>
                   <br />
-                <button class="btn rounded-pill " @click="postaddImages">сохранить</button>
                 </div>
+                <button class="btn rounded-pill " @click="postaddImages">сохранить</button>
+                </form> -->
+            <form class="">
+              <p class="pp">Добавить <br> изображение</p>
+              <input type="file" name="myFile" class="form-control-file" id="exampleFormControlFile1" @change="addImages($event)">
+            <button class="btn btn-primary rounded-pill " @click="postaddImages">сохранить</button>
+            </form>
+              
       </div>
       </div>
     </div>
@@ -273,6 +282,9 @@ export default {
   box-shadow: 4px 6px 6px 5px #3f51b542;
   margin-top: 2rem;
   padding: 2rem;
+}
+.pp{
+  font-size: 1rem;
 }
 .btn-change-image {
   margin-top: 2rem;
