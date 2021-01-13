@@ -107,33 +107,41 @@
       </div>
       <div class="p-text col-12 text-center ">
         <h3>Все мои фото</h3>
-        <div
+        <div class="container">
+          <div class="d-flex">
+            <div
           v-if="user_images.length > 0 && list_add_images.length === 0"
           id="photo"
-          class=" justify-content-center p-1"
-        >
+          
+        > 
+        <div  v-for="photo in user_images" :key="photo.id" style="position: relative">
           <img
-            v-for="photo in user_images"
-            :key="photo.id"
-            class="img gallery-img img-fluid  p-1 m-1"
+            class="img  gallery-img img-fluid  p-1 m-1"
             :src="photo.images"
             alt
           />
+          <fa class="icon-del" icon="trash"></fa> 
+          </div>
+          
         </div>
         <div
           v-if="list_add_images.length > 0"
           id="photo"
-          class="row justify-content-center p-1"
+
+          class=" justify-content-center p-1"
         >
+        <div v-for="photo in list_add_images" :key="photo.id" style="position: relative">
           <img
-            v-for="photo in list_add_images"
-            :key="photo.id"
-            class="img gallery-img img-fluid  p-1 m-1"
+            class="img  gallery-img img-fluid  p-1 m-1"
             :src="photo"
             alt
           />
+          <fa class="icon-del" icon="trash"></fa> 
+          </div>
         </div>
-
+          </div>
+        </div>
+    
         <div
           v-if="user_images.length === 0 && list_add_images.length === 0"
           id="photo"
@@ -144,21 +152,32 @@
         </div>
         <div class="container" style="font-size: 1rem; padding: 1rem">
           <div class="row justify-content-center">
-            <div class="col-12" style="padding: 1rem">
+            <div class="col-10 text-center" style="padding: 5px">
               <p class="pp text-center">
                 Добавить
                 <br />изображение
               </p>
+              
+              <br>
+              
+              <fa class="icon-up" @click="but" icon="file-download"></fa>
+              <p v-if="select_true" >{{select_images.name}}</p>
+              <br>
+              <div v-show="inp">
               <input
+              
                 id="mmm"
                 type="file"
                 name="myFile"
-                class="form-control-file text-center"
+                class="form-control-file text-center d-flex "
                 style="font-size: 14px; margin-top: 1rem"
                 @change="addImages($event)"
+                
               />
-              <span v-if="err_image" style="color:red">Изображение не выбрано</span>
+              </div>
+              <span v-if="err_image" style="color:red">Изображений может быть не более 6!<br>Удалите какое-либо изображение</span>
               <button
+              v-if="select_true"
                 class="btn btn-primary rounded-pill"
                 style="margin-top: 1rem"
                 @click="postaddImages"
@@ -187,6 +206,7 @@ export default {
     return {
       tt: "",
       select: null,
+      select_true:false,
       select_images: null,
       change: false,
       new_image: this.user.avatar,
@@ -202,7 +222,8 @@ export default {
       updateIm: false,
       list_add_images: [],
       err_image:false,
-      add_im:false
+      add_im:false,
+      inp:false
     };
   },
   methods: {
@@ -256,8 +277,21 @@ export default {
       this.select = event.target.files[0];
       this.updateIm = true;
     },
+    but(){
+        if(this.user_images.length === 6 ||  this.list_add_images.length === 6){
+        this.err_image = true
+        setTimeout(() => {
+          this.err_image = false
+        }, 3000);
+          }
+          else{
+            document.getElementById("mmm").click()
+          }
+    },
     addImages(event) {
+      
       this.select_images = event.target.files[0];
+      this.select_true = true
     },
     nonChange() {
       (this.user_name = this.user.name),
@@ -268,14 +302,8 @@ export default {
       this.change = !this.change;
     },
     postaddImages() {
-      if (this.select_images === null){
-        this.err_image = true
-        setTimeout(() => {
-          this.err_image = false
-        }, 2000);
 
-      }
-      else{
+      
     this.add_im = true
       const formData = new FormData();
       formData.append("image", this.select_images, this.select_images.name);
@@ -294,7 +322,7 @@ export default {
           let arrImages = [];
           if (this.user_images.length === 0) {
             this.list_add_images.push(resp);
-            console.log(this.list_add_images);
+            
           } else {
             this.list_add_images = [];
             for (let photo of this.user_images) {
@@ -304,8 +332,9 @@ export default {
             this.list_add_images = arrImages;
           }
           this.add_im = false
+          this.select_true = false
         });
-        }
+        
     },
 
     postImage() {
@@ -349,12 +378,29 @@ export default {
   margin-top: 2rem;
   padding: 2rem;
 }
+.icon-up{
+  font-size: 4rem;
+  cursor: pointer;
+}
+#photo{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 .img {
   height: 10rem;
   width: 10rem;
-  border: 1px solid #3cbea6;
+  /* border: 1px solid #3cbea6; */
   box-shadow: 2px 2px 2px 2px #e9ecef;
   margin-bottom: 2rem;
+}
+.icon-del{
+  color: #ff00008c;
+  font-size: 1rem;
+  position: absolute;
+  right: 5px;
+  bottom: .7rem;
 }
 .pp {
   font-size: 1rem;
@@ -393,4 +439,6 @@ export default {
 span path {
   color: deepskyblue;
 }
+/* drag and drop - "hover" */
+
 </style>
