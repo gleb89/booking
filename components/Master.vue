@@ -1,93 +1,134 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-12 mt-4"></div>
-      <img class="img-prof" v-if="new_image" :src="new_image" alt width="108rem" />
-      <br />
-      <input v-if="resimage" id="ttt" name="myFile" type="file" @change="resImage($event)" />
-      <br />
-      <button class="btn btn-soxr rounded-pill" v-if="updateIm" @click="postImage">сохранить</button>
-      <button
-        class="btn rounded-pill btn-otmena"
-        v-if="resimage"
-        @click="resimage = !resimage,updateIm = false"
-      >отмена</button>
-      <button
-        class="btn btn-change-image rounded-pill"
-        v-if="!resimage"
-        @click="resimage = true"
-      >изменить изображение</button>
-      <div class="p-text">
+      <div class="col-12 mt-4">
+        <img
+          class="img img-prof rounded-circle"
+          v-if="new_image"
+          :src="new_image"
+          alt
+          width="108rem"
+        />
+        <br />
+        <input
+          v-if="resimage"
+          id="ttt"
+          name="myFile"
+          type="file"
+          @change="resImage($event)"
+        />
+        <br />
+        <button
+          class="btn btn-soxr rounded-pill"
+          v-if="updateIm"
+          @click="postImage"
+        >
+          сохранить
+        </button>
+        <button
+          class="btn rounded-pill btn-otmena"
+          v-if="resimage"
+          @click="(resimage = !resimage), (updateIm = false)"
+        >
+          отмена
+        </button>
+        <button
+          class="btn btn-change-image rounded-pill"
+          v-if="!resimage"
+          @click="resimage = true"
+        >
+          изменить изображение
+        </button>
+      </div>
+      <div class="p-text col-12">
         <p>
-          <span>
-            <fa icon="file-signature"></fa>Имя:
-          </span>
-          {{user_name}}
+          <span> <fa icon="file-signature"></fa>Имя: </span>
+          {{ user_name }}
         </p>
         <p>
           <input v-if="change" type="text" v-model="user_name" />
         </p>
         <p>
-          <span>
-            <fa icon="envelope"></fa>Почта:
-          </span>
-          {{user_email}}
+          <span> <fa icon="envelope"></fa>Почта: </span>
+          {{ user_email }}
         </p>
         <p>
           <input v-if="change" type="text" v-model="user_email" />
         </p>
         <p>
-          <span>
-            <fa icon="building"></fa>Город:
-          </span>
-          {{user_city}}
+          <span> <fa icon="building"></fa>Город: </span>
+          {{ user_city }}
         </p>
         <p>
           <input v-if="change" type="text" v-model="user_city" />
         </p>
         <p>
-          <span>
-            <fa icon="list-ol"></fa>Категория:
-          </span>
+          <span> <fa icon="list-ol"></fa>Категория: </span>
         </p>
-        <div v-if="!category_id.title">{{user_category.title}}</div>
-        <div v-if="category_id.title">{{category_id.title}}</div>
+        <div v-if="!category_id.title">{{ user_category.title }}</div>
+        <div v-if="category_id.title">{{ category_id.title }}</div>
 
-        <select v-if="change" id="cityUser" class="form-control" v-model="category_id">
+        <select
+          v-if="change"
+          id="cityUser"
+          class="form-control"
+          v-model="category_id"
+        >
           <option value selected>Выбрать Категории</option>
-          <option v-for="cat in categories" :key="cat.id" :value="(cat)">{{cat.title}}</option>
+          <option v-for="cat in categories" :key="cat.id" :value="cat">
+            {{ cat.title }}
+          </option>
         </select>
         <p>
-          <span>
-            <fa icon="star-half-alt"></fa>Мой рейтинг:
-          </span>
-          {{user.rating}}
+          <span> <fa icon="star-half-alt"></fa>Мой рейтинг: </span>
+          {{ user.rating }}
         </p>
-        <button class="btn btn-ch rounded-pill" v-if="!change" @click="changeNew">изменить данные</button>
-        <button class="btn rounded-pill btn-otmena" v-if="change" @click="nonChange">отмена</button>
-        <button class="btn btn-soxr rounded-pill" v-if="change" @click="changeData">сохранить</button>
+        <button
+          class="btn btn-ch rounded-pill"
+          v-if="!change"
+          @click="changeNew"
+        >
+          изменить данные
+        </button>
+        <button
+          class="btn rounded-pill btn-otmena"
+          v-if="change"
+          @click="nonChange"
+        >
+          отмена
+        </button>
+        <button
+          class="btn btn-soxr rounded-pill"
+          v-if="change"
+          @click="changeData"
+        >
+          сохранить
+        </button>
       </div>
-      <div class="p-text container">
+      <div class="p-text col-12 text-center ">
         <h3>Все мои фото</h3>
         <div
           v-if="user_images.length > 0 && list_add_images.length === 0"
           id="photo"
-          class="row justify-content-center p-1"
+          class=" justify-content-center p-1"
         >
           <img
             v-for="photo in user_images"
             :key="photo.id"
-            class="gallery-img img-fluid col-12 col-lg-4 p-1"
+            class="img gallery-img img-fluid  p-1 m-1"
             :src="photo.images"
             alt
           />
-
         </div>
-        <div v-if="list_add_images.length > 0" id="photo" class="row justify-content-center p-1">
+        <div
+          v-if="list_add_images.length > 0"
+          id="photo"
+          class="row justify-content-center p-1"
+        >
           <img
             v-for="photo in list_add_images"
             :key="photo.id"
-            class="gallery-img img-fluid col-12 col-lg-4 p-1"
+            class="img gallery-img img-fluid  p-1 m-1"
             :src="photo"
             alt
           />
@@ -101,27 +142,38 @@
           <h4>Вы еще не загрузили фото</h4>
           <br />
         </div>
-        <div class="container" style="font-size:1rem; padding:1rem">
-      <div class="row">
-        <div class="col-12" style="padding:1rem">
-          <p class="pp">
-            Добавить
-            <br />изображение
-          </p>
-          <input
-            id="mmm"
-            type="file"
-            name="myFile"
-            class="form-control-file"
-            style="font-size: 14px; margin-top:1rem"
-            @change="addImages($event)"
-          />
-          <button class="btn btn-primary rounded-pill"
-           style="margin-top:1rem" @click="postaddImages">сохранить</button>
+        <div class="container" style="font-size: 1rem; padding: 1rem">
+          <div class="row justify-content-center">
+            <div class="col-12" style="padding: 1rem">
+              <p class="pp text-center">
+                Добавить
+                <br />изображение
+              </p>
+              <input
+                id="mmm"
+                type="file"
+                name="myFile"
+                class="form-control-file text-center"
+                style="font-size: 14px; margin-top: 1rem"
+                @change="addImages($event)"
+              />
+              <span v-if="err_image" style="color:red">Изображение не выбрано</span>
+              <button
+                class="btn btn-primary rounded-pill"
+                style="margin-top: 1rem"
+                @click="postaddImages"
+              >
+                сохранить
+          <b-spinner
+          v-if="add_im"
+          class="noactive btn-con"
+         
+          label="Spinning"
+        ></b-spinner>
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-
       </div>
     </div>
   </div>
@@ -148,7 +200,9 @@ export default {
       category_id: {},
       resimage: false,
       updateIm: false,
-      list_add_images: []
+      list_add_images: [],
+      err_image:false,
+      add_im:false
     };
   },
   methods: {
@@ -166,18 +220,18 @@ export default {
         email: this.user_email,
         master: true,
         category: category_id,
-        city: this.user_city
+        city: this.user_city,
       };
       console.log(data);
 
       const headers = {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       };
       this.$axios
         .$put(`https://glebhleb.herokuapp.com/reset_user`, data, {
-          headers: headers
+          headers: headers,
         })
-        .then(resp => {
+        .then((resp) => {
           this.user_category = this.category_id;
           this.change = !this.change;
         });
@@ -185,13 +239,13 @@ export default {
 
     changeNew() {
       const headers = {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       };
       this.$axios
         .$get(`https://glebhleb.herokuapp.com/categories/`, {
-          headers: headers
+          headers: headers,
         })
-        .then(resp => {
+        .then((resp) => {
           this.categories = resp;
           this.change = true;
         });
@@ -214,20 +268,29 @@ export default {
       this.change = !this.change;
     },
     postaddImages() {
+      if (this.select_images === null){
+        this.err_image = true
+        setTimeout(() => {
+          this.err_image = false
+        }, 2000);
+
+      }
+      else{
+    this.add_im = true
       const formData = new FormData();
       formData.append("image", this.select_images, this.select_images.name);
       const headers = {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       };
       this.$axios
         .$post(
           `https://glebhleb.herokuapp.com/add-images/${this.user.id}`,
           formData,
           {
-            headers: headers
+            headers: headers,
           }
         )
-        .then(resp => {
+        .then((resp) => {
           let arrImages = [];
           if (this.user_images.length === 0) {
             this.list_add_images.push(resp);
@@ -240,31 +303,33 @@ export default {
             arrImages.push(resp);
             this.list_add_images = arrImages;
           }
-          t
+          this.add_im = false
         });
+        }
     },
 
     postImage() {
+      
       const formData = new FormData();
       formData.append("image", this.select, this.select.name);
       const headers = {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       };
       this.$axios
         .$put(
           `https://glebhleb.herokuapp.com/add-image/${this.user.id}`,
           formData,
           {
-            headers: headers
+            headers: headers,
           }
         )
-        .then(resp => {
+        .then((resp) => {
           this.new_image = resp;
           this.updateIm = false;
           this.resimage = false;
         });
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -284,8 +349,19 @@ export default {
   margin-top: 2rem;
   padding: 2rem;
 }
+.img {
+  height: 10rem;
+  width: 10rem;
+  border: 1px solid #3cbea6;
+  box-shadow: 2px 2px 2px 2px #e9ecef;
+  margin-bottom: 2rem;
+}
 .pp {
   font-size: 1rem;
+}
+.spinner-border{
+  width: 1rem;
+    height: 1rem;
 }
 .btn-change-image {
   margin-top: 2rem;
