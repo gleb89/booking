@@ -1,7 +1,7 @@
 <template>
     <div class="container mt-4">
         <Master v-if="userAuth" :user="user"/>
-        <Owner v-if="!userAuth" :user="user"/>
+        <Owner v-if="!userAuth" :user="user" :user_time="user_time"/>
     </div>
 </template>
 
@@ -27,8 +27,29 @@ export default {
           })
 
       },
+      methods:{
+        user_time(){
+        const headers = {
+        "Content-Type": "application/json"
+      };
+      const user_id = Number(this.$store.state.auth.user.id)
+       this.$axios
+        .$get(`http://127.0.0.1:8000/booking-data-user/${user_id}`, {
+          headers: headers
+        })
+        .then(
+          user_time => {
+            this.len_time = user_time.length
+            
+          })
+        return this.len_time
+
+      },
+      },
+      
     data() {
         return {
+            len_time:0
         }
     },
     component:{

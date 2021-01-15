@@ -114,13 +114,13 @@
           id="photo"
           
         > 
-        <div  v-for="photo in user_images" :key="photo.id" style="position: relative">
+        <div  v-for="(photo,ind) in user_images" :key="photo.id" style="position: relative">
           <img
             class="img  gallery-img img-fluid  p-1 m-1"
             :src="photo.images"
             alt
           />
-          <fa class="icon-del" icon="trash"></fa> 
+          <fa @click="delImage(photo.id,ind)"  class="icon-del" icon="trash"></fa> 
           </div>
           
         </div>
@@ -130,13 +130,13 @@
 
           class=" justify-content-center p-1"
         >
-        <div v-for="photo in list_add_images" :key="photo.id" style="position: relative">
+        <div v-for="(photo,ind) in list_add_images" :key="photo.id" style="position: relative">
           <img
             class="img  gallery-img img-fluid  p-1 m-1"
-            :src="photo"
+            :src="photo.images"
             alt
           />
-          <fa class="icon-del" icon="trash"></fa> 
+          <fa @click="delImage(photo.id,ind)" class="icon-del" icon="trash"></fa> 
           </div>
         </div>
           </div>
@@ -223,7 +223,8 @@ export default {
       list_add_images: [],
       err_image:false,
       add_im:false,
-      inp:false
+      inp:false,
+      
     };
   },
   methods: {
@@ -326,13 +327,14 @@ export default {
           } else {
             this.list_add_images = [];
             for (let photo of this.user_images) {
-              arrImages.push(photo.images);
+              arrImages.push(photo);
             }
             arrImages.push(resp);
             this.list_add_images = arrImages;
           }
           this.add_im = false
           this.select_true = false
+          
         });
         
     },
@@ -357,6 +359,27 @@ export default {
           this.updateIm = false;
           this.resimage = false;
         });
+    },
+    delImage(photo_id,idx){
+    
+      let user_id = Number(this.user.id) 
+      const headers = {
+        "Content-Type": "application/json",
+      };
+      console.log(photo_id);
+      this.$axios
+        .$delete(`https://glebhleb.herokuapp.com/del-images/${Number(photo_id)}?user_id=${user_id}`, {
+          headers: headers,
+        })
+        .then((resp) => {
+          if (this.list_add_images.length === 0){
+            this.user_images.splice(idx, 1)
+          }
+          else{
+            this.list_add_images.splice(idx, 1)
+          }
+        });
+
     },
   },
 };
@@ -401,6 +424,7 @@ export default {
   position: absolute;
   right: 5px;
   bottom: .7rem;
+  cursor: pointer;
 }
 .pp {
   font-size: 1rem;
