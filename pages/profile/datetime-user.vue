@@ -54,7 +54,7 @@ export default {
       };
       const user_id = Number(store.state.auth.user.id)
        return $axios
-        .$get(`http://127.0.0.1:8000/booking-data-user/${user_id}`, {
+        .$get(`https://glebhleb.herokuapp.com/booking-data-user/${user_id}`, {
           headers: headers
         })
         .then(
