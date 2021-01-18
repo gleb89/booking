@@ -67,6 +67,7 @@
               <p>Специалист:{{user.name}}</p>
               <p v-if="user.category">Услуги:{{user.category.title}}</p>
               <p>Город:{{user.city}}</p>
+              <p v-if="user.phone">Телефон: {{user.phone}}</p>
             </div>
             <div class="col-12 col-lg-8 img-block">
               <h2>Фото работ</h2>
@@ -114,7 +115,7 @@
                   <Login v-if="login_user" :onClose="onClose" />
                 </div>
 
-                <h5>Выбрана дата: {{value_data}}</h5>
+                <h5>Выбрана дата:{{onsdata(value_data)}}</h5>
                 <div v-if="message">
                   <p class="info-user">
                     У специалиста не отмечено время на этот день:
@@ -186,6 +187,7 @@ export default {
         return name_user.user.id;
       }
     },
+
     imagesList(){
       console.log('ttt'); 
     for(let photo of this.user.images){
@@ -214,7 +216,7 @@ export default {
         };
         const uu = this.$axios
           .$get(
-            `https://glebhleb.herokuapp.com/booking_time?date=${date}&user=${user}`,
+            `http://api-booking.ru/booking_time?date=${date}&user=${user}`,
             {
               headers: headers
             }
@@ -274,6 +276,18 @@ export default {
     timeCostum(time) {
       this.clock = time;
       this.active_el = time;
+    },
+          onsdata(click_data){
+      let god = Number(click_data.slice(0,4))
+      
+      let mes = Number(click_data.slice(5,6))
+      let day = Number(click_data.slice(9,11))
+      let vv = new Date(god,mes,day).toLocaleString('ru', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      return vv
     },
     userRating(rating) {
       let arrRating = [];
@@ -350,7 +364,7 @@ export default {
             "Content-Type": "application/json"
           };
           let response = this.$axios
-            .$post("https://glebhleb.herokuapp.com/zapis-time", data, {
+            .$post("http://api-booking.ru/zapis-time", data, {
               headers: headers
             })
             .then(resp => {
@@ -383,7 +397,7 @@ export default {
             "Content-Type": "application/json"
           };
           let response = this.$axios
-            .$put("https://glebhleb.herokuapp.com/check-time", data, {
+            .$put("http://api-booking.ru/check-time", data, {
               headers: headers
             })
             .then(resp => {

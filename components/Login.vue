@@ -68,7 +68,7 @@ export default {
         "Content-Type": "application/json"
       };
       let response = this.$axios
-        .$post("https://glebhleb.herokuapp.com/login", data, {
+        .$post("http://api-booking.ru/login", data, {
           headers: headers
         })
         .then(

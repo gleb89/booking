@@ -22,7 +22,7 @@ export const actions = {
             "Content-Type": "application/json"
           };
         const users = await this.$axios
-        .$get(`https://glebhleb.herokuapp.com/users`,{
+        .$get(`http://api-booking.ru/users`,{
           headers: headers
         })
         commit('setUsers',users)

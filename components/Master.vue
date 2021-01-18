@@ -368,7 +368,7 @@ export default {
       };
       console.log(photo_id);
       this.$axios
-        .$delete(`https://glebhleb.herokuapp.com/del-images/${Number(photo_id)}?user_id=${user_id}`, {
+        .$delete(`http://api-booking.ru/del-images/${Number(photo_id)}?user_id=${user_id}`, {
           headers: headers,
         })
         .then((resp) => {

@@ -21,7 +21,7 @@ export const actions = {
           "Content-Type": "application/json"
         };
       const categories = await this.$axios
-      .$get(`https://glebhleb.herokuapp.com/categories`,{
+      .$get(`http://api-booking.rucategories`,{
         headers: headers
       })
       commit('setCategories',categories)

@@ -2,7 +2,7 @@
   <div>
     <div class="row">
       <div class="col-lg-3 box-date-time" v-for="date in Datetime" :key="date.id">
-        <p><fa icon="calendar-alt"></fa> Дата: {{date.date}}</p>
+        <p><fa icon="calendar-alt"></fa> Дата: {{onsdata(date.date)}}</p>
         <p class="calculater"><fa icon="calculator"></fa> Всего записей :{{date.time.length}}</p>
         <p class="new"><fa icon="circle"></fa> новых :{{CountNewTime(date.time)}}</p>
         <p class="pred"><fa icon="check"></fa> Предстоящие :{{CountComfTime(date.time)}}</p>
@@ -44,6 +44,18 @@ export default {
             })
       return count_new.length
 
+    },
+      onsdata(click_data){
+      let god = Number(click_data.slice(0,4))
+      
+      let mes = Number(click_data.slice(5,6))
+      let day = Number(click_data.slice(9,11))
+      let vv = new Date(god,mes,day).toLocaleString('ru', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      return vv
     },
       CountComfTime(times){
      let count_comf =  times.filter(elem =>{

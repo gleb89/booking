@@ -13,7 +13,7 @@
         </p>    
       <p><fa class="icons" icon="calendar-alt"></fa>Дата:  <span>{{user.date}}</span></p>
       <p>
-        <fa class="icons" icon="clock"></fa>Время: <span> {{user.time}}</span> 
+        <fa class="icons" icon="clock"></fa>Время: <span> {{user.time.slice(0,5)}}</span> 
       </p>
       <p >
         <fa class="icons" icon="user-clock"></fa>Имя мастера:  <span>{{user.name_master}}</span>
@@ -30,11 +30,11 @@
          <span v-if="user.master_confirm">Запись подтверждена</span> 
         <span v-if="!user.master_confirm">Запись не подтверждена</span> 
       </p>
-        <button
+        <!-- <button
           class="btn-del  rounded-pill btn"
         >
           отменить
-        </button>
+        </button> -->
     
    
       </div>
@@ -54,7 +54,7 @@ export default {
       };
       const user_id = Number(store.state.auth.user.id)
        return $axios
-        .$get(`https://glebhleb.herokuapp.com/booking-data-user/${user_id}`, {
+        .$get(`http://api-booking.ru/booking-data-user/${user_id}`, {
           headers: headers
         })
         .then(
