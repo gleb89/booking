@@ -42,11 +42,12 @@ loading: {
   plugins: [
 
   ],
+
 extend(config, ctx) {},
 babel: { compact: true },
   /*
   ** Auto import components
-  ** See https://nuxtjs.org/api/configuration-components
+  ** See https://nuxtjs.org/api/configurationаа-components
   */
   components: true,
   /*
