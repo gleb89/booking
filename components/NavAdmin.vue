@@ -20,8 +20,11 @@
           <li class="nav-item" @click="closeMenu">
             <nuxt-link  to="/">Главная</nuxt-link>
         </li>
+        <div v-if="master_true">
+
+        
         <hr />
-            <li class="nav-item" @click="closeMenu">
+            <li  class="nav-item" @click="closeMenu">
           <nuxt-link no-prefetch to="/profile">Профиль</nuxt-link>
         </li>
         <hr />
@@ -33,6 +36,12 @@
           <nuxt-link no-prefetch to="/profile/datetime">Добавить <br>время</nuxt-link>
         </li>
         <hr />
+        </div>
+        <div  v-if="!master_true">
+            <li class="nav-item" @click="closeMenu">
+              <nuxt-link no-prefetch to="/profile/datetime-user">Мои записи</nuxt-link>
+            </li>
+        </div>
         <div  class="cabinet">
           <p @click="logout" class="ic-exit">выход <fa  icon="sign-out-alt"></fa></p>
 
@@ -48,7 +57,8 @@ export default {
   data() {
     return {
       showMobileMenu: false,
-      new_times:this.$store.state.new_time.new_time
+      new_times:this.$store.state.new_time.new_time,
+      master_true:this.$store.state.auth.user.master
     };
   },
   methods: {

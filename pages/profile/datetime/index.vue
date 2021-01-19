@@ -14,7 +14,7 @@
             role="alert"
           >Не выбрана дата</div>
         </div>
-        <p class="show-data">Выбрана дата: {{user_data}}</p>
+        <p class="show-data">Выбрана дата: {{onsdata(user_data)}}</p>
         <p>Выбрано время: {{time}}</p>
 
         <div>
@@ -36,7 +36,7 @@
               <p>
                 Дата:
                 <br />
-                {{time.update}}
+                {{onsdata(time.update)}}
               </p>
             </div>
           </div>
@@ -68,6 +68,18 @@ export default {
     };
   },
   methods: {
+    onsdata(click_data){
+      let god = Number(click_data.slice(0,4))
+      
+      let mes = Number(click_data.slice(5,6))
+      let day = Number(click_data.slice(9,11))
+      let vv = new Date(god,mes,day).toLocaleString('ru', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      return vv
+    },
     inputTime($event) {
       event.preventDefault();
       let user_id = this.$store.state.auth.user.id;
@@ -84,7 +96,7 @@ export default {
           "Content-Type": "application/json"
         };
         this.$axios
-          .$post("https://glebhleb.herokuapp.com/booking-create_time", data, {
+          .$post("https://api-booking.ru/booking-create_time", data, {
             headers: headers
           })
 

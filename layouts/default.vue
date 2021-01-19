@@ -42,7 +42,7 @@ export default {
       else{
        let user_id = name_user.user.id
        return $axios
-        .$get(`https://glebhleb.herokuapp.com/booking-data/${user_id}`, {
+        .$get(`https://api-booking.ru/booking-data/${user_id}`, {
           headers: headers
         })
         .then(

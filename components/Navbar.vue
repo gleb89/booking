@@ -111,7 +111,7 @@ export default {
             "Content-Type": "application/json"
           };
         this.$axios
-        .$get(`https://glebhleb.herokuapp.com/booking-data/${user_id}`,{
+        .$get(`https://api-booking.ru/booking-data/${user_id}`,{
           headers: headers
         })
         .then(time_user =>{
@@ -222,6 +222,7 @@ export default {
 .btn-reg {
   background: none;
   border: none;
+  margin-top: 0.5rem;
 }
 .nav{
   box-shadow: 11px 6px 20px 5px #b9bfc5;
@@ -236,5 +237,8 @@ export default {
   color: #3cbfa6;
 }
 </style>
+
+root
+imoe4is4bo
 
 

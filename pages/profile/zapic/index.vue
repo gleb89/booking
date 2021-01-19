@@ -28,7 +28,7 @@ export default {
     };
     let user_id = store.state.auth.user.id
     return $axios
-        .$get(`https://glebhleb.herokuapp.com/booking-data/${Number(user_id)}`, {
+        .$get(`https://api-booking.ru/booking-data/${Number(user_id)}`, {
         headers: headers
         })
         .then(

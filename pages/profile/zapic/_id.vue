@@ -57,7 +57,7 @@ export default {
             "Content-Type": "application/json"
             };
         return $axios
-        .$get(`https://glebhleb.herokuapp.com/booking_time/${date_id}`, {
+        .$get(`https://api-booking.ru/booking_time/${date_id}`, {
         headers: headers
         })
         .then(
@@ -125,7 +125,7 @@ export default {
             };
 
             this.$axios
-            .$put("https://glebhleb.herokuapp.com/confirm-time/", data, {
+            .$put("https://api-booking.ru/confirm-time/", data, {
               headers: headers
             })
             .then(resp =>{
@@ -142,7 +142,7 @@ export default {
             };
         const date_id = this.$route.params.id
         return this.$axios
-        .$get(`https://glebhleb.herokuapp.com/booking_time/${date_id}`, {
+        .$get(`https://api-booking.ru/booking_time/${date_id}`, {
         headers: headers
         })
         .then(
@@ -159,7 +159,7 @@ export default {
                 "Content-Type": "application/json"
             };
             this.$axios
-            .$delete(`https://glebhleb.herokuapp.com/booking_time/${Number(time_id)}`, {
+            .$delete(`https://api-booking.ru/booking_time/${Number(time_id)}`, {
               headers: headers
             })
             .then(resp =>{

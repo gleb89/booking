@@ -65,11 +65,21 @@
 
                   <div class="d-flex justify-content-center">
                 <select  id="inputState" class="form-control" v-model="category_id">
+                  <option value >Выбрать услугу</option>
                   <option v-for="cat in categories" :key="cat.id" :value="(cat.id)">{{cat.title}}</option>
                 </select>
                 </div>
                 <label for="inputState">Категория услуг</label>
               </div>
+              <input
+              v-if="checked"
+                required
+                type="text"
+                id="password"
+                class="fadeIn third zero-raduis"
+                v-model="phone"
+                placeholder="телефон"
+              />
               <!-- <div id="formFooter" class="justify-content-center">
                 <nuxt-link class="text-center" to="/login">Уже зарегестрированы?</nuxt-link>
               </div> -->
@@ -107,6 +117,7 @@ export default {
       password: "",
       email: "",
       city: "",
+      phone:'',
       alert: false,
       checked: false,
       form_err: "",
@@ -126,15 +137,16 @@ export default {
         email: this.email,
         city: this.city,
         master: this.checked,
-        category_id:Number(this.category_id)
+        category_id:Number(this.category_id),
+        phone:this.phone
       };
-      console.log(this.checked);
+      console.log(data);
 
       const headers = {
         "Content-Type": "application/json"
       };
       let response = this.$axios
-        .$post("https://glebhleb.herokuapp.com/user", data, {
+        .$post("https://api-booking.ru/user", data, {
           headers: headers
         })
         .then(

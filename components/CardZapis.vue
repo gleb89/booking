@@ -2,9 +2,10 @@
 
 
     <div v-if="!error_mes" class="conf">
-      <p><fa icon="calendar-alt"></fa> <span>Дата:</span> {{ click_data }}</p>
+      <!-- <p><fa icon="calendar-alt"></fa> <span>Дата:</span> {{ click_data }}</p> -->
+      <p>дата {{onsdata(click_data)}}</p>
       <p>
-        <fa icon="clock"></fa> <span>Время:</span> {{ times.time.slice(0, 5) }}
+        <fa icon="clock"></fa> <span>Время:</span> {{ times.time.slice(0,5) }}
       </p>
       <p v-if="times.owner_id">
         <fa icon="user-clock"></fa> <span>Имя клиента:</span>
@@ -46,7 +47,7 @@
     </div>
 
 </template>
-
+times.time
 <script>
 export default {
   props: [
@@ -63,6 +64,20 @@ export default {
   data() {
     return {};
   },
+  methods:{
+    onsdata(click_data){
+      let god = Number(click_data.slice(0,4))
+      
+      let mes = Number(click_data.slice(5,6))
+      let day = Number(click_data.slice(9,11))
+      let vv = new Date(god,mes,day).toLocaleString('ru', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      return vv
+    }
+  }
 };
 </script>
 
