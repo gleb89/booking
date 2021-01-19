@@ -366,7 +366,7 @@ export default {
       const headers = {
         "Content-Type": "application/json",
       };
-      console.log(photo_id);
+      
       this.$axios
         .$delete(`https://api-booking.ru/del-images/${Number(photo_id)}?user_id=${user_id}`, {
           headers: headers,
