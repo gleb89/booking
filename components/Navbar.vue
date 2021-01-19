@@ -111,7 +111,7 @@ export default {
             "Content-Type": "application/json"
           };
         this.$axios
-        .$get(`http://api-booking.ru/booking-data/${user_id}`,{
+        .$get(`https://api-booking.ru/booking-data/${user_id}`,{
           headers: headers
         })
         .then(time_user =>{

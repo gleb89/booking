@@ -22,7 +22,7 @@ export const actions = {
             "Content-Type": "application/json"
           };
         const users = await this.$axios
-        .$get(`http://api-booking.ru/users`,{
+        .$get(`https://api-booking.ru/users`,{
           headers: headers
         })
         commit('setUsers',users)
@@ -33,4 +33,4 @@ export const actions = {
 export const getters = {
     users: s => s.users,
 
-}
+

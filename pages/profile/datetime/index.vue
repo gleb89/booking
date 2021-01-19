@@ -96,7 +96,7 @@ export default {
           "Content-Type": "application/json"
         };
         this.$axios
-          .$post("http://api-booking.ru/booking-create_time", data, {
+          .$post("https://api-booking.ru/booking-create_time", data, {
             headers: headers
           })
 

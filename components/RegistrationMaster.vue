@@ -146,7 +146,7 @@ export default {
         "Content-Type": "application/json"
       };
       let response = this.$axios
-        .$post("http://api-booking.ru/user", data, {
+        .$post("https://api-booking.ru/user", data, {
           headers: headers
         })
         .then(

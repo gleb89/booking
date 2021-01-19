@@ -17,7 +17,7 @@ export default {
       const user_id = Number(route.params.id)
 
        return $axios
-        .$get(`http://api-booking.ru/user/${user_id}`, {
+        .$get(`https://api-booking.ru/user/${user_id}`, {
           headers: headers
         })
         .then(
@@ -77,7 +77,7 @@ export default {
           "Content-Type": "application/json"
         };
         this.$axios
-          .$post("http://api-booking.ru/rating", data, {
+          .$post("https://api-booking.ru/rating", data, {
             headers: headers
           })
           .then(response => {

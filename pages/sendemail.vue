@@ -37,7 +37,7 @@ export default {
             let headers = {
             'Content-Type': 'application/json',
         };
-         this.$axios.$post('http://api-booking.ru/send_email',data,{
+         this.$axios.$post('https://api-booking.ru/send_email',data,{
                                                         headers: headers
         }
         )

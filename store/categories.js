@@ -21,7 +21,7 @@ export const actions = {
           "Content-Type": "application/json"
         };
       const categories = await this.$axios
-      .$get(`http://api-booking.rucategories`,{
+      .$get(`https://api-booking.ru/categories`,{
         headers: headers
       })
       commit('setCategories',categories)

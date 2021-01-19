@@ -17,7 +17,7 @@ export default {
       };
       const user_id = Number(store.state.auth.user.id)
        return $axios
-        .$get(`http://api-booking.ru/user/${user_id}`, {
+        .$get(`https://api-booking.ru/user/${user_id}`, {
           headers: headers
         })
         .then(
@@ -34,7 +34,7 @@ export default {
       };
       const user_id = Number(this.$store.state.auth.user.id)
        this.$axios
-        .$get(`http://api-booking.ru/booking-data-user/${user_id}`, {
+        .$get(`https://api-booking.ru/booking-data-user/${user_id}`, {
           headers: headers
         })
         .then(

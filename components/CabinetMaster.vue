@@ -216,7 +216,7 @@ export default {
         };
         const uu = this.$axios
           .$get(
-            `http://api-booking.ru/booking_time?date=${date}&user=${user}`,
+            `https://api-booking.ru/booking_time?date=${date}&user=${user}`,
             {
               headers: headers
             }
@@ -364,7 +364,7 @@ export default {
             "Content-Type": "application/json"
           };
           let response = this.$axios
-            .$post("http://api-booking.ru/zapis-time", data, {
+            .$post("https://api-booking.ru/zapis-time", data, {
               headers: headers
             })
             .then(resp => {
@@ -397,7 +397,7 @@ export default {
             "Content-Type": "application/json"
           };
           let response = this.$axios
-            .$put("http://api-booking.ru/check-time", data, {
+            .$put("https://api-booking.ru/check-time", data, {
               headers: headers
             })
             .then(resp => {
