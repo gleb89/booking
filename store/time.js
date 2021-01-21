@@ -20,7 +20,7 @@
 //           };
 //         let user_id = this.state.auth.user.id
 //         const time = await this.$axios
-//         .$get(`https://glebhleb.herokuapp.com/booking-data/${user_id}`,{
+//         .$get(`https://api-booking.ru/booking-data/${user_id}`,{
 //           headers: headers
 //         })
 //         commit('setTime',time)
@@ -32,4 +32,3 @@
 //     time: s => s.time,
 
 // }
-

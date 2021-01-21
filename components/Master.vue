@@ -112,17 +112,17 @@
             <div
           v-if="user_images.length > 0 && list_add_images.length === 0"
           id="photo"
-          
-        > 
+
+        >
         <div  v-for="(photo,ind) in user_images" :key="photo.id" style="position: relative">
           <img
             class="img  gallery-img img-fluid  p-1 m-1"
             :src="photo.images"
             alt
           />
-          <fa @click="delImage(photo.id,ind)"  class="icon-del" icon="trash"></fa> 
+          <fa @click="delImage(photo.id,ind)"  class="icon-del" icon="trash"></fa>
           </div>
-          
+
         </div>
         <div
           v-if="list_add_images.length > 0"
@@ -136,12 +136,12 @@
             :src="photo.images"
             alt
           />
-          <fa @click="delImage(photo.id,ind)" class="icon-del" icon="trash"></fa> 
+          <fa @click="delImage(photo.id,ind)" class="icon-del" icon="trash"></fa>
           </div>
         </div>
           </div>
         </div>
-    
+
         <div
           v-if="user_images.length === 0 && list_add_images.length === 0"
           id="photo"
@@ -157,22 +157,22 @@
                 Добавить
                 <br />изображение
               </p>
-              
+
               <br>
-              
+
               <fa class="icon-up" @click="but" icon="file-download"></fa>
               <p v-if="select_true" >{{select_images.name}}</p>
               <br>
               <div v-show="inp">
               <input
-              
+
                 id="mmm"
                 type="file"
                 name="myFile"
                 class="form-control-file text-center d-flex "
                 style="font-size: 14px; margin-top: 1rem"
                 @change="addImages($event)"
-                
+
               />
               </div>
               <span v-if="err_image" style="color:red">Изображений может быть не более 6!<br>Удалите какое-либо изображение</span>
@@ -186,7 +186,7 @@
           <b-spinner
           v-if="add_im"
           class="noactive btn-con"
-         
+
           label="Spinning"
         ></b-spinner>
               </button>
@@ -224,7 +224,7 @@ export default {
       err_image:false,
       add_im:false,
       inp:false,
-      
+
     };
   },
   methods: {
@@ -250,7 +250,7 @@ export default {
         "Content-Type": "application/json",
       };
       this.$axios
-        .$put(`https://glebhleb.herokuapp.com/reset_user`, data, {
+        .$put(`https://api-booking.ru/reset_user`, data, {
           headers: headers,
         })
         .then((resp) => {
@@ -264,7 +264,7 @@ export default {
         "Content-Type": "application/json",
       };
       this.$axios
-        .$get(`https://glebhleb.herokuapp.com/categories/`, {
+        .$get(`https://api-booking.ru/categories/`, {
           headers: headers,
         })
         .then((resp) => {
@@ -290,7 +290,7 @@ export default {
           }
     },
     addImages(event) {
-      
+
       this.select_images = event.target.files[0];
       this.select_true = true
     },
@@ -304,7 +304,7 @@ export default {
     },
     postaddImages() {
 
-      
+
     this.add_im = true
       const formData = new FormData();
       formData.append("image", this.select_images, this.select_images.name);
@@ -313,7 +313,7 @@ export default {
       };
       this.$axios
         .$post(
-          `https://glebhleb.herokuapp.com/add-images/${this.user.id}`,
+          `https://api-booking.ru/add-images/${this.user.id}`,
           formData,
           {
             headers: headers,
@@ -323,7 +323,7 @@ export default {
           let arrImages = [];
           if (this.user_images.length === 0) {
             this.list_add_images.push(resp);
-            
+
           } else {
             this.list_add_images = [];
             for (let photo of this.user_images) {
@@ -334,13 +334,13 @@ export default {
           }
           this.add_im = false
           this.select_true = false
-          
+
         });
-        
+
     },
 
     postImage() {
-      
+
       const formData = new FormData();
       formData.append("image", this.select, this.select.name);
       const headers = {
@@ -348,7 +348,7 @@ export default {
       };
       this.$axios
         .$put(
-          `https://glebhleb.herokuapp.com/add-image/${this.user.id}`,
+          `https://api-booking.ru/add-image/${this.user.id}`,
           formData,
           {
             headers: headers,
@@ -361,12 +361,12 @@ export default {
         });
     },
     delImage(photo_id,idx){
-    
-      let user_id = Number(this.user.id) 
+
+      let user_id = Number(this.user.id)
       const headers = {
         "Content-Type": "application/json",
       };
-      
+
       this.$axios
         .$delete(`https://api-booking.ru/del-images/${Number(photo_id)}?user_id=${user_id}`, {
           headers: headers,

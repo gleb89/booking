@@ -101,7 +101,7 @@ export default {
         "Content-Type": "application/json"
       };
         this.$axios
-        .$get(`https://glebhleb.herokuapp.com/categories/`, {
+        .$get(`https://api-booking.ru/categories/`, {
           headers: headers
         })
         .then(resp => {
