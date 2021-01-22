@@ -125,7 +125,7 @@ export default {
             };
 
             this.$axios
-            .$put("https://api-booking.ru/confirm-time/", data, {
+            .$post("https://api-booking.ru/confirm-time/", data, {
               headers: headers
             })
             .then(resp =>{

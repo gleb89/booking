@@ -42,7 +42,7 @@ export default {
             let headers = {
             'Content-Type': 'application/json',
         };
-         this.$axios.$put('https://api-booking.ru/reset_password',data,{
+         this.$axios.$post('https://api-booking.ru/reset_password',data,{
                                                         headers: headers
         }
         )

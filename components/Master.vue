@@ -250,7 +250,7 @@ export default {
         "Content-Type": "application/json",
       };
       this.$axios
-        .$put(`https://api-booking.ru/reset_user`, data, {
+        .$post(`https://api-booking.ru/reset_user`, data, {
           headers: headers,
         })
         .then((resp) => {
@@ -347,7 +347,7 @@ export default {
         "Content-Type": "application/json",
       };
       this.$axios
-        .$put(
+        .$post(
           `https://api-booking.ru/add-image/${this.user.id}`,
           formData,
           {
@@ -368,7 +368,7 @@ export default {
       };
 
       this.$axios
-        .$delete(`https://api-booking.ru/del-images/${Number(photo_id)}?user_id=${user_id}`, {
+        .$post(`https://api-booking.ru/del-images/${Number(photo_id)}?user_id=${user_id}`, {
           headers: headers,
         })
         .then((resp) => {

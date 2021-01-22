@@ -71,9 +71,9 @@
             </div>
             <div class="col-12 col-lg-8 img-block">
               <h2>Фото работ</h2>
-              
+
               <div v-if="user.images.length > 0" id="photo" class="row justify-content-center p-1">
-                
+
                 <img
                   v-for="(photo,projectIndex) in imagesList" :key="photo.id"
                   @click.prevent="openImg(projectIndex)"
@@ -81,7 +81,7 @@
                   :src="photo"
                   alt
                 />
-                
+
               </div>
               <div v-if="user.images.length === 0"  id="photo" class="row justify-content-center">
                 <h4>Мастер еще не загрузил фото</h4>
@@ -189,7 +189,7 @@ export default {
     },
 
     imagesList(){
-      console.log('ttt'); 
+      console.log('ttt');
     for(let photo of this.user.images){
       this.gallery_image.push(photo.images)
       console.log('ttt');
@@ -263,7 +263,7 @@ export default {
       big_image_index: 0,
       gallery_image:[],
       imag_true:false
-      
+
     };
   },
   component: {
@@ -279,7 +279,7 @@ export default {
     },
           onsdata(click_data){
       let god = Number(click_data.slice(0,4))
-      
+
       let mes = Number(click_data.slice(5,6))
       let day = Number(click_data.slice(9,11))
       let vv = new Date(god,mes,day).toLocaleString('ru', {
@@ -397,7 +397,7 @@ export default {
             "Content-Type": "application/json"
           };
           let response = this.$axios
-            .$put("https://api-booking.ru/check-time", data, {
+            .$post("https://api-booking.ru/check-time", data, {
               headers: headers
             })
             .then(resp => {
