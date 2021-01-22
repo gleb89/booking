@@ -62,6 +62,16 @@ babel: { compact: true },
   '@nuxtjs/pwa',
   '@nuxtjs/fontawesome',
 ],
+pwa: {
+manifest: {
+  name: 'Запишись',
+  start_url:'/',
+  lang: 'fa',
+  theme_color:'#3cc0a6',
+
+}
+
+},
 fontawesome:{
   component:'fa',
   icons:{
