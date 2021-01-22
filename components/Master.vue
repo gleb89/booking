@@ -225,7 +225,7 @@ export default {
       err_image:false,
       add_im:false,
       inp:false,
-      test = 'qqqq'
+      test :'qqqq'
 
     };
   },
