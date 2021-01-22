@@ -306,79 +306,82 @@ export default {
 
 
     this.add_im = true
-      const formData = new FormData();
-      formData.append("image", this.select_images, this.select_images.name);
-      const headers = {
-        "Content-Type": "application/json",
-      };
-      this.$axios
-        .$post(
-          `https://api-booking.ru/add-images/${this.user.id}`,
-          formData,
-          {
-            headers: headers,
-          }
-        )
-        .then((resp) => {
-          let arrImages = [];
-          if (this.user_images.length === 0) {
-            this.list_add_images.push(resp);
+      // const formData = new FormData();
+      // formData.append("image", this.select_images, this.select_images.name);
+      // const headers = {
+      //   "Content-Type": "application/json",
+      // };
+      // this.$axios
+      //   .$post(
+      //     `https://api-booking.ru/add-images/${this.user.id}`,
+      //     formData,
+      //     {
+      //       headers: headers,
+      //     }
+      //   )
+      //   .then((resp) => {
+      //     let arrImages = [];
+      //     if (this.user_images.length === 0) {
+      //       this.list_add_images.push(resp);
 
-          } else {
-            this.list_add_images = [];
-            for (let photo of this.user_images) {
-              arrImages.push(photo);
-            }
-            arrImages.push(resp);
-            this.list_add_images = arrImages;
-          }
-          this.add_im = false
-          this.select_true = false
+      //     } else {
+      //       this.list_add_images = [];
+      //       for (let photo of this.user_images) {
+      //         arrImages.push(photo);
+      //       }
+      //       arrImages.push(resp);
+      //       this.list_add_images = arrImages;
+      //     }
+      //     this.add_im = false
+      //     this.select_true = false
 
-        });
+      //   });
+      alert('gg')
 
     },
 
     postImage() {
+      alert('hh')
 
-      const formData = new FormData();
-      formData.append("image", this.select, this.select.name);
-      const headers = {
-        "Content-Type": "application/json",
-      };
-      this.$axios
-        .$post(
-          `https://api-booking.ru/add-image/${this.user.id}`,
-          formData,
-          {
-            headers: headers,
-          }
-        )
-        .then((resp) => {
-          this.new_image = resp;
-          this.updateIm = false;
-          this.resimage = false;
-        });
+      // const formData = new FormData();
+      // formData.append("image", this.select, this.select.name);
+      // const headers = {
+      //   "Content-Type": "application/json",
+      // };
+      // this.$axios
+      //   .$post(
+      //     `https://api-booking.ru/add-image/${this.user.id}`,
+      //     formData,
+      //     {
+      //       headers: headers,
+      //     }
+      //   )
+      //   .then((resp) => {
+      //     this.new_image = resp;
+      //     this.updateIm = false;
+      //     this.resimage = false;
+      //   });
     },
     delImage(photo_id,idx){
+      alert('hh')
 
-      let user_id = Number(this.user.id)
-      const headers = {
-        "Content-Type": "application/json",
-      };
+      // let user_id = Number(this.user.id)
+      // const headers = {
+      //   "Content-Type": "application/json",
+      // };
 
-      this.$axios
-        .$post(`https://api-booking.ru/del-images/${Number(photo_id)}?user_id=${user_id}`, {
-          headers: headers,
-        })
-        .then((resp) => {
-          if (this.list_add_images.length === 0){
-            this.user_images.splice(idx, 1)
-          }
-          else{
-            this.list_add_images.splice(idx, 1)
-          }
-        });
+      // this.$axios
+      //   .$post(`https://api-booking.ru/del-images/${Number(photo_id)}?user_id=${user_id}`, {
+      //     headers: headers,
+      //   })
+      //   .then((resp) => {
+      //     if (this.list_add_images.length === 0){
+      //       this.user_images.splice(idx, 1)
+      //     }
+      //     else{
+      //       this.list_add_images.splice(idx, 1)
+      //     }
+      //   });
 
     },
   },
