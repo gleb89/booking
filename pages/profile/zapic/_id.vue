@@ -159,7 +159,7 @@ export default {
                 "Content-Type": "application/json"
             };
             this.$axios
-            .$delete(`https://api-booking.ru/booking_time/${Number(time_id)}`, {
+            .$post(`https://api-booking.ru/booking_time/${Number(time_id)}`, {
               headers: headers
             })
             .then(resp =>{
