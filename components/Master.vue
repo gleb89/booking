@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12 mt-4">
-        {{test}}
+
         <img
           class="img img-prof rounded-circle"
           v-if="new_image"
@@ -225,7 +225,7 @@ export default {
       err_image:false,
       add_im:false,
       inp:false,
-      test :'qqqq'
+
 
     };
   },
@@ -306,7 +306,7 @@ export default {
     },
     postaddImages() {
 
-      this.test = 'bbbb'
+
     this.add_im = true
       const formData = new FormData();
       formData.append("image", this.select_images, this.select_images.name);
@@ -343,7 +343,7 @@ export default {
     },
 
     postImage() {
-      this.test = 'vvvvvv'
+
 
       const formData = new FormData();
       formData.append("image", this.select, this.select.name);
@@ -365,7 +365,7 @@ export default {
         });
     },
     delImage(photo_id,idx){
-      this.test = 'jjjjjjjj'
+
 
       let user_id = Number(this.user.id)
       const headers = {
