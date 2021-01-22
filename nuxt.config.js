@@ -15,11 +15,16 @@ export default {
   ** See https://nuxtjs.org/api/configuration-head
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'Запись онлайн',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { hid: 'description', name: 'description', content:'Запись онлайн в сфере услуг красоты и здоровья' },
+      { hid: 'keywords', name: 'keywords', content:'парикмахер,визажист,окраска волос,стоматолог,наращивание ресниц,маникюр,педикюр,врач' },
+      {  name: 'yandex-verification', content:'fa8cd43cbcb187e6' },
+      {  name: 'google-site-verification', content:'NL_g9nrlXMd57ZIYOtuLsnjNKwu3WtyaVadZ6P3U6uc' },
+
+
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -54,6 +59,7 @@ babel: { compact: true },
   ** Nuxt.js dev-modules
   */
  buildModules: [
+  '@nuxtjs/pwa',
   '@nuxtjs/fontawesome',
 ],
 fontawesome:{
@@ -69,6 +75,8 @@ fontawesome:{
   ** Nuxt.js modules
   */
   modules: [
+
+
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',
     // Doc: https://axios.nuxtjs.org/usage

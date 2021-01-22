@@ -10,6 +10,9 @@
 <script>
 import ListZapic from "@/components/ListZapic";
 export default {
+ head:{
+    title:'Записи мастера'
+  },
     layout: 'admin',
     data() {
         return {

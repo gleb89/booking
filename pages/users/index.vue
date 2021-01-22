@@ -15,6 +15,13 @@
 <script>
 import CardUsers from "@/components/CardUsers";
 export default {
+        head:{
+    title:'Список мастеров'
+  },
+  meta:[
+    { hid: 'homepage', name: 'description', content:'Каталог мастеров для записи-онлайн' },
+    { hid: 'homepage', name: 'keywords', content:'стоматолог,парикмахер,маникюр,педикюр,врач' }
+  ],
     async fetch({store}){
         if (store.getters['users/users'].length === 0){
             await store.dispatch('users/fetch')

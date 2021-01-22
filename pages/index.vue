@@ -63,6 +63,13 @@ import CardUsers from "@/components/CardUsers";
 
 import { mapState } from "vuex";
 export default {
+  head:{
+    title:'Главная'
+  },
+  meta:[
+    { hid: 'description', name: 'description', content:'Каталог мастеров для записи-онлайн' },
+    { hid: 'homepage', name: 'keywords', content:'запись-онлайн,стоматолог,парикмахер,маникюр,педикюр,врач' }
+  ],
   async fetch({ store }) {
     if (store.getters["users/users"].length === 0) {
       await store.dispatch("users/fetch");

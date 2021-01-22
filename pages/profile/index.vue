@@ -9,6 +9,9 @@
 import Master from "@/components/Master";
 import Owner from "@/components/Owner";
 export default {
+          head:{
+    title:'Личный кабинет'
+  },
     layout: 'admin',
     middleware: 'authenticated',
      asyncData({ $axios,store, error }) {
@@ -40,13 +43,13 @@ export default {
         .then(
           user_time => {
             this.len_time = user_time.length
-            
+
           })
         return this.len_time
 
       },
       },
-      
+
     data() {
         return {
             len_time:0
@@ -69,6 +72,3 @@ export default {
     },
 }
 </script>
-
-
- 

@@ -10,6 +10,13 @@ const Cookie = process.client ? require('js-cookie') : undefined
 import CabinetMaster from "@/components/CabinetMaster";
 ;
 export default {
+    head:{
+    title:'Страница мастера'
+  },
+  meta:[
+    { hid: 'Кабинет мастера', name: 'description', content:'Запись-онлайн к мастеру' },
+    { hid: 'lkmaster', name: 'keywords', content:'запись-онлайн' }
+  ],
     asyncData({ $axios,route, error }) {
     const headers = {
         "Content-Type": "application/json"
