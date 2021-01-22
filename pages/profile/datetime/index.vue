@@ -74,7 +74,7 @@ export default {
     onsdata(click_data){
       let god = Number(click_data.slice(0,4))
 
-      let mes = Number(click_data.slice(5,6))
+      let mes = Number(click_data.slice(5,7)) -1
       let day = Number(click_data.slice(9,11))
       let vv = new Date(god,mes,day).toLocaleString('ru', {
         year: 'numeric',
