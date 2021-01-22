@@ -91,7 +91,7 @@
     </div>
   </div>
 </template>
-flex-end
+
 <script>
 export default {
   props: ["onCloseReg","onLogin"],
@@ -469,7 +469,7 @@ input[type="email"]:placeholder {
   color: #3dc0a7;
 }
 .reg-container{
-  margin-top: 5rem;
+  margin-top: 3rem;
 }
 
 </style>
