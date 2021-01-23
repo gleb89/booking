@@ -113,7 +113,7 @@ export default {
       }
       if (this.search != "") {
         return this.$store.getters["users/users"].users.filter(elem => {
-          return elem.name.toLowerCase().includes(this.search.toLowerCase());
+          return elem.category.title.toLowerCase().includes(this.search.toLowerCase());
         });
       } else {
         return this.$store.getters["users/users"].users;
