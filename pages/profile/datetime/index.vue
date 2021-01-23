@@ -1,5 +1,6 @@
 <template>
-  <div class="container">
+  <div class="container mt-4">
+    <fa @click="onPage" class="mt-4 icon-nazad" icon="angle-left"></fa>
     <div id="calendar-data mt-4" class="row">
       <div class="col-12 col-lg-6 data text-center">
         <p>Выберите дату</p>
@@ -71,6 +72,9 @@ export default {
     };
   },
   methods: {
+      onPage(){
+        this.$router.go(-1);
+      },
     onsdata(click_data){
       let god = Number(click_data.slice(0,4))
 
@@ -156,6 +160,11 @@ export default {
   box-shadow: 2px 2px 2px #d6d8db;
   height: 2.3rem;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.47843);
+}
+.icon-nazad{
+  font-size: 3rem;
+  color: cornflowerblue;
+  cursor: pointer;
 }
 .btn {
   margin-top: 2rem;
