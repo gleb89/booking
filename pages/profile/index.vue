@@ -1,5 +1,6 @@
 <template>
     <div class="container mt-4">
+        <fa @click="onPage" class="mt-4 icon-nazad" icon="angle-left"></fa>
         <Master v-if="userAuth" :user="user"/>
         <Owner v-if="!userAuth" :user="user" :user_time="user_time"/>
     </div>
@@ -31,6 +32,9 @@ export default {
 
       },
       methods:{
+      onPage(){
+        this.$router.go(-1);
+      },
         user_time(){
         const headers = {
         "Content-Type": "application/json"
@@ -72,3 +76,11 @@ export default {
     },
 }
 </script>
+
+<style >
+.icon-nazad{
+  font-size: 3rem;
+  color: cornflowerblue;
+  cursor: pointer;
+}
+</style>

@@ -1,5 +1,6 @@
 <template>
-    <div class="container m">
+    <div class="container mt-3">
+        <fa @click="onPage" class="mt-4 icon-nazad" icon="angle-left"></fa>
         <section class="filter">
             <h3>Мои записи</h3>
         <div class="list-time">
@@ -113,6 +114,9 @@ export default {
         }
     },
     methods: {
+    onPage(){
+        this.$router.go(-1);
+      },
         onMasterConf(time_id,idx){
             this.active_el = time_id
             let data = {
@@ -205,5 +209,10 @@ export default {
     .conent-alert{
         right: 15px;
     }
+}
+.icon-nazad{
+  font-size: 3rem;
+  color: cornflowerblue;
+  cursor: pointer;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
-    <div class="container">
-        <h2>all users</h2>
+    <div class="container mt-4">
+        <fa @click="onPage" class="mt-4 icon-nazad" icon="angle-left"></fa>
         <CardUsers :openUser="openUser" :users="users"/>
 
         <!-- <div class="card" v-for="user of users" :key="user.id" >
@@ -36,9 +36,19 @@ export default {
         }
     },
     methods: {
+    onPage(){
+        this.$router.go(-1);
+      },
         openUser(user) {
             this.$router.push((`/users/${user}`))
         }
     },
 }
 </script>
+<style >
+.icon-nazad{
+  font-size: 3rem;
+  color: cornflowerblue;
+  cursor: pointer;
+}
+</style>

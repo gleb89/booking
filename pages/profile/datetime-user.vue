@@ -1,23 +1,24 @@
 <template>
-<div class="container">
+<div class="container mt-4">
+   <fa @click="onPage" class="mt-4 icon-nazad" icon="angle-left"></fa>
     <h2 class="mt-5">Мои записи</h2>
     <div class="row justify-content-center p-2">
-        
-        
+
+
         <div v-for="user of user_time" :key="user.id" class="col-lg-4 col-12 conf">
         <p>
             <fa class="icons" icon='sitemap'></fa>
-            Категория услуг: 
+            Категория услуг:
             <span>{{user.user_category.title}}</span>
-            
-        </p>    
+
+        </p>
       <p><fa class="icons" icon="calendar-alt"></fa>Дата:  <span>{{user.date}}</span></p>
       <p>
-        <fa class="icons" icon="clock"></fa>Время: <span> {{user.time.slice(0,5)}}</span> 
+        <fa class="icons" icon="clock"></fa>Время: <span> {{user.time.slice(0,5)}}</span>
       </p>
       <p >
         <fa class="icons" icon="user-clock"></fa>Имя мастера:  <span>{{user.name_master}}</span>
-        
+
       </p>
       <p >
         <fa class="icons" icon="mobile-alt"></fa>
@@ -26,23 +27,23 @@
       </p>
       <p>
         <fa class="icons-red" v-if="!user.master_confirm" icon="ban"></fa>
-        <fa class="icons-blue" v-if="user.master_confirm" icon="calendar-check"></fa> 
-         <span v-if="user.master_confirm">Запись подтверждена</span> 
-        <span v-if="!user.master_confirm">Запись не подтверждена</span> 
+        <fa class="icons-blue" v-if="user.master_confirm" icon="calendar-check"></fa>
+         <span v-if="user.master_confirm">Запись подтверждена</span>
+        <span v-if="!user.master_confirm">Запись не подтверждена</span>
       </p>
         <!-- <button
           class="btn-del  rounded-pill btn"
         >
           отменить
         </button> -->
-    
-   
+
+
       </div>
-        
+
     </div>
 
 </div>
-    
+
 </template>
 
 <script>
@@ -63,6 +64,11 @@ export default {
           })
 
       },
+      methods: {
+        onPage(){
+        this.$router.go(-1);
+      },
+      },
 }
 </script>
 
@@ -73,6 +79,11 @@ export default {
   margin: 1rem;
   background: white;
   box-shadow: -3px 5px 10px 3px #3f51b542;
+}
+.icon-nazad{
+  font-size: 3rem;
+  color: cornflowerblue;
+  cursor: pointer;
 }
 .icons{
     color:#3fc1aa;;

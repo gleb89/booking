@@ -1,5 +1,5 @@
 <template>
-<div><button @click="onPage" class="mt-4">назад</button>
+<div ><button @click="onPage" class="btn-nazad ">назад</button>
 
     <div v-if="!error_mes" class="conf">
       <!-- <p><fa icon="calendar-alt"></fa> <span>Дата:</span> {{ click_data }}</p> -->

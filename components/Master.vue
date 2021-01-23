@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <div class="row">
-      <button @click="onPage" class="mt-4">назад</button>
       <div class="col-12 mt-4">
 
         <img
@@ -231,9 +230,7 @@ export default {
     };
   },
   methods: {
-      onPage(){
-        this.$router.go(-1);
-      },
+
     changeData() {
       let category_id;
       if (this.category_id.id) {

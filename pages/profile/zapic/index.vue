@@ -1,5 +1,6 @@
 <template>
-    <div class="container">
+    <div class="container mt-4">
+        <fa @click="onPage" class="mt-4 icon-nazad" icon="angle-left"></fa>
         <h1 class="my_zapic">Мои записи</h1>
         <ListZapic v-if="!al_data" :Datetime="Datetime" :openTime="openTime" :time_data="time_data" :new_time="new_time" />
         <p v-if="al_data">У вас пока нет записей</p>
@@ -61,6 +62,9 @@ export default {
 
     },
     methods: {
+    onPage(){
+        this.$router.go(-1);
+      },
         openTime(date_id,date){
           this.$router.push(`/profile/zapic/${date_id}?data=${date}`)
 
@@ -86,5 +90,10 @@ export default {
 }
 .my_zapic{
     margin-top: 10rem;
+}
+.icon-nazad{
+  font-size: 3rem;
+  color: cornflowerblue;
+  cursor: pointer;
 }
 </style>

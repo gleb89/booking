@@ -1,6 +1,7 @@
 <template>
-    <div class="container">
-      <button @click="onPage" class="mt-4">назад</button>
+    <div class="container mt-4">
+
+      <fa @click="onPage" class="mt-4 icon-nazad" icon="angle-left"></fa>
         <CabinetMaster :user_id="user_id" :user="user" :nonrating="nonrating" :usRating="usRating" :clickRating="clickRating" :rating_click="rating_click" :authrating="authrating" :ratingChange="ratingChange"/>
     </div>
 </template>
@@ -113,4 +114,9 @@ export default {
 </script>
 
 <style>
+.icon-nazad{
+  font-size: 3rem;
+  color: cornflowerblue;
+  cursor: pointer;
+}
 </style>
