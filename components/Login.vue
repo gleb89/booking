@@ -17,14 +17,14 @@
 
           <form class="form justify-content-center" v-on:submit="postLogin($event)">
             <input
-              type="text"
+              type="email"
               id="email"
               class="fadeIn second zero-raduis form-control"
               v-model="email"
               placeholder="email"
             />
             <input
-              type="text"
+              type="password"
               id="password"
               class="fadeIn third zero-raduis form-control"
               v-model="password"

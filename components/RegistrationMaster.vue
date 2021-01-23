@@ -32,7 +32,7 @@
               />
               <input
                 required
-                type="text"
+                type="email"
                 id="email"
                 class="fadeIn second zero-raduis form-control"
                 v-model="email"
@@ -40,7 +40,7 @@
               />
               <input
                 required
-                type="text"
+                type="password"
                 id="password"
                 class="fadeIn third zero-raduis"
                 v-model="password"
@@ -64,22 +64,26 @@
                 <div v-if="checked" class="newflex form-group mt-3 ">
 
                   <div class="d-flex justify-content-center">
-                <select  id="inputState" class="form-control" v-model="category_id">
+                <select  id="inputState" class="form-control" v-model="category_id" required>
                   <option value >Выбрать услугу</option>
                   <option v-for="cat in categories" :key="cat.id" :value="(cat.id)">{{cat.title}}</option>
                 </select>
                 </div>
                 <label for="inputState">Категория услуг</label>
               </div>
+              <div>
               <input
               v-if="checked"
                 required
                 type="text"
-                id="password"
+                id="phone-check"
                 class="fadeIn third zero-raduis"
                 v-model="phone"
-                placeholder="телефон"
+                placeholder="+7 XXX XXX XX XX"
               />
+              <label v-if="checked" for="phone-check">Номер телефона</label>
+              </div>
+
               <!-- <div id="formFooter" class="justify-content-center">
                 <nuxt-link class="text-center" to="/login">Уже зарегестрированы?</nuxt-link>
               </div> -->
@@ -228,10 +232,11 @@ h2 {
   border-radius: 10px 10px 10px 10px;
   background: #fff;
   padding: 30px;
+
   width: 90%;
   max-width: 450px;
   position: relative;
-  padding: 0px;
+  padding: 2px;
   -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3);
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3);
   text-align: center;
@@ -297,7 +302,9 @@ input[type="reset"]:active {
 }
 
 input[type="text"],
-input[type="email"] {
+input[type="password"],
+input[type="email"]
+{
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;

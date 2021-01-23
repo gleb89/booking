@@ -73,15 +73,15 @@
               <h2>Фото работ</h2>
 
               <div v-if="user.images.length > 0" id="photo" class="row justify-content-center p-1">
-
+                <div v-for="(photo,projectIndex) in imagesList" :key="photo.id" class="col-12 col-lg-4 p-1 text-center">
                 <img
-                  v-for="(photo,projectIndex) in imagesList" :key="photo.id"
+
                   @click.prevent="openImg(projectIndex)"
                   class="gallery-img img-fluid col-12 col-lg-4 p-1"
                   :src="photo"
                   alt
                 />
-
+                </div>
               </div>
               <div v-if="user.images.length === 0"  id="photo" class="row justify-content-center">
                 <h4>Мастер еще не загрузил фото</h4>
@@ -512,6 +512,8 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 .gallery-img {
     transition: 1s;
     cursor: pointer;
+    height: auto;
+    width: 10rem;
 }
 .gallery-img:hover {
   filter: grayscale(100%);
