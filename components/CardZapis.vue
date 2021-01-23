@@ -1,5 +1,5 @@
 <template>
-
+<div><button @click="onPage" class="mt-4">назад</button>
 
     <div v-if="!error_mes" class="conf">
       <!-- <p><fa icon="calendar-alt"></fa> <span>Дата:</span> {{ click_data }}</p> -->
@@ -45,7 +45,7 @@
         ></b-spinner>
       </div>
     </div>
-
+</div>
 </template>
 times.time
 <script>
@@ -65,6 +65,9 @@ export default {
     return {};
   },
   methods:{
+          onPage(){
+        this.$router.go(-1);
+      },
     onsdata(click_data){
       let god = Number(click_data.slice(0,4))
 

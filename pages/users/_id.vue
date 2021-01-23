@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+      <button @click="onPage" class="mt-4">назад</button>
         <CabinetMaster :user_id="user_id" :user="user" :nonrating="nonrating" :usRating="usRating" :clickRating="clickRating" :rating_click="rating_click" :authrating="authrating" :ratingChange="ratingChange"/>
     </div>
 </template>
@@ -59,6 +60,9 @@ export default {
         }
     },
     methods: {
+      onPage(){
+        this.$router.go(-1);
+      },
       usRating(rating){
       let arrRating = [];
       for (var i = 0; i < rating; i++) {

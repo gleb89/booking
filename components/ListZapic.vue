@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="row">
+      <button @click="onPage" class="mt-4">назад</button>
       <div class="col-lg-3 box-date-time" v-for="date in Datetime" :key="date.id">
         <p><fa icon="calendar-alt"></fa> Дата: {{onsdata(date.date)}}</p>
         <p class="calculater"><fa icon="calculator"></fa> Всего записей :{{date.time.length}}</p>
@@ -38,6 +39,9 @@ export default {
   },
 
   methods: {
+      onPage(){
+        this.$router.go(-1);
+      },
     CountNewTime(times){
      let count_new =  times.filter(elem =>{
                 return elem.phone_owner && !elem.master_confirm
