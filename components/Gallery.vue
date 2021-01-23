@@ -7,7 +7,7 @@
               </div>
               <div class="col-12 d-flex justify-content-center align-items-center image-box">
                   <div class="row">
-                <div class="col-12 d-flex justify-content-center">
+                <div class="col-12 b-im d-flex justify-content-center ">
               <img class="img-fluid  " :src="bigimage" alt="">
               </div >
               <div class="col-12 button-img d-flex justify-content-center">
@@ -70,5 +70,8 @@ methods: {
     color: aliceblue;
     font-size: 2rem;
     cursor: pointer;
+}
+.b-im{
+    padding: 1rem;
 }
 </style>

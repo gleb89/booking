@@ -470,5 +470,9 @@ span path {
   color: deepskyblue;
 }
 /* drag and drop - "hover" */
-
+@media (max-width: 500px) {
+  .p-text p{
+    font-size: 1rem;
+  }
+}
 </style>
