@@ -71,17 +71,19 @@
             </div>
             <div class="col-12 col-lg-8 img-block">
               <h2>Фото работ</h2>
-
-              <div v-if="user.images.length > 0" id="photo" class="row justify-content-center p-1">
-                <div v-for="(photo,projectIndex) in imagesList" :key="photo.id" class="col-12 col-lg-4 p-1 text-center">
+              <div class="container">
+              <div class="row gallery5 ">
+                 <div v-if="user.images.length > 0" id="photo" class="row justify-content-center p-1">
+                <div  v-for="(photo,projectIndex) in imagesList" :key="photo.id" class="ramka text-center col-12 col-lg-4 ">
                 <img
-
                   @click.prevent="openImg(projectIndex)"
-                  class="gallery-img img-fluid col-12 col-lg-4 p-1"
+                  class="gallery-img img-fluid "
                   :src="photo"
                   alt
                 />
                 </div>
+              </div>
+              </div>
               </div>
               <div v-if="user.images.length === 0"  id="photo" class="row justify-content-center">
                 <h4>Мастер еще не загрузил фото</h4>
@@ -262,7 +264,10 @@ export default {
       bigimage: "",
       big_image_index: 0,
       gallery_image:[],
-      imag_true:false
+      imag_true:false,
+      slide: 0,
+      sliding: null
+    
 
     };
   },
@@ -273,6 +278,12 @@ export default {
   },
 
   methods: {
+      onSlideStart(slide) {
+        this.sliding = true
+      },
+      onSlideEnd(slide) {
+        this.sliding = false
+      },
     timeCostum(time) {
       this.clock = time;
       this.active_el = time;
@@ -427,7 +438,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .active {
   color: #3cbea6;
   width: 4rem;
@@ -512,9 +523,24 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 .gallery-img {
     transition: 1s;
     cursor: pointer;
-    height: auto;
-    width: 10rem;
 }
+.gallery5 { 
+  overflow: hidden; 
+  width: 100%;
+  
+}
+
+.gallery5 .ramka { 
+  float: left; 
+  margin-right: 5px; 
+  margin-bottom: 5px;
+}
+.gallery5 img { 
+  width: 15rem; 
+  height: 15rem;
+  object-fit: cover; 
+}
+
 .gallery-img:hover {
   filter: grayscale(100%);
   transform: scale(1.1);

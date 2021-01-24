@@ -8,7 +8,7 @@
               <div class="col-12 d-flex justify-content-center align-items-center image-box">
                   <div class="row">
                 <div class="col-12 b-im d-flex justify-content-center ">
-              <img class="img-fluid  " :src="bigimage" alt="">
+              <img class="img-bigs img-fluid" :src="bigimage" alt="">
               </div >
               <div class="col-12 button-img d-flex justify-content-center">
                   <fa @click="openImageUp()" class="m-2 icons" icon="long-arrow-alt-left"></fa>
@@ -45,7 +45,7 @@ methods: {
     position: absolute;
     left: 0;
     z-index: 1;
-    opacity: 0.95;
+    /* opacity: 0.95; */
     top: 0;
     position: fixed;
 }
@@ -73,5 +73,8 @@ methods: {
 }
 .b-im{
     padding: 1rem;
+}
+.img-bigs{
+    max-width: 15rem;
 }
 </style>
