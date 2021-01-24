@@ -603,6 +603,7 @@ small,
   max-width: 100%;
   max-height: 256px;
 }
+
 .b-calendar .b-calendar-grid {
   padding: 0;
   margin: 0;
