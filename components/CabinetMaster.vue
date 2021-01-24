@@ -27,8 +27,9 @@
         <div v-if="home" id="home" class="col-12 mt-3">
           <div class="row">
             <div class="col-12 col-lg-4">
-              <img class="img img-fluid rounded-circle" :src="user.avatar" alt width="108rem" />
-
+              <div class="p-1">
+              <img class="im-avatar img img-fluid " :src="user.avatar" alt />
+              </div>
               <!-- <Rating class="mb-2" /> -->
               <p v-if="!ratingChange">Рейтинг:{{user.rating}}</p>
               <p v-if="ratingChange">Рейтинг:{{ authrating}}</p>
@@ -479,6 +480,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 .icons_rating {
   color: blanchedalmond;
   cursor: pointer;
+  width: 1.5rem;
 }
 .active {
   color: aliceblue;
@@ -595,6 +597,11 @@ small,
 .b-calendar .b-calendar-nav .btn {
   padding: 0.25rem;
   background: none;
+}
+.im-avatar{
+  height: auto;
+  max-width: 100%;
+  max-height: 256px;
 }
 .b-calendar .b-calendar-grid {
   padding: 0;

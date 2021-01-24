@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
       <div v-for="user of users" :key="user.id" class="card col-12 col-lg-3 m-4">
         <div class="p-1">
-        <img v-if="user.avatar" class="img card-img-top img-fluid rounded-circle" :src="user.avatar" alt="Card image cap" />
+        <img v-if="user.avatar" class="img im-avatar card-img-top img-fluid " :src="user.avatar" alt="Card image cap" />
         <img v-if="!user.avatar" class="img card-img-top img-fluid rounded-circle" src="/header.png" alt="Card image cap" />
         </div>
         <div class="card-body">
@@ -112,10 +112,16 @@ export default {
   background: #3cbfa7;
   box-shadow: 3px 3px 3px #0000007a;
 }
-.img{
+/* .img{
   height: 5rem;
   width: 5rem;
   border: 1px solid #3cbea6;
   box-shadow: 2px 2px 2px 2px #e9ecef;
+} */
+.im-avatar{
+  height: auto;
+  max-width: 5rem;
+  width: auto;
+  margin-left: 1rem;
 }
 </style>
