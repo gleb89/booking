@@ -6,13 +6,17 @@
               <fa @click="closeGall()" class="icons-close" icon="times"></fa>
               </div>
               <div class="col-12 d-flex justify-content-center align-items-center image-box">
+                  <div class="container">
                   <div class="row">
                 <div class="col-12 b-im d-flex justify-content-center ">
+                <div class="pbox">
               <img class="img-bigs img-fluid" :src="bigimage" alt="">
+              </div>
               </div >
               <div class="col-12 button-img d-flex justify-content-center">
                   <fa @click="openImageUp()" class="m-2 icons" icon="long-arrow-alt-left"></fa>
                   <fa @click="openImageIn()" class="m-2 icons" icon="long-arrow-alt-right"></fa>
+              </div>
               </div>
               </div>
 
@@ -66,6 +70,9 @@ methods: {
 .button-img{
     margin-bottom: 8rem;
 }
+.pbox{
+    padding: 1rem;
+}
 .icons-close{
     color: aliceblue;
     font-size: 2rem;
@@ -76,5 +83,6 @@ methods: {
 }
 .img-bigs{
     max-width: 15rem;
+    height: auto;
 }
 </style>
