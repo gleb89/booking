@@ -4,7 +4,7 @@
       <div class="col-12 mt-4">
         <div class="p-1">
           <img
-          class="im-avatar img-prof rounded-circle"
+          class="im-avatar img-prof "
           v-if="new_image"
           :src="new_image"
           alt
