@@ -1,7 +1,7 @@
 <template>
     <div class="container mt-4">
       <div class="row justify-content-center">
-        <h3 class="text-center">Востановление пароля</h3>
+        <h3 class="text-center">Востановление пароля!</h3>
         <div class=" col-12  wrapper fadeInDown zero-raduis">
           <div v-if="err" class="alert alert-danger mb-3" role="alert">{{ message }}</div>
           <div v-if="send_mess" class="alert alert-info" role="alert">Проверьте почту</div>
@@ -93,7 +93,7 @@ export default {
         }
         )
         .then(responce => {
-          this.message = 'Проверьте почту'
+
           this.send = true
           this.send_mess = true
           setTimeout(() => {
