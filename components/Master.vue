@@ -2,14 +2,16 @@
   <div class="container">
     <div class="row">
       <div class="col-12 mt-4">
-
-        <img
-          class="img img-prof rounded-circle"
+        <div class="p-1">
+          <img
+          class="im-avatar img-prof "
           v-if="new_image"
           :src="new_image"
           alt
           width="108rem"
         />
+        </div>
+
         <br />
         <input
           v-if="resimage"
@@ -115,12 +117,14 @@
           id="photo"
 
         >
-        <div  v-for="(photo,ind) in user_images" :key="photo.id" style="position: relative">
+        <div  v-for="(photo,ind) in user_images" :key="photo.id" class="gallery5" style="position: relative">
+          <div class="ramka">
           <img
             class="img  gallery-img img-fluid  p-1 m-1"
             :src="photo.images"
             alt
           />
+          </div>
           <fa @click="delImage(photo.id,ind)"  class="icon-del" icon="trash"></fa>
           </div>
 
@@ -129,9 +133,9 @@
           v-if="list_add_images.length > 0"
           id="photo"
 
-          class=" justify-content-center p-1"
+          class=" justify-content-center p-1 gallery5"
         >
-        <div v-for="(photo,ind) in list_add_images" :key="photo.id" style="position: relative">
+        <div v-for="(photo,ind) in list_add_images" :key="photo.id" class="ramka" style="position: relative">
           <img
             class="img  gallery-img img-fluid  p-1 m-1"
             :src="photo.images"
@@ -411,6 +415,19 @@ export default {
   font-size: 4rem;
   cursor: pointer;
 }
+.im-avatar{
+margin-bottom: 2rem;
+height: auto;
+max-width: 20%;
+max-height: 256px;
+}
+
+@media (max-width:500px) {
+  .im-avatar{
+    max-width: 40%;
+  }
+}
+
 #photo{
     width: 100%;
     display: flex;
@@ -423,6 +440,22 @@ export default {
   /* border: 1px solid #3cbea6; */
   box-shadow: 2px 2px 2px 2px #e9ecef;
   margin-bottom: 2rem;
+}
+.gallery5 { 
+  overflow: hidden; 
+  width: 100%;
+  
+}
+
+.gallery5 .ramka { 
+  float: left; 
+  margin-right: 5px; 
+  margin-bottom: 5px;
+}
+.gallery5 img { 
+  width: 15rem; 
+  height: 15rem;
+  object-fit: cover; 
 }
 .icon-del{
   color: #ff00008c;

@@ -15,6 +15,7 @@
             Сервис
             <br />для записи-онлайн
             <br />в вашем городе
+            <br>к Beauty-мастерам
           </p>
         </div>
 
@@ -212,7 +213,7 @@ option {
 
 @media (max-width: 500px) {
   .about {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 }
 @media (max-width: 500px) {

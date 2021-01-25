@@ -11,7 +11,7 @@
 
     </header>
 
-    <main class="mt-3 pt-3">
+    <main @click="onCloseTar" class="mt-3 pt-3">
       <Login v-if="menu" :onClose="onClose" />
       <RegistrationMaster v-if="register" :onCloseReg="onCloseReg" :onLogin="onLogin" />
       <Nuxt />
@@ -64,6 +64,11 @@ export default {
     };
   },
   methods: {
+    onCloseTar(){
+      if(this.onDropdown === true){
+        this.onDropdown = false
+      }
+    },
     onLogout() {
       this.onDropdown = false;
     },
