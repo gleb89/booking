@@ -1,14 +1,29 @@
 <template>
-    <div class="container">
+    <div class="container mt-4">
       <div class="row justify-content-center">
         <h3 class="text-center">Востановление пароля</h3>
         <div class=" col-12  wrapper fadeInDown zero-raduis">
           <div v-if="err" class="alert alert-danger mb-3" role="alert">{{ message }}</div>
-          <div v-if="send" class="alert alert-info" role="alert">{{ message }}</div>
-  	  <div v-if="!send" id="formContent">
-  	    <form class="form" v-on:submit="sendEmail($event)">
-  	      <input type="email" id="email" class="fadeIn second zero-raduis" v-model="email" placeholder="email">
+          <div v-if="send_mess" class="alert alert-info" role="alert">Проверьте почту</div>
+          <div v-if="password_ok" class="col-12 text-center alert alert-info" role="alert">Пароль успешно изменен <br>Выполните вход </div>
+  	  <div  id="formContent">
+  	    <form v-if="!send" class="form" v-on:submit="sendEmail($event)">
+          <label for="email">Ваш email</label>
+  	      <input required type="email" id="email" class="fadeIn second zero-raduis" v-model="email" placeholder="email">
            <!-- <input type="button"  class="fadeIn fourth zero-raduis" value="Отправить"> -->
+           <button  type="submit" class="btn-form">Отправить</button>
+  	    </form>
+        <form v-if="send" class="form" v-on:submit="resetPassword($event)">
+
+  	      <input required type="email" id="email" class="fadeIn second zero-raduis" v-model="email" placeholder="email">
+           <label for="email">email</label>
+
+            <input required type="text" id="password" class="fadeIn second zero-raduis" v-model="password" placeholder="пароль с почты">
+            <label for="password">пароль из письма</label>
+
+            <input required type="text" id="password_new" class="fadeIn second zero-raduis" v-model="new_password" placeholder="Новый пароль">
+            <label for="password_new">Новый пароль</label>
+            <span v-if="err">Неверный email</span>
            <button  type="submit" class="btn-form">Отправить</button>
   	    </form>
   	  </div>
@@ -25,10 +40,45 @@ export default {
             email:'',
             send:false,
             err:false,
-            message:''
+            message:'',
+            password:'',
+            password_ok:false,
+            new_password:'',
+            send_mess:false
         }
     },
     methods: {
+       resetPassword(event){
+          event.preventDefault();
+            let data = {
+                "email": this.email,
+                'password':this.password,
+                'new_password':this.new_password
+            };
+            let headers = {
+            'Content-Type': 'application/json',
+        };
+        this.$axios.$post('https://api-booking.ru/reset_password',data,{
+                                                        headers: headers
+        }
+        )
+        .then(responce => {
+               this.password_ok = true
+            setTimeout(() => {
+            this.password_ok = false
+            this.$router.push('/')
+            }, 2000);
+        },
+        error => {
+          this.err = true
+         setTimeout(() => {
+           this.err = false
+           }, 2000);
+      })
+
+
+
+    },
         sendEmail(event){
           event.preventDefault();
             let data = {
@@ -37,6 +87,7 @@ export default {
             let headers = {
             'Content-Type': 'application/json',
         };
+
          this.$axios.$post('https://api-booking.ru/send_email',data,{
                                                         headers: headers
         }
@@ -44,7 +95,11 @@ export default {
         .then(responce => {
           this.message = 'Проверьте почту'
           this.send = true
-    },
+          this.send_mess = true
+          setTimeout(() => {
+            this.send_mess = false
+            }, 2000);
+          },
           error => {
             this.message = 'Неверная почта'
             this.err = true
@@ -55,6 +110,8 @@ export default {
 
     }
     },
+
+
 }
 
 </script>
