@@ -98,7 +98,7 @@ export default {
           this.send_mess = true
           setTimeout(() => {
             this.send_mess = false
-            }, 2000);
+            }, 5000);
           },
           error => {
 
