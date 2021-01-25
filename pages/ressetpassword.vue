@@ -9,7 +9,7 @@
   	    <form class="form" v-on:submit="resetPassword($event)">
   	      <input type="email" id="email" class="fadeIn second zero-raduis" v-model="email" placeholder="email">
             <input type="email" id="password" class="fadeIn second zero-raduis" v-model="password" placeholder="password">
-            <span v-if="err">Неверный email</span>
+            <span v-if="err">Неверный email <br> или <br> пароль из почты</span>
            <input type="submit" @click="resetPassword" class="fadeIn fourth zero-raduis" value="Отправить">
   	    </form>
   	  </div>
