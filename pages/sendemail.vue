@@ -3,7 +3,7 @@
       <div class="row justify-content-center">
         <h3 class="text-center">Востановление пароля!</h3>
         <div class=" col-12  wrapper fadeInDown zero-raduis">
-          <div v-if="err" class="alert alert-danger mb-3" role="alert">{{ message }}</div>
+          <div v-if="err" class="alert alert-danger mb-3" role="alert">Неверный email <br> или <br> пароль из почты</div>
           <div v-if="send_mess" class="alert alert-info" role="alert">Проверьте почту</div>
           <div v-if="password_ok" class="col-12 text-center alert alert-info" role="alert">Пароль успешно изменен <br>Выполните вход </div>
   	  <div  id="formContent">
@@ -101,7 +101,7 @@ export default {
             }, 2000);
           },
           error => {
-            this.message = 'Неверная почта'
+
             this.err = true
             setTimeout(() => {
            this.err = false
