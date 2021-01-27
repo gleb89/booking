@@ -99,16 +99,19 @@
           <div id="calendar-data" class="col-12 mt-3">
             <div class="container">
             <div class="row">
-            <div v-if="succes" class="col-12 col-lg-6 text-left justify-content-center ">
+            <div v-if="succes" class=" col-12 col-lg-6 text-left justify-content-center p-2 ">
               <p>Выберите дату</p>
 
-              <div class="container">
-                   <b-calendar
+              <b-calendar
               id="ex-disabled-readonly"
+                class="calen text-center"
                 v-model="value_data"
                 :value_data="value_data"
                 locale="ru"
               ></b-calendar>
+
+              <div class="container">
+
               </div>
 
 
@@ -453,15 +456,26 @@ export default {
 
 
 @media(max-width:380px){
-.startDate {
+.calen {
   min-width: 5em;
   width: 7em;
-  position: absolute;
-  left: -20px;
+  font-size: 1px;
+  /* position: absolute;
+  left: -20px; */
 }
 }
 .b-calendar {
   box-shadow: 7px 5px 15px 9px #add8e629;
+  font-size: 0px;
+  margin: 4px;
+  width: 10rem;
+}
+
+@media(max-width: 296px){
+  .b-calendar{
+    width: 5rem;
+    margin-right: 4rem;
+  }
 }
 .b-calendar output {
   display: none;
