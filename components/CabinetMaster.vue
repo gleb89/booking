@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <div class="profile">
+  <div class="container ">
+   <div class="profile">
       <Gallery
         v-if="image"
         :closeGall="closeGall"
@@ -23,8 +23,8 @@
           </li>
         </ul>
       </nav>
-      <div class="row justify-content-center">
-        <div v-if="home" id="home" class="col-12 mt-3">
+      <div v-if="home" class="row justify-content-center">
+        <div  id="home" class="col-12 mt-3">
           <div class="row">
             <div class="col-12 col-lg-4">
               <div class="p-1">
@@ -94,20 +94,29 @@
         </div>
       </div>
 
-      <div id="zapis" v-if="zapis" class="col-12 mt-3">
-        <section>
-          <div id="calendar-data" class="row">
-            <div v-if="succes" class="col-12 col-lg-6 text-center">
+      <div id="zapis" v-if="zapis" class="row justify-content-center">
+         
+          <div id="calendar-data" class="col-12 mt-3">
+            <div class="container">
+            <div class="row">
+            <div v-if="succes" class="col-12 col-lg-6 text-left justify-content-center ">
               <p>Выберите дату</p>
-
-              <b-calendar
-                id="ex-disabled-readonly"
+              
+              <div class="container">
+                   <b-calendar
+              class="startDate"
                 v-model="value_data"
                 :value_data="value_data"
                 locale="ru"
               ></b-calendar>
+              </div>
+           
+              
+              
             </div>
+            
             <div class="col-12 col-lg-6 zapis-table text-start">
+              
               <div v-if="resp_ok" class="alert alert-info" role="alert">Вы успешно записались</div>
               <div v-if="resp_ok">
                 <img class="img-fluid img-zapis" src="/header.png" alt />
@@ -169,10 +178,11 @@
                 </form>
               </div>
             </div>
+            </div>
+            </div>
           </div>
-        </section>
+          </div>
       </div>
-    </div>
   </div>
 </template>
 
@@ -440,6 +450,29 @@ export default {
 </script>
 
 <style scoped>
+
+
+@media(max-width:380px){
+.startDate {
+  min-width: 5em;
+  width: 7em;
+  position: absolute;
+  left: -20px;
+}
+}
+.b-calendar {
+  box-shadow: 7px 5px 15px 9px #add8e629;
+}
+.b-calendar output {
+  display: none;
+}
+small,
+.small {
+  display: none;
+}
+.b-calendar .b-calendar-inner{
+  max-width: 70px;
+}
 .active {
   color: #3cbea6;
   width: 4rem;
@@ -504,7 +537,9 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 .box-sibmit {
   height: 7rem;
 }
-
+.box-cal{
+  padding: 1rem;
+}
 .time-clock {
   background: aliceblue;
   border: solid 1px #e0e1e2;
@@ -575,45 +610,20 @@ select {
 .new-phone {
   width: 100%;
 }
-.b-calendar .b-calendar-grid-body .col[data-date] .btn {
-  width: 32px;
-  height: 32px;
-  background: white;
-  font-size: 14px;
-  line-height: 1;
-  margin: 3px auto;
-  padding: 9px 0;
-}
-/* .b-calendar output {
-  display: none;
-} */
-small,
-.small {
-  display: none;
-}
-.b-calendar .b-calendar-grid-body .col[data-date] .btn {
-  color: #28a745;
-}
-.b-calendar .b-calendar-nav .btn {
-  padding: 0.25rem;
-  background: none;
-}
+
+
+
+
+
 .im-avatar{
   height: auto;
   max-width: 100%;
   max-height: 256px;
 }
 
-.b-calendar .b-calendar-grid {
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
-  width: auto;
-}
-.b-calendar {
-  box-shadow: 7px 5px 15px 9px #add8e629;
-}
-.b-calendar .b-calendar-grid {
-  border: none;
-}
+
+
+
+
+
 </style>

@@ -1,6 +1,8 @@
 <template>
   <div class="container">
     <section id="header" class="mt-1">
+      
+    
       <div class="row">
         <div class="discripchion order-lg-1 order-1 col-12 col-lg-6 mb-4 mb-lg-0">
           <div class="about-h">
@@ -34,10 +36,11 @@
           </select>
         </div>
         <div class="col-10 mt-5 text-center">
-          <div class="search-form">
-            <form class="form-inline my-2 my-lg-0">
+          <div class="search-form p-1">
+            <form class="form-inline p-1">
+              
               <input
-                class="form-category form-control mr-sm-2"
+                class="form-category form-control"
                 type="search"
                 placeholder="Поиск"
                 aria-label="Search"
@@ -243,6 +246,13 @@ option {
   width: 20rem;
   height: 4rem;
   box-shadow: 2px 2px 2px 4px #6c757d52;
+}
+
+@media(max-width:500px) {
+  .form-category{
+    width: 12rem;
+  
+  }
 }
 .pointer {
   cursor: pointer;

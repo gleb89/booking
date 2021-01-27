@@ -126,7 +126,7 @@ export default {
 };
 </script>
 
-<style >
+<style scoped>
 .data {
   margin-top: 8rem;
 }

@@ -1,5 +1,5 @@
 <template>
-    <div class="container mt-4">
+    <div class="container mt-4 p-3">
 
       <fa @click="onPage" class="mt-4 icon-nazad" icon="angle-left"></fa>
         <CabinetMaster :user_id="user_id" :user="user" :nonrating="nonrating" :usRating="usRating" :clickRating="clickRating" :rating_click="rating_click" :authrating="authrating" :ratingChange="ratingChange"/>
