@@ -95,28 +95,28 @@
       </div>
 
       <div id="zapis" v-if="zapis" class="row justify-content-center">
-         
+
           <div id="calendar-data" class="col-12 mt-3">
             <div class="container">
             <div class="row">
             <div v-if="succes" class="col-12 col-lg-6 text-left justify-content-center ">
               <p>Выберите дату</p>
-              
+
               <div class="container">
                    <b-calendar
-              class="startDate"
+              id="ex-disabled-readonly"
                 v-model="value_data"
                 :value_data="value_data"
                 locale="ru"
               ></b-calendar>
               </div>
-           
-              
-              
+
+
+
             </div>
-            
+
             <div class="col-12 col-lg-6 zapis-table text-start">
-              
+
               <div v-if="resp_ok" class="alert alert-info" role="alert">Вы успешно записались</div>
               <div v-if="resp_ok">
                 <img class="img-fluid img-zapis" src="/header.png" alt />
@@ -278,7 +278,7 @@ export default {
       imag_true:false,
       slide: 0,
       sliding: null
-    
+
 
     };
   },
@@ -561,21 +561,21 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     transition: 1s;
     cursor: pointer;
 }
-.gallery5 { 
-  overflow: hidden; 
+.gallery5 {
+  overflow: hidden;
   width: 100%;
-  
+
 }
 
-.gallery5 .ramka { 
-  float: left; 
-  margin-right: 5px; 
+.gallery5 .ramka {
+  float: left;
+  margin-right: 5px;
   margin-bottom: 5px;
 }
-.gallery5 img { 
-  width: 15rem; 
+.gallery5 img {
+  width: 15rem;
   height: 15rem;
-  object-fit: cover; 
+  object-fit: cover;
 }
 
 .gallery-img:hover {
